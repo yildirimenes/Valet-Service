@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Valet Service</string>
+    <string name="language_prompt">Select a language:</string>
+    <string name="search">Arama</string>
+    <string name="valet_service">Vale Servisi</string>
+    <string name="update">Güncelle</string>
+    <string name="register">Kaydet</string>
+    <string name="delete">Sil</string>
+    <string name="delete_operation">Bu aracı silmek istediğinize onaylıyor musunuz ?</string>
+    <string name="confirm">Eminim</string>
+    <string name="dismiss">İptal</string>
+    <string name="car_information">Araç Bilgisi</string>
+    <string name="car_update">Araç Güncelle</string>
+    <string name="car_register">Araç Kayıt</string>
+    <string name="car_settings">Ayarlar</string>
+    <string name="customer_name">Müşteri İsmi</string>
+    <string name="vehicle_name">Araç Modeli</string>
+    <string name="vehicle_number_plate">Araç Plakası</string>
+    <string name="vehicle_location_description">Araç Lokasyon Bilgisi</string>
+    <string name="vehicle_brand">Araç Markası</string>
+    <string name="car_plate">Araç Plakası</string>
+    <string name="location_information">Konum Bilgisi</string>
+    <string name="vallet_premium">Vallet Premium</string>
+    <string name="language_option">Dil Seçenekleri</string>
+    <string name="dark_mode">Gece Modu</string>
+    <string name="rate_us">Bizi Oyla</string>
+
+
+
+
+
+
+</resources>
