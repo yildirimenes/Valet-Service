@@ -17,22 +17,27 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,9 +52,11 @@ import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.components.DeleteAlertDialog
+import com.yildirim.vehicleapp.components.DrawerSheet
 import com.yildirim.vehicleapp.entity.Vehicles
 import com.yildirim.vehicleapp.viewmodel.CategoryViewModel
 import com.yildirim.vehicleapp.viewmodelfactory.CategoryViewModelFactory
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,6 +66,8 @@ fun CategoryPage(navController: NavController){
     val tf = remember { mutableStateOf("") }
     val defaultController = remember { mutableStateOf(false) }
     val context = LocalContext.current
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
     var isDeleteDialogVisible by remember { mutableStateOf(false) }
     var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
     val viewModel : CategoryViewModel = viewModel(
@@ -69,92 +78,107 @@ fun CategoryPage(navController: NavController){
     LaunchedEffect(key1 = true){
         viewModel.load()
     }
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    if (isCall.value) {
-                        TextField(
-                            value = tf.value,
-                            onValueChange = {
-                                tf.value = it
-                                viewModel.search(it)
-                            },
-                            label = { Text(text = stringResource(id = R.string.search)) },
-                            colors = TextFieldDefaults.textFieldColors(
-                                containerColor = Color.Transparent,
-                                focusedIndicatorColor = Color.White,
-                                unfocusedIndicatorColor = Color.White,
-                                textColor = Color.Black
-                            )
-                        )
-                    } else {
-                        Text(text = stringResource(id = R.string.valet_service))
-                    }
-                },
-                actions = {
-                    if (isCall.value) {
-                        IconButton(onClick = {
-                            isCall.value = false
-                            tf.value = ""
-                        }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.close_image),
-                                contentDescription = "", tint = Color.Black
-                            )
-                        }
-                    } else {
-                        IconButton(onClick = {
-                            isCall.value = true
-                        }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.search_image),
-                                contentDescription = "", tint = Color.Black
-                            )
-                        }
-                    }
-                    IconButton(onClick = { navController.navigate("settings_page") }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Menu,
-                            contentDescription = ""
-                        )
-                    }
-                },
-
-            )
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            ModalDrawerSheet {
+                DrawerSheet()
+            }
         },
+        ) {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    navigationIcon = {
+                        IconButton(
+                            onClick = {
+                                scope.launch {
+                                    drawerState.apply {
+                                        if (isClosed) open() else close()
+                                    }
+                                } }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Menu,
+                                contentDescription = ""
+                            )
+                        }
+                    },
+                    title = {
+                        if (isCall.value) {
+                            TextField(
+                                value = tf.value,
+                                onValueChange = {
+                                    tf.value = it
+                                    viewModel.search(it)
+                                },
+                                label = { Text(text = stringResource(id = R.string.search)) },
+                                colors = TextFieldDefaults.textFieldColors(
+                                    containerColor = Color.Transparent,
+                                    focusedIndicatorColor = Color.White,
+                                    unfocusedIndicatorColor = Color.White,
+                                    textColor = Color.Black
+                                )
+                            )
+                        } else {
+                            Text(text = stringResource(id = R.string.valet_service))
+                        }
+                    },
+                    actions = {
+                        if (isCall.value) {
+                            IconButton(onClick = {
+                                isCall.value = false
+                                tf.value = ""
+                            }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.close_image),
+                                    contentDescription = "", tint = Color.Black
+                                )
+                            }
+                        } else {
+                            IconButton(onClick = {
+                                isCall.value = true
+                            }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.search_image),
+                                    contentDescription = "", tint = Color.Black
+                                )
+                            }
+                        }
+                    },
+                )
+            },
 
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { navController.navigate("vehicle_register_page") },
-                containerColor = colorResource(id = R.color.teal_200),
+            floatingActionButton = {
+                FloatingActionButton(
+                    onClick = { navController.navigate("vehicle_register_page") },
+                    containerColor = colorResource(id = R.color.teal_200),
+                    content = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.add_image),
+                            contentDescription = "", tint = Color.White
+                        )
+                    }
+                )
+            }
+
+        ) {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                contentPadding = PaddingValues(
+                    start = 12.dp,
+                    top = 70.dp,
+                    end = 12.dp,
+                    bottom = 16.dp
+                ),
                 content = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.add_image),
-                        contentDescription = "", tint = Color.White
-                    )
-                }
-            )
-        }
-
-    ) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            contentPadding = PaddingValues(
-                start = 12.dp,
-                top = 70.dp,
-                end = 12.dp,
-                bottom = 16.dp
-            ),
-            content = {
-                items(
-                    count = vehiclesList.value!!.count(),
-                    itemContent = {
-                        val vehicle = vehiclesList.value!![it]
-                        Card(modifier = Modifier
-                            .padding(all = 5.dp)
-                            .fillMaxWidth()) {
+                    items(
+                        count = vehiclesList.value!!.count(),
+                        itemContent = {
+                            val vehicle = vehiclesList.value!![it]
+                            Card(modifier = Modifier
+                                .padding(all = 5.dp)
+                                .fillMaxWidth()) {
                                 Column(modifier = Modifier.clickable {
                                     val vehicleJson = Gson().toJson(vehicle)
                                     navController.navigate("vehicle_page/${vehicleJson}")
@@ -163,14 +187,14 @@ fun CategoryPage(navController: NavController){
                                         modifier = Modifier.fillMaxSize(),
                                         verticalArrangement = Arrangement.Center,
                                         horizontalAlignment = Alignment.CenterHorizontally
-                                        ) {
+                                    ) {
 
                                         Spacer(modifier = Modifier.size(15.dp))
                                         Text(text = vehicle.vehicle_number_plate)
                                         Spacer(modifier = Modifier.size(15.dp))
                                         Image(
                                             painter = painterResource(id = R.drawable.default_car_image),
-                                            contentDescription = ""
+                                            contentDescription = "",
                                         )
                                         Row(
                                             modifier = Modifier
@@ -215,8 +239,11 @@ fun CategoryPage(navController: NavController){
                                 }
                             }
                         }
-                )
-            }
-        )
+                    )
+                }
+            )
+        }
     }
 }
+
+

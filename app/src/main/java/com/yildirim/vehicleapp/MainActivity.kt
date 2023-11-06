@@ -16,7 +16,6 @@ import com.google.gson.Gson
 import com.yildirim.vehicleapp.entity.Vehicles
 import com.yildirim.vehicleapp.ui.theme.VehicleAppTheme
 import com.yildirim.vehicleapp.view.CategoryPage
-import com.yildirim.vehicleapp.view.SettingsPage
 import com.yildirim.vehicleapp.view.VehiclePage
 import com.yildirim.vehicleapp.view.VehicleRegisterPage
 import com.yildirim.vehicleapp.view.VehicleUpdatePage
@@ -63,10 +62,6 @@ fun PageController() {
             val objects = Gson().fromJson(json,Vehicles::class.java)
             VehicleUpdatePage(navController = navController,objects)
         }
-        composable("settings_page"){
-            SettingsPage()
-        }
-
     }
 
 }

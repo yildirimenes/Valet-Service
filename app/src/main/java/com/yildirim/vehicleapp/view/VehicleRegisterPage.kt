@@ -80,7 +80,6 @@ fun VehicleRegisterPage(navController: NavController){
                 label = { Text(text = stringResource(id = R.string.vehicle_location_description))}
             )
             Spacer(modifier = Modifier.size(30.dp))
-
             CustomButton(
                 onClick = {
                     val customerName = tfCustomerName.value

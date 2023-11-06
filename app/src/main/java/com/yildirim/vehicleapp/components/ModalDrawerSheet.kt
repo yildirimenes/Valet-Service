@@ -1,4 +1,5 @@
-package com.yildirim.vehicleapp.view
+package com.yildirim.vehicleapp.components
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,18 +13,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.yildirim.vehicleapp.R
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import com.yildirim.vehicleapp.components.CustomSettingsCard
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsPage() {
+fun DrawerSheet() {
     Scaffold (
         topBar = {
             TopAppBar(title = { Text(text = stringResource(id = R.string.car_settings)) })
@@ -44,5 +42,3 @@ fun SettingsPage() {
         }
     }
 }
-
-
