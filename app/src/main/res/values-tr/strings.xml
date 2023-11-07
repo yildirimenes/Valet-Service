@@ -14,6 +14,7 @@
     <string name="car_register">Araç Kayıt</string>
     <string name="car_settings">Ayarlar</string>
     <string name="customer_name">Müşteri İsmi</string>
+    <string name="customer_phone_number">Customer Phone Number</string>
     <string name="vehicle_name">Araç Modeli</string>
     <string name="vehicle_number_plate">Araç Plakası</string>
     <string name="vehicle_location_description">Araç Lokasyon Bilgisi</string>

@@ -49,7 +49,7 @@ fun PageController() {
         )){
             val json = it.arguments?.getString("vehicle")
             val objects = Gson().fromJson(json,Vehicles::class.java)
-            VehiclePage(objects)
+            VehiclePage(navController = navController,objects)
         }
         composable("vehicle_register_page"){
             VehicleRegisterPage(navController = navController)

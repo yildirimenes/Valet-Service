@@ -195,7 +195,7 @@ fun CategoryPage(navController: NavController){
                                         Image(
                                             painter = painterResource(id = R.drawable.default_car_image),
                                             contentDescription = "",
-                                        )
+                                         )
                                         Row(
                                             modifier = Modifier
                                                 .padding(all = 8.dp)

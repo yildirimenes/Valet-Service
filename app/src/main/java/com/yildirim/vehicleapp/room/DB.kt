@@ -20,6 +20,7 @@ abstract class DB : RoomDatabase() {
                         DB::class.java,
                         "vehicles.sqlite")
                         .createFromAsset("vehicles.sqlite")
+                        //.fallbackToDestructiveMigration()
                         .build()
                 }
             }

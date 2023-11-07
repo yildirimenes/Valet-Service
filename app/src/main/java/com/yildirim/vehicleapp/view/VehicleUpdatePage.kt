@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -27,6 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.components.CustomButton
+import com.yildirim.vehicleapp.components.PhoneField
 import com.yildirim.vehicleapp.components.UpdateOutlinedTextField
 import com.yildirim.vehicleapp.entity.Vehicles
 import com.yildirim.vehicleapp.viewmodel.VehicleUpdateViewModel
@@ -38,6 +43,7 @@ import com.yildirim.vehicleapp.viewmodelfactory.VehicleUpdateViewModelFactory
 @Composable
 fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
     val tfCustomerName = remember { mutableStateOf("") }
+    val tfCustomerPhoneNumber = remember { mutableStateOf("") }
     val tfVehicleName = remember { mutableStateOf("") }
     val tfVehicleNumberPlate = remember { mutableStateOf("") }
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
@@ -49,6 +55,7 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
 
     LaunchedEffect(key1 = true){
         tfCustomerName.value = getVehicles.customer_name
+        tfCustomerPhoneNumber.value = getVehicles.customer_phone_number
         tfVehicleName.value = getVehicles.vehicle_name
         tfVehicleNumberPlate.value = getVehicles.vehicle_number_plate
         tfVehicleLocationDescription.value = getVehicles.vehicle_location_description
@@ -56,7 +63,19 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = stringResource(id = R.string.car_update)) })
+            TopAppBar(
+                title = {
+                    Text(text = stringResource(id = R.string.car_update))
+                },
+                navigationIcon = {
+                    IconButton(onClick = {navController.navigate("category_page")}) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+            )
         },
     ) {
         Column(
@@ -70,6 +89,12 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
                 value = tfCustomerName.value,
                 onValueChange = {tfCustomerName.value = it},
                 label = {Text(stringResource(id = R.string.customer_name))},
+            )
+            Spacer(modifier = Modifier.size(30.dp))
+            PhoneField(
+                phone = tfCustomerPhoneNumber.value,
+                label = {Text(stringResource(id = R.string.customer_phone_number))},
+                onPhoneChanged = {tfCustomerPhoneNumber.value = it}
             )
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedTextField(
@@ -94,11 +119,12 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
             CustomButton(
                 onClick = {
                     val customerName = tfCustomerName.value
+                    val customerPhoneNumber = tfCustomerPhoneNumber.value
                     val vehicleName = tfVehicleName.value
                     val vehicleNumberPlate = tfVehicleNumberPlate.value
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
 
-                    viewModel.update(getVehicles.vehicle_id,customerName,vehicleName,vehicleNumberPlate,vehicleLocationDescription)
+                    viewModel.update(getVehicles.vehicle_id,customerName,customerPhoneNumber,vehicleName,vehicleNumberPlate,vehicleLocationDescription)
                     localFocusManager.clearFocus()
                     navController.navigate("category_page")
                 },
