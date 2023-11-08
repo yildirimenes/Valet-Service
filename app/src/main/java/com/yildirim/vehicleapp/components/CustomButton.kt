@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -46,3 +47,21 @@ fun CallButton(
     }
 }
 
+@Composable
+fun MessageButton(
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Row {
+            Icon(
+                imageVector = Icons.Default.MailOutline,
+                contentDescription = null,
+                modifier = Modifier.padding(end = 4.dp)
+            )
+            Text(text = " Message ", fontSize = 16.sp)
+        }
+    }
+}
