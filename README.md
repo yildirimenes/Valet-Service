@@ -9,7 +9,10 @@ The main features of this project include:
 - Valets can register new vehicles to the application.
 -	Valets can see the current locations and car license plates of the vehicles registered in the system.
 -	Valet service companies can update existing vehicles in the application.
--	valet companies can easily access cars by querying car license plates
+-	Valet companies can easily access cars by querying car license plates.
+-   An information message can be sent when the vehicle is received.
+-   Calls can be made to communicate in emergencies.
+-   Vehicle registration date and time can be informed to the customer by message.
 ## Technologies
 
 We utilized the following key technologies and tools in the development of this project:
@@ -22,11 +25,11 @@ We utilized the following key technologies and tools in the development of this 
 ## User Interfaces
 
 <p align="center">
-  <img src="images/car_page_english.png" width="250" height="550">
-  <img src="images/car_page_turkish.jpeg" width="250" height="550">
-  <img src="images/car_detail.jpeg" width="250" height="550">
-  <img src="images/car_register.jpeg" width="250" height="550">
-  <img src="images/car_update.jpeg" width="250" height="550">
-  <img src="images/car_search.jpeg" width="250" height="550">
-  <img src="images/car_delete.jpeg" width="250" height="550">
+  <img src="images/category_page.png" width="250">
+  <img src="images/car_detail.png" width="250">
+  <img src="images/car_register.png" width="250">
+  <img src="images/car_update.png" width="250">
+  <img src="images/car_search.png" width="250">
+  <img src="images/car_delete.png" width="250">
+  <img src="images/car_information_message" width="250">
 </p>
