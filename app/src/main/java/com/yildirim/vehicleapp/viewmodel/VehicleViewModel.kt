@@ -24,8 +24,8 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         context.startActivity(intent)
     }
 
-    fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String) {
-        val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız $vehicleLocationDescription lokasyonundadır"
+    fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String, currentDate:String, currentHours:String) {
+        val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız  $currentDate tarihinde $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
         val permission = Manifest.permission.SEND_SMS
 
         if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {

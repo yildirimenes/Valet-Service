@@ -34,22 +34,22 @@ class VehiclesDaoRepository(var application: Application) {
         }
     }
 
-    fun registerVehicle(customer_name:String,customer_phone_number:String,vehicle_name:String,vehicle_number_plate:String,vehicle_location_description:String){
+    fun registerVehicle(customer_name:String,customer_phone_number:String,vehicle_name:String,vehicle_number_plate:String,vehicle_location_description:String,vehicle_check_in_date:String,vehicle_check_in_hours:String){
         val job: Job = CoroutineScope(Dispatchers.Main).launch {
-            val newVehicle = Vehicles(0,customer_name,customer_phone_number,vehicle_name,vehicle_number_plate,vehicle_location_description)
+            val newVehicle = Vehicles(0,customer_name,customer_phone_number,vehicle_name,vehicle_number_plate,vehicle_location_description,vehicle_check_in_date,vehicle_check_in_hours)
             vt.vehicleDao().addVehicle(newVehicle)
         }
     }
 
-    fun updateVehicle(vehicle_id:Int,customer_name:String,customer_phone_number:String,vehicle_name:String,vehicle_number_plate:String,vehicle_location_description:String){
+    fun updateVehicle(vehicle_id:Int,customer_name:String,customer_phone_number:String,vehicle_name:String,vehicle_number_plate:String,vehicle_location_description:String,vehicle_check_in_date:String,vehicle_check_in_hours:String){
         val job: Job = CoroutineScope(Dispatchers.Main).launch {
-            val updateVehicle = Vehicles(vehicle_id,customer_name,customer_phone_number,vehicle_name,vehicle_number_plate,vehicle_location_description)
+            val updateVehicle = Vehicles(vehicle_id,customer_name,customer_phone_number,vehicle_name,vehicle_number_plate,vehicle_location_description,vehicle_check_in_date,vehicle_check_in_hours)
             vt.vehicleDao().updateVehicle(updateVehicle)
         }
     }
     fun delVehicle(person_id: Int){
         val job:Job = CoroutineScope(Dispatchers.Main).launch {
-            val deleteVehicle = Vehicles(person_id,"","","","","")
+            val deleteVehicle = Vehicles(person_id,"","","","","","","")
             vt.vehicleDao().deleteVehicle(deleteVehicle)
             getAllVehicles()
         }

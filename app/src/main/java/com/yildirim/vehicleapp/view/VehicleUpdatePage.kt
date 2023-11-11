@@ -68,7 +68,7 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
                     Text(text = stringResource(id = R.string.car_update))
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.navigate("category_page")}) {
+                    IconButton(onClick = {navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -123,8 +123,10 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
                     val vehicleName = tfVehicleName.value
                     val vehicleNumberPlate = tfVehicleNumberPlate.value
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
+                    val vehicleCheckInDate = getVehicles.vehicle_check_in_date
+                    val vehicleCheckInHours = getVehicles.vehicle_check_in_hours
 
-                    viewModel.update(getVehicles.vehicle_id,customerName,customerPhoneNumber,vehicleName,vehicleNumberPlate,vehicleLocationDescription)
+                    viewModel.update(getVehicles.vehicle_id,customerName,customerPhoneNumber,vehicleName,vehicleNumberPlate,vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
                     localFocusManager.clearFocus()
                     navController.navigate("category_page")
                 },

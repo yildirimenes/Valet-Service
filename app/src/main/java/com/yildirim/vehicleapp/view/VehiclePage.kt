@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.yildirim.vehicleapp.view
 import android.annotation.SuppressLint
 import android.app.Application
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -65,7 +68,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                     Text(text = stringResource(id = R.string.car_information))
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.navigate("category_page")}) {
+                    IconButton(onClick = {navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -82,16 +85,22 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
 
+
         ) {
-            Card(modifier = Modifier
-                .padding(all = 5.dp)
-                .fillMaxWidth(),
+            Card(
+                elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+                modifier = Modifier
+                    .padding(all = 5.dp)
+                    .fillMaxWidth(),
+
             ) {
                 Column {
                     Spacer(modifier = Modifier.size(10.dp))
                     CustomRow(iconRes = R.drawable.baseline_person_24, text = getVehicles.customer_name)
                     CustomRow(iconRes = R.drawable.baseline_directions_car_24, text = getVehicles.vehicle_name)
                     CustomRow(iconRes = R.drawable.baseline_call_to_action_24, text = getVehicles.vehicle_number_plate)
+                    CustomRow(iconRes = R.drawable.baseline_access_time_24, text = getVehicles.vehicle_check_in_hours)
+                    CustomRow(iconRes = R.drawable.baseline_date_range_24, text = getVehicles.vehicle_check_in_date)
                     CustomRow(iconRes = R.drawable.baseline_location_on_24, text = getVehicles.vehicle_location_description)
                     Row(
                         modifier = Modifier
@@ -111,8 +120,10 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                                 val vehicleNumberPlate = getVehicles.vehicle_number_plate
                                 val vehicleLocationDescription = getVehicles.vehicle_location_description
                                 val formattedPhoneNumber = "0${getVehicles.customer_phone_number}"
+                                val currentDate = getVehicles.vehicle_check_in_date
+                                val currentHours = getVehicles.vehicle_check_in_hours
 
-                                viewModel.sendMessage(context, customerName, vehicleNumberPlate, vehicleLocationDescription, formattedPhoneNumber)
+                                viewModel.sendMessage(context, customerName, vehicleNumberPlate, vehicleLocationDescription, formattedPhoneNumber, currentDate, currentHours)
                             }
                         )
                     }

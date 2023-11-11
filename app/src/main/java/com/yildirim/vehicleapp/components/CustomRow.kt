@@ -1,5 +1,4 @@
 package com.yildirim.vehicleapp.components
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -28,3 +27,5 @@ fun CustomRow(iconRes: Int, text: String) {
         )
     }
 }
+
+

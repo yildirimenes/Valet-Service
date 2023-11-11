@@ -41,6 +41,7 @@ import com.yildirim.vehicleapp.viewmodelfactory.VehicleRegisterViewModelFactory
 @Composable
 fun VehicleRegisterPage(navController: NavController){
     val tfCustomerName = remember { mutableStateOf("") }
+    val scrollState = rememberScrollState()
     val tfCustomerPhoneNumber = remember { mutableStateOf("") }
     val tfVehicleName = remember { mutableStateOf("") }
     val tfNumberPlate = remember { mutableStateOf("") }
@@ -57,7 +58,7 @@ fun VehicleRegisterPage(navController: NavController){
                     Text(text = stringResource(id = R.string.car_register))
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.navigate("category_page")}) {
+                    IconButton(onClick = {navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -71,9 +72,10 @@ fun VehicleRegisterPage(navController: NavController){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
+
         ) {
             RegisterOutlinedTextField(
                 value = tfCustomerName.value,
@@ -114,9 +116,11 @@ fun VehicleRegisterPage(navController: NavController){
                     val vehicleName = tfVehicleName.value
                     val vehicleNumberPlate = tfNumberPlate.value
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
+                    val vehicleCheckInDate = viewModel.currentDate()
+                    val vehicleCheckInHours = viewModel.currentTime()
 
                     if (customerName.isNotEmpty() && vehicleName.isNotEmpty() && vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()) {
-                        viewModel.register(customerName,customerPhoneNumber ,vehicleName, vehicleNumberPlate, vehicleLocationDescription)
+                        viewModel.register(customerName,customerPhoneNumber ,vehicleName, vehicleNumberPlate, vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
                         localFocusManager.clearFocus()
                         navController.navigate("category_page")
                     } else {
