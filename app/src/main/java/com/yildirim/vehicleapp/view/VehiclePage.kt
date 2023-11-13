@@ -1,5 +1,4 @@
 @file:Suppress("NAME_SHADOWING")
-
 package com.yildirim.vehicleapp.view
 import android.annotation.SuppressLint
 import android.app.Application
@@ -28,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -46,9 +46,10 @@ import com.yildirim.vehicleapp.viewmodelfactory.VehicleViewModelFactory
 fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
     val customerName = remember { mutableStateOf("") }
     val vehicleName = remember { mutableStateOf("") }
+    val resultText = remember { mutableStateOf("") }
     val vehicleNumberPlate = remember { mutableStateOf("") }
     val vehicleLocationDescription = remember { mutableStateOf("") }
-
+    val buttonState = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val viewModel : VehicleViewModel = viewModel(
         factory = VehicleViewModelFactory(context.applicationContext as Application)
@@ -99,7 +100,6 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                     CustomRow(iconRes = R.drawable.baseline_person_24, text = getVehicles.customer_name)
                     CustomRow(iconRes = R.drawable.baseline_directions_car_24, text = getVehicles.vehicle_name)
                     CustomRow(iconRes = R.drawable.baseline_call_to_action_24, text = getVehicles.vehicle_number_plate)
-                    CustomRow(iconRes = R.drawable.baseline_access_time_24, text = getVehicles.vehicle_check_in_hours)
                     CustomRow(iconRes = R.drawable.baseline_date_range_24, text = getVehicles.vehicle_check_in_date)
                     CustomRow(iconRes = R.drawable.baseline_location_on_24, text = getVehicles.vehicle_location_description)
                     Row(
@@ -126,6 +126,43 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                                 viewModel.sendMessage(context, customerName, vehicleNumberPlate, vehicleLocationDescription, formattedPhoneNumber, currentDate, currentHours)
                             }
                         )
+                    }
+
+                }
+            }
+            Card(
+                elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+                modifier = Modifier
+                    .padding(all = 5.dp)
+                    .fillMaxWidth(),
+                ) {
+                Column {
+                    Row(
+                        modifier = Modifier
+                            .padding(all = 2.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        IconButton(
+                            onClick = {
+                                buttonState.value = true
+                                val startDateText = getVehicles.vehicle_check_in_date
+                                val result = viewModel.calculateTimeDifference(startDateText)
+                                resultText.value = result
+                            }
+                        ) {
+                            Icon(painter = painterResource(id = R.drawable.baseline_access_time_24), contentDescription = "")
+                        }
+                        Text(text = resultText.value)
+                        IconButton(
+                            onClick = {
+                                val price = "30 $"
+                                resultText.value = price
+                            }
+                        ) {
+                            Icon(painter = painterResource(id = R.drawable.baseline_attach_money_24), contentDescription = "")
+                        }
                     }
                 }
             }

@@ -12,6 +12,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import com.yildirim.vehicleapp.repo.VehiclesDaoRepository
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class VehicleViewModel(application: Application) : AndroidViewModel(application){
     var vrepo = VehiclesDaoRepository(application)
@@ -25,7 +27,7 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String, currentDate:String, currentHours:String) {
-        val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız  $currentDate tarihinde $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
+        val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
         val permission = Manifest.permission.SEND_SMS
 
         if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
@@ -34,6 +36,36 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
             Toast.makeText(context, "Successful Message", Toast.LENGTH_LONG).show()
         } else {
             ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 0)
+        }
+    }
+
+    fun calculateTimeDifference(startDateText: String): String {
+        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        val endDateText = simpleDateFormat.format(System.currentTimeMillis())
+
+        val date1 = simpleDateFormat.parse(startDateText)
+        val date2 = simpleDateFormat.parse(endDateText)
+
+        return if (date1 != null && date2 != null) {
+            var different = date2.time - date1.time
+
+            val secondsInMilli: Long = 1000
+            val minutesInMilli = secondsInMilli * 60
+            val hoursInMilli = minutesInMilli * 60
+            val daysInMilli = hoursInMilli * 24
+
+            var elapsedDays = different / daysInMilli
+            different %= daysInMilli
+
+            var elapsedHours = different / hoursInMilli
+            different %= hoursInMilli
+
+            var elapsedMinutes = different / minutesInMilli
+            different %= minutesInMilli
+
+            "$elapsedDays days, $elapsedHours hours, $elapsedMinutes minutes"
+        } else {
+            "Invalid Operation"
         }
     }
 }

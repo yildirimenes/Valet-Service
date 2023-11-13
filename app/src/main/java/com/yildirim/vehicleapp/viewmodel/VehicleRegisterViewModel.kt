@@ -12,7 +12,7 @@ class VehicleRegisterViewModel(application: Application) : AndroidViewModel(appl
 
     fun currentDate(): String {
         val currentDateTime = Calendar.getInstance().time
-        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         return dateFormat.format(currentDateTime)
 
     }
