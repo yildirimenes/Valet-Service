@@ -1,5 +1,4 @@
 package com.yildirim.vehicleapp.viewmodel
-
 import android.Manifest
 import android.app.Activity
 import android.app.Application
@@ -26,7 +25,7 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         context.startActivity(intent)
     }
 
-    fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String, currentDate:String, currentHours:String) {
+    fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String,currentHours:String) {
         val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
         val permission = Manifest.permission.SEND_SMS
 
@@ -39,7 +38,21 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun calculateTimeDifference(startDateText: String): String {
+    fun msgBillButton(context: Context,customerName: String,phoneNumber: String) {
+        val message = "Sn. $customerName aracınınz teslim edilmiştir."
+        val permission = Manifest.permission.SEND_SMS
+
+        if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
+            val smsManager = android.telephony.SmsManager.getDefault()
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+            Toast.makeText(context, "Successful Message", Toast.LENGTH_LONG).show()
+        } else {
+            ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 0)
+        }
+
+    }
+
+    fun calculateTimeDifference(startDateText: String): Pair<String, Any> {
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         val endDateText = simpleDateFormat.format(System.currentTimeMillis())
 
@@ -54,18 +67,55 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
             val hoursInMilli = minutesInMilli * 60
             val daysInMilli = hoursInMilli * 24
 
-            var elapsedDays = different / daysInMilli
+            val elapsedDays = different / daysInMilli
             different %= daysInMilli
 
-            var elapsedHours = different / hoursInMilli
+            val elapsedHours = different / hoursInMilli
             different %= hoursInMilli
 
-            var elapsedMinutes = different / minutesInMilli
+            val elapsedMinutes = different / minutesInMilli
             different %= minutesInMilli
 
-            "$elapsedDays days, $elapsedHours hours, $elapsedMinutes minutes"
+            var totalAmount = 0
+            var timeDifference = ""
+            if (elapsedDays > 0){
+                totalAmount = (120*elapsedDays).toInt()
+                timeDifference = "$elapsedDays gün, $elapsedHours saat"
+
+            }
+            else if (elapsedHours >= 0 && elapsedHours < 1) {
+                totalAmount = 36
+                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+            }
+            else if (elapsedHours >= 1 && elapsedHours < 2) {
+                totalAmount = 46
+                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+
+            }
+            else if (elapsedHours >= 2 && elapsedHours < 4) {
+                totalAmount = 50
+                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+            }
+            else if (elapsedHours >= 4 && elapsedHours < 8) {
+                totalAmount = 70
+                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+            }
+            else if (elapsedHours >= 8 && elapsedHours < 12) {
+                totalAmount = 90
+                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+            }
+            else if (elapsedHours >= 12 && elapsedHours < 24) {
+                totalAmount = 120
+                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+            }
+            else{
+                println("Invalid Operation")
+            }
+            val price = "$totalAmount ₺"
+            Pair(timeDifference, price)
+
         } else {
-            "Invalid Operation"
+            Pair("Invalid Operation", 0)
         }
     }
 }

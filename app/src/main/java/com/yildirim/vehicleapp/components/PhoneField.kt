@@ -5,7 +5,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
@@ -20,7 +19,6 @@ import androidx.compose.ui.unit.dp
 fun PhoneField(
     phone: String,
     label: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
     mask: String = "000 000 00 00",
     maskNumber: Char = '0',
     onPhoneChanged: (String) -> Unit

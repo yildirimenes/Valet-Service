@@ -21,8 +21,11 @@
     <string name="vehicle_brand">Car Brand</string>
     <string name="car_plate">Car Plate</string>
     <string name="location_information">Location Information</string>
-    <string name="vallet_premium">Vallet Premium</string>
+    <string name="valet_premium">Vallet Premium</string>
+    <string name="price_schedule">Price Schedule</string>
     <string name="language_option">Language Option</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="rate_us">Rate Us</string>
+    <string name="invalid_information">Invalid Information</string>
+
 </resources>

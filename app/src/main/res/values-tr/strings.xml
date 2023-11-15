@@ -21,10 +21,12 @@
     <string name="vehicle_brand">Araç Markası</string>
     <string name="car_plate">Araç Plakası</string>
     <string name="location_information">Konum Bilgisi</string>
-    <string name="vallet_premium">Vallet Premium</string>
+    <string name="valet_premium">Vallet Premium</string>
+    <string name="price_schedule">Fiyat Tarifesi</string>
     <string name="language_option">Dil Seçenekleri</string>
     <string name="dark_mode">Gece Modu</string>
     <string name="rate_us">Bizi Oyla</string>
+    <string name="invalid_information">Geçersiz Bilgi</string>
 
 
 

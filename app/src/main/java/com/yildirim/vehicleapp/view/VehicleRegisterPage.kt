@@ -124,7 +124,7 @@ fun VehicleRegisterPage(navController: NavController){
                         localFocusManager.clearFocus()
                         navController.navigate("category_page")
                     } else {
-                        Toast.makeText(context,"Eksik Bilgi!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,"Invalid Information", Toast.LENGTH_SHORT).show()
                     }
                 },
                 text = stringResource(id = R.string.register)
