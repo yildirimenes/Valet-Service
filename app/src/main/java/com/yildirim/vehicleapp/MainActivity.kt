@@ -13,12 +13,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
-import com.yildirim.vehicleapp.entity.Vehicles
+import com.yildirim.vehicleapp.data.model.Vehicles
 import com.yildirim.vehicleapp.ui.theme.VehicleAppTheme
-import com.yildirim.vehicleapp.view.CategoryPage
-import com.yildirim.vehicleapp.view.VehiclePage
-import com.yildirim.vehicleapp.view.VehicleRegisterPage
-import com.yildirim.vehicleapp.view.VehicleUpdatePage
+import com.yildirim.vehicleapp.ui.screens.category.CategoryPage
+import com.yildirim.vehicleapp.ui.screens.vehicle.VehiclePage
+import com.yildirim.vehicleapp.ui.screens.register_vehicle.VehicleRegisterPage
+import com.yildirim.vehicleapp.ui.screens.update_vehicle.VehicleUpdatePage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ fun PageController() {
             navArgument("vehicle"){type = NavType.StringType}
         )){
             val json = it.arguments?.getString("vehicle")
-            val objects = Gson().fromJson(json,Vehicles::class.java)
+            val objects = Gson().fromJson(json, Vehicles::class.java)
             VehiclePage(navController = navController,objects)
         }
         composable("vehicle_register_page"){
@@ -59,7 +59,7 @@ fun PageController() {
             navArgument("vehicle"){type = NavType.StringType}
         )){
             val json = it.arguments?.getString("vehicle")
-            val objects = Gson().fromJson(json,Vehicles::class.java)
+            val objects = Gson().fromJson(json, Vehicles::class.java)
             VehicleUpdatePage(navController = navController,objects)
         }
     }
