@@ -12,6 +12,7 @@
     <string name="car_information">Araç Bilgisi</string>
     <string name="car_update">Araç Güncelle</string>
     <string name="car_register">Araç Kayıt</string>
+    <string name="car_price_list">Vale Fiyat Listesi</string>
     <string name="car_settings">Ayarlar</string>
     <string name="customer_name">Müşteri İsmi</string>
     <string name="customer_phone_number">Customer Phone Number</string>
@@ -27,6 +28,15 @@
     <string name="dark_mode">Gece Modu</string>
     <string name="rate_us">Bizi Oyla</string>
     <string name="invalid_information">Geçersiz Bilgi</string>
+    <string name="hourly_V1">0-1 Saat</string>
+    <string name="hourly_V2">1-2 Saat</string>
+    <string name="hourly_V3">2-4 Saat</string>
+    <string name="hourly_V4">4-8 Saat</string>
+    <string name="hourly_V5">8-12 Saat</string>
+    <string name="daily">1 Gün</string>
+    <string name="time_fee_infos">Zaman &amp; Ücret Bilgisi</string>
+
+
 
 
 

@@ -1,6 +1,7 @@
 package com.yildirim.vehicleapp.ui.screens.category
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -184,8 +185,8 @@ fun CategoryPage(navController: NavController){
                             Card(
                                 elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
                                 modifier = Modifier
-                                .padding(all = 5.dp)
-                                .fillMaxWidth()) {
+                                    .padding(all = 5.dp)
+                                    .fillMaxWidth()) {
                                 Column(modifier = Modifier.clickable {
                                     val vehicleJson = Gson().toJson(vehicle)
                                     navController.navigate("vehicle_page/${vehicleJson}")

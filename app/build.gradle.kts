@@ -82,9 +82,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     //Sqlite
     implementation("androidx.sqlite:sqlite:2.2.6")
-
-
-
-
-
+    //Preferences DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // Lifecycle component & Kotlin coroutines components
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 }

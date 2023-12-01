@@ -1,6 +1,7 @@
 package com.yildirim.vehicleapp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,12 +19,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomSettingsCard(iconRes: Int, text: String) {
+fun CustomSettingsCard(iconRes: Int, text: String,onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(all = 5.dp)
             .fillMaxSize()
             .background(Color.White)
+            .clickable{ onClick() }
     ) {
         Row(modifier = Modifier.padding(all = 15.dp)) {
             Icon(

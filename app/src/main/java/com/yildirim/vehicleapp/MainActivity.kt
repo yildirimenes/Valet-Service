@@ -40,28 +40,27 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun PageController() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "category_page"){
-        composable("category_page"){
+    NavHost(navController = navController, startDestination = "category_page") {
+        composable("category_page") {
             CategoryPage(navController = navController)
         }
         composable("vehicle_page/{vehicle}", arguments = listOf(
-            navArgument("vehicle"){type = NavType.StringType}
-        )){
+            navArgument("vehicle") { type = NavType.StringType }
+        )) {
             val json = it.arguments?.getString("vehicle")
             val objects = Gson().fromJson(json, Vehicles::class.java)
-            VehiclePage(navController = navController,objects)
+            VehiclePage(navController = navController, objects)
         }
-        composable("vehicle_register_page"){
+        composable("vehicle_register_page") {
             VehicleRegisterPage(navController = navController)
 
         }
         composable("vehicle_update_page/{vehicle}", arguments = listOf(
-            navArgument("vehicle"){type = NavType.StringType}
-        )){
+            navArgument("vehicle") { type = NavType.StringType }
+        )) {
             val json = it.arguments?.getString("vehicle")
             val objects = Gson().fromJson(json, Vehicles::class.java)
-            VehicleUpdatePage(navController = navController,objects)
+            VehicleUpdatePage(navController = navController, objects)
         }
     }
-
 }

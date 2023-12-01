@@ -1,5 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 package com.yildirim.vehicleapp.ui.screens.vehicle
+import FlipCard
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
@@ -32,7 +33,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
@@ -53,7 +57,6 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
     val valetFee = remember { mutableStateOf("") }
     val vehicleNumberPlate = remember { mutableStateOf("") }
     val vehicleLocationDescription = remember { mutableStateOf("") }
-    //val buttonState = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val viewModel : VehicleViewModel = viewModel(
         factory = VehicleViewModelFactory(context.applicationContext as Application)
@@ -103,7 +106,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                     .padding(all = 5.dp)
                     .fillMaxWidth(),
 
-            ) {
+                ) {
                 Column {
                     Spacer(modifier = Modifier.size(10.dp))
                     CustomRow(iconRes = R.drawable.baseline_person_24, text = getVehicles.customer_name)
@@ -129,7 +132,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                                 val customerName = getVehicles.customer_name
                                 val vehicleNumberPlate = getVehicles.vehicle_number_plate
                                 val vehicleLocationDescription = getVehicles.vehicle_location_description
-                                val formattedPhoneNumber = "0${getVehicles.customer_phone_number}"
+                                val formattedPhoneNumber = getVehicles.customer_phone_number
                                 val currentHours = getVehicles.vehicle_check_in_hours
 
                                 viewModel.sendMessage(context, customerName, vehicleNumberPlate, vehicleLocationDescription, formattedPhoneNumber,currentHours)
@@ -140,39 +143,53 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                 }
             }
             Spacer(modifier = Modifier.size(10.dp))
-            Card(
-                elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-                modifier = Modifier
-                    .padding(all = 5.dp)
-                    .fillMaxWidth(),
-                ) {
-                Row(
-                    modifier = Modifier
-                        .padding(all = 2.dp)
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Column {
-                        Spacer(modifier = Modifier.size(10.dp))
-                        CustomRow(iconRes = R.drawable.baseline_price_change_24, text = valetFee.value)
-                        CustomRow(iconRes = R.drawable.baseline_access_time_filled_24, text = elapsedTime.value)
-                    }
-                    FloatingActionButton(
-                        modifier = Modifier.padding(top = 25.dp, end =   10.dp),
-                        onClick = {
-                                  viewModel.msgBillButton(context,getVehicles.customer_name,getVehicles.customer_phone_number)
-                        },
-                        containerColor = colorResource(id = R.color.purple_200),
-                        content = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.baseline_analytics_24),
-                                contentDescription = "", tint = Color.White
-                            )
+            FlipCard(
+                frontContent = {
+                    Row(
+                        modifier = Modifier
+                            .padding(all = 2.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.Top,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column {
+                            Spacer(modifier = Modifier.size(10.dp))
+                            CustomRow(iconRes = R.drawable.baseline_price_change_24, text = valetFee.value)
+                            CustomRow(iconRes = R.drawable.baseline_access_time_filled_24, text = elapsedTime.value)
                         }
-                    )
-                }
-            }
+                        FloatingActionButton(
+                            modifier = Modifier.padding(top = 25.dp, end =   10.dp),
+                            onClick = {
+                                viewModel.msgBillButton(context,getVehicles.customer_name,getVehicles.customer_phone_number)
+                            },
+                            containerColor = colorResource(id = R.color.purple_200),
+                            content = {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_feed_24),
+                                    contentDescription = "", tint = Color.White
+                                )
+                            }
+                        )
+                    }
+
+                },
+                backContent = {
+                    Row(
+                        modifier = Modifier
+                            .padding(all = 2.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.Top,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Column {
+                            Spacer(modifier = Modifier.size(32.dp))
+                            Text(text = stringResource(id = R.string.time_fee_infos), fontSize = 25.sp, fontWeight = FontWeight.W400, fontStyle = FontStyle.Normal)
+                            Spacer(modifier = Modifier.size(32.dp))
+
+                        }
+                    }
+                },
+            )
         }
     }
 }
