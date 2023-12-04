@@ -1,3 +1,4 @@
+package com.yildirim.vehicleapp.ui.components
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -82,7 +83,6 @@ fun FlipCard(
 @Composable
 fun CardContent(content: @Composable () -> Unit) {
     Column(
-        //modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

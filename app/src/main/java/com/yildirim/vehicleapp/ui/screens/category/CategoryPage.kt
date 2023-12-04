@@ -1,7 +1,6 @@
 package com.yildirim.vehicleapp.ui.screens.category
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -22,7 +22,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalDrawerSheet
@@ -36,6 +35,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -47,7 +47,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -60,11 +59,12 @@ import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.ui.components.DeleteAlertDialog
 import com.yildirim.vehicleapp.ui.components.DrawerSheet
 import com.yildirim.vehicleapp.data.model.Vehicles
+import com.yildirim.vehicleapp.ui.components.AddPaymentFab
 import com.yildirim.vehicleapp.ui.screens.category.viewmodel.CategoryViewModel
 import com.yildirim.vehicleapp.ui.screens.category.viewmodel.CategoryViewModelFactory
 import kotlinx.coroutines.launch
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryPage(navController: NavController){
@@ -76,6 +76,8 @@ fun CategoryPage(navController: NavController){
     val scope = rememberCoroutineScope()
     var isDeleteDialogVisible by remember { mutableStateOf(false) }
     var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
+    val listState = rememberLazyGridState()
+    val fabVisibility by derivedStateOf { listState.firstVisibleItemIndex == 0 }
     val viewModel : CategoryViewModel = viewModel(
         factory = CategoryViewModelFactory(context.applicationContext as Application)
     )
@@ -156,21 +158,17 @@ fun CategoryPage(navController: NavController){
             },
 
             floatingActionButton = {
-                FloatingActionButton(
-                    onClick = { navController.navigate("vehicle_register_page") },
-                    containerColor = colorResource(id = R.color.teal_200),
-                    content = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.add_image),
-                            contentDescription = "", tint = Color.White
-                        )
-                    }
+                AddPaymentFab(modifier = Modifier
+                    .padding(all = 5.dp),
+                    isVisibleBecauseOfScrolling = fabVisibility,
+                    onClick = {navController.navigate("vehicle_register_page")}
                 )
             }
 
         ) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
+                state = listState,
                 contentPadding = PaddingValues(
                     start = 12.dp,
                     top = 70.dp,
@@ -258,5 +256,4 @@ fun CategoryPage(navController: NavController){
         }
     }
 }
-
 

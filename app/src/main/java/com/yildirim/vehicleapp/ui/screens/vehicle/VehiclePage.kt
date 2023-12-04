@@ -1,6 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 package com.yildirim.vehicleapp.ui.screens.vehicle
-import FlipCard
+import com.yildirim.vehicleapp.ui.components.FlipCard
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
@@ -189,6 +189,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                         }
                     }
                 },
+
             )
         }
     }
