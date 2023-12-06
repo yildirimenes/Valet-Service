@@ -59,7 +59,7 @@ import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.ui.components.DeleteAlertDialog
 import com.yildirim.vehicleapp.ui.components.DrawerSheet
 import com.yildirim.vehicleapp.data.model.Vehicles
-import com.yildirim.vehicleapp.ui.components.AddPaymentFab
+import com.yildirim.vehicleapp.ui.components.CustomFabButton
 import com.yildirim.vehicleapp.ui.screens.category.viewmodel.CategoryViewModel
 import com.yildirim.vehicleapp.ui.screens.category.viewmodel.CategoryViewModelFactory
 import kotlinx.coroutines.launch
@@ -158,7 +158,7 @@ fun CategoryPage(navController: NavController){
             },
 
             floatingActionButton = {
-                AddPaymentFab(modifier = Modifier
+                CustomFabButton(modifier = Modifier
                     .padding(all = 5.dp),
                     isVisibleBecauseOfScrolling = fabVisibility,
                     onClick = {navController.navigate("vehicle_register_page")}
@@ -194,7 +194,6 @@ fun CategoryPage(navController: NavController){
                                         verticalArrangement = Arrangement.Center,
                                         horizontalAlignment = Alignment.CenterHorizontally
                                     ) {
-
                                         Spacer(modifier = Modifier.size(15.dp))
                                         Text(
                                             text = vehicle.vehicle_number_plate,

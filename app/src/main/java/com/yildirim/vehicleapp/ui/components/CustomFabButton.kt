@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.yildirim.vehicleapp.R
 
 @Composable
-fun AddPaymentFab(
+fun CustomFabButton(
     modifier: Modifier,
     isVisibleBecauseOfScrolling: Boolean,
     onClick: () -> Unit
