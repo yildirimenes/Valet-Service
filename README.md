@@ -26,10 +26,13 @@ We utilized the following key technologies and tools in the development of this 
 
 <p align="center">
   <img src="images/category_page.png" width="250" height="550">
+  <img src="images/drawer_page.png" width="250" height="550">
   <img src="images/car_detail.png" width="250" height="550">
   <img src="images/car_register.png" width="250" height="550">
   <img src="images/car_update.png" width="250" height="550">
   <img src="images/car_search.png" width="250" height="550">
   <img src="images/car_delete.png" width="250" height="550">
   <img src="images/car_information_message.jpeg" width="250" height="550">
+  <img src="images/vale_message.jpeg" width="250" height="550">
+
 </p>
