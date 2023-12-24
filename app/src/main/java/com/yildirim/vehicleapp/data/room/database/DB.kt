@@ -19,8 +19,8 @@ abstract class DB : RoomDatabase() {
                 synchronized(DB::class){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                         DB::class.java,
-                        "vehicles.sqlite")
-                        .createFromAsset("vehicles.sqlite")
+                        "valet.sqlite")
+                        .createFromAsset("valet.sqlite")
                         //.fallbackToDestructiveMigration()
                         .build()
                 }

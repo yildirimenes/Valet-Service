@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.yildirim.vehicleapp.data.model.Vehicles
 import com.yildirim.vehicleapp.ui.screens.category.CategoryPage
+import com.yildirim.vehicleapp.ui.screens.hourly_fee.HourlyFeePage
 import com.yildirim.vehicleapp.ui.screens.register_vehicle.VehicleRegisterPage
 import com.yildirim.vehicleapp.ui.screens.update_vehicle.VehicleUpdatePage
 import com.yildirim.vehicleapp.ui.screens.vehicle.VehiclePage
@@ -28,6 +29,10 @@ fun PageController() {
         }
         composable("vehicle_register_page") {
             VehicleRegisterPage(navController = navController)
+
+        }
+        composable("hourly_fee_page") {
+            HourlyFeePage(navController = navController)
 
         }
         composable("vehicle_update_page/{vehicle}", arguments = listOf(

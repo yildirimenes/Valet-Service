@@ -18,7 +18,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.yildirim.vehicleapp.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -56,6 +58,9 @@ fun FlipCard(
             .clickable {
                 rotated = !rotated
             },
+            colors = CardDefaults.cardColors(
+                containerColor = colorResource(id = R.color.color_3)
+            )
     )
     {
         Row(

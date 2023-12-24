@@ -36,7 +36,7 @@ fun CustomFabButton(
     ) {
         FloatingActionButton(
             onClick = onClick,
-            containerColor = colorResource(id = R.color.teal_200),
+            containerColor = colorResource(id = R.color.color_2),
             content = {
                 Icon(
                     painter = painterResource(id = R.drawable.add_image),

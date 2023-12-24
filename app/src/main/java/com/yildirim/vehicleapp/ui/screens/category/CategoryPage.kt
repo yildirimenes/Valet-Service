@@ -47,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -153,6 +154,12 @@ fun CategoryPage(navController: NavController){
                                 )
                             }
                         }
+                        IconButton(onClick = {navController.navigate("hourly_fee_page")}) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.baseline_feed_24),
+                                contentDescription = "Localized description"
+                            )
+                        }
                     },
                 )
             },
@@ -184,7 +191,10 @@ fun CategoryPage(navController: NavController){
                                 elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
                                 modifier = Modifier
                                     .padding(all = 5.dp)
-                                    .fillMaxWidth()) {
+                                    .fillMaxWidth(),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = colorResource(id = R.color.color_3),
+                                )) {
                                 Column(modifier = Modifier.clickable {
                                     val vehicleJson = Gson().toJson(vehicle)
                                     navController.navigate("vehicle_page/${vehicleJson}")

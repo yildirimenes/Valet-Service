@@ -13,10 +13,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.yildirim.vehicleapp.R
 
 @Composable
 fun CustomSettingsCard(iconRes: Int, text: String,onClick: () -> Unit) {
@@ -24,8 +26,8 @@ fun CustomSettingsCard(iconRes: Int, text: String,onClick: () -> Unit) {
         modifier = Modifier
             .padding(all = 5.dp)
             .fillMaxSize()
-            .background(Color.White)
-            .clickable{ onClick() }
+            .background(colorResource(id = R.color.color_3))
+            .clickable { onClick() }
     ) {
         Row(modifier = Modifier.padding(all = 15.dp)) {
             Icon(

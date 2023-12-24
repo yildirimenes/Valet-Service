@@ -105,7 +105,8 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                 modifier = Modifier
                     .padding(all = 5.dp)
                     .fillMaxWidth(),
-
+                colors = CardDefaults.cardColors(
+                    containerColor = colorResource(id = R.color.color_3))
                 ) {
                 Column {
                     Spacer(modifier = Modifier.size(10.dp))
@@ -162,7 +163,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                             onClick = {
                                 viewModel.msgBillButton(context,getVehicles.customer_name,getVehicles.customer_phone_number)
                             },
-                            containerColor = colorResource(id = R.color.purple_200),
+                            containerColor = colorResource(id = R.color.color_1),
                             content = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.baseline_feed_24),

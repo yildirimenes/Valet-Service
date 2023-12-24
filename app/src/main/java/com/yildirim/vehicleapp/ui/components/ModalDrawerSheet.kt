@@ -38,7 +38,6 @@ fun DrawerSheet() {
             horizontalAlignment = Alignment.Start,
         ) {
             CustomSettingsCard(iconRes = R.drawable.baseline_workspace_premium_24, text = stringResource(id = R.string.valet_premium), onClick = {})
-            CustomSettingsCard(iconRes = R.drawable.baseline_feed_24, text = stringResource(id = R.string.price_schedule), onClick = {})
             CustomSettingsCard(iconRes = R.drawable.baseline_language_24, text = stringResource(id = R.string.language_option), onClick = {})
             CustomSettingsCard(iconRes = R.drawable.baseline_thumb_up_alt_24, text = stringResource(id = R.string.rate_us), onClick = {})
         }
