@@ -2,6 +2,7 @@ package com.yildirim.vehicleapp.data.repository
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.yildirim.vehicleapp.data.model.HourlyFee
 import com.yildirim.vehicleapp.data.model.Vehicles
 import com.yildirim.vehicleapp.data.room.database.DB
 import kotlinx.coroutines.CoroutineScope
@@ -11,11 +12,13 @@ import kotlinx.coroutines.launch
 
 class VehiclesDaoRepository(var application: Application) {
     var vehiclesList = MutableLiveData<List<Vehicles>>()
+    var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
     var vt: DB
 
     init {
         vt = DB.databaseAccess(application)!!
         vehiclesList = MutableLiveData()
+        hourlyFeeList = MutableLiveData()
     }
 
     fun getVehicles():MutableLiveData<List<Vehicles>>{
@@ -25,6 +28,11 @@ class VehiclesDaoRepository(var application: Application) {
     fun getAllVehicles(){
         val job: Job = CoroutineScope(Dispatchers.Main).launch {
             vehiclesList.value = vt.vehicleDao().allVehicles()
+        }
+    }
+    fun getAllHourlyFee(){
+        val job: Job = CoroutineScope(Dispatchers.Main).launch {
+            hourlyFeeList.value = vt.vehicleDao().allHourlyFee()
         }
     }
 
@@ -47,6 +55,7 @@ class VehiclesDaoRepository(var application: Application) {
             vt.vehicleDao().updateVehicle(updateVehicle)
         }
     }
+
     fun delVehicle(person_id: Int){
         val job:Job = CoroutineScope(Dispatchers.Main).launch {
             val deleteVehicle = Vehicles(person_id,"","","","","","","")
@@ -54,4 +63,14 @@ class VehiclesDaoRepository(var application: Application) {
             getAllVehicles()
         }
     }
+    fun getHourlyFee():MutableLiveData<List<HourlyFee>>{
+        return hourlyFeeList
+    }
+    fun updateHourlyFee(fee_id:Int,hourly_v1:Int,hourly_v2:Int,hourly_v3:Int,hourly_v4:Int,hourly_v5:Int,daily:Int){
+        val job: Job = CoroutineScope(Dispatchers.Main).launch {
+            val updateHourlyFee = HourlyFee(fee_id,hourly_v1,hourly_v2,hourly_v3,hourly_v4,hourly_v5,daily)
+            vt.vehicleDao().updateHourlyFee(updateHourlyFee)
+        }
+    }
+
 }

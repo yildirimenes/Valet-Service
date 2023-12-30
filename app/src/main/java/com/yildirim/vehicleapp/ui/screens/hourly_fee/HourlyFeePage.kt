@@ -21,6 +21,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -55,6 +57,19 @@ fun HourlyFeePage(navController: NavController){
     val viewModel : HourlyFeeViewModel = viewModel(
         factory = HourlyFeeViewModelFactory(context.applicationContext as Application)
     )
+    val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
+    LaunchedEffect(key1 = true){
+        viewModel.load()
+    }
+    val hourlyFee = hourlyFeeList.value.firstOrNull()
+
+    tfHourlyV1.value = hourlyFee?.hourly_v1.toString()
+    tfHourlyV2.value = hourlyFee?.hourly_v2.toString()
+    tfHourlyV3.value = hourlyFee?.hourly_v3.toString()
+    tfHourlyV4.value = hourlyFee?.hourly_v4.toString()
+    tfHourlyV5.value = hourlyFee?.hourly_v5.toString()
+    tfDaily.value = hourlyFee?.daily.toString()
+
 
     Scaffold (
         topBar = {
@@ -121,24 +136,20 @@ fun HourlyFeePage(navController: NavController){
                 onValueChange = {tfDaily.value = it},
                 label = { Text(text = stringResource(id = R.string.daily)) }
             )
-
             Spacer(modifier = Modifier.size(30.dp))
             CustomButton(
                 onClick = {
 
-                    val hourlyV1 = tfHourlyV1.value
-                    val hourlyV2 = tfHourlyV2.value
-                    val hourlyV3 = tfHourlyV3.value
-                    val hourlyV4 = tfHourlyV4.value
-                    val hourlyV5 = tfHourlyV5.value
-                    val daily = tfDaily.value
+                    val hourlyV1 = tfHourlyV1.value.toInt()
+                    val hourlyV2 = tfHourlyV2.value.toInt()
+                    val hourlyV3 = tfHourlyV3.value.toInt()
+                    val hourlyV4 = tfHourlyV4.value.toInt()
+                    val hourlyV5 = tfHourlyV5.value.toInt()
+                    val daily = tfDaily.value.toInt()
+                    viewModel.update(1,hourlyV1,hourlyV2,hourlyV3,hourlyV4,hourlyV5,daily)
+                    localFocusManager.clearFocus()
+                    navController.navigate("category_page")
 
-                    if (hourlyV1.isNotEmpty() && hourlyV2.isNotEmpty() && hourlyV3.isNotEmpty() && hourlyV4.isNotEmpty() && hourlyV5.isNotEmpty() && daily.isNotEmpty()) {
-                        localFocusManager.clearFocus()
-                        navController.navigate("category_page")
-                    } else {
-                        Toast.makeText(context,"Invalid Information", Toast.LENGTH_SHORT).show()
-                    }
                 },
                 text = stringResource(id = R.string.register)
             )

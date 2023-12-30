@@ -3,11 +3,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.yildirim.vehicleapp.data.model.HourlyFee
 import com.yildirim.vehicleapp.data.model.Vehicles
 import com.yildirim.vehicleapp.data.room.dao.VehiclesDao
 
-
-@Database(entities = [Vehicles::class], version = 1)
+@Database(entities = [Vehicles::class, HourlyFee::class], version = 1)
 abstract class DB : RoomDatabase() {
     abstract fun vehicleDao(): VehiclesDao
 

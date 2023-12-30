@@ -38,7 +38,6 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-
     fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String, currentHours: String) {
         val formattedPhone = "0$phoneNumber"
         try {
@@ -85,6 +84,7 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         val date1 = simpleDateFormat.parse(startDateText)
         val date2 = simpleDateFormat.parse(endDateText)
 
+
         return if (date1 != null && date2 != null) {
             var different = date2.time - date1.time
 
@@ -114,16 +114,16 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
                 timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
             }
             else if (elapsedHours >= 1 && elapsedHours < 2) {
-                totalAmount = 46
+                totalAmount = 48
                 timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
 
             }
             else if (elapsedHours >= 2 && elapsedHours < 4) {
-                totalAmount = 50
+                totalAmount = 60
                 timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
             }
             else if (elapsedHours >= 4 && elapsedHours < 8) {
-                totalAmount = 70
+                totalAmount = 72
                 timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
             }
             else if (elapsedHours >= 8 && elapsedHours < 12) {
