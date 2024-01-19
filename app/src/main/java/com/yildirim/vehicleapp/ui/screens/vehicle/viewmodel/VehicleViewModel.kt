@@ -8,15 +8,28 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.telephony.SmsManager
 import android.widget.Toast
+import androidx.compose.runtime.MutableState
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import com.yildirim.vehicleapp.data.model.HourlyFee
 import com.yildirim.vehicleapp.data.repository.VehiclesDaoRepository
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class VehicleViewModel(application: Application) : AndroidViewModel(application){
     var vrepo = VehiclesDaoRepository(application)
+    var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
+
+    init {
+        load()
+        hourlyFeeList = vrepo.getHourlyFee()
+    }
+
+    fun load(){
+        vrepo.getAllHourlyFee()
+    }
 
     fun makePhoneCall(customerPhone: String, context: Context) {
         try {
@@ -77,7 +90,7 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun calculateTimeDifference(startDateText: String): Pair<String, Any> {
+    fun calculateTimeDifference(startDateText: String, hourly1: MutableState<String>, hourly2: MutableState<String>, hourly3: MutableState<String>, hourly4: MutableState<String>, hourly5: MutableState<String>, daily: MutableState<String>): Pair<String, Any> {
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         val endDateText = simpleDateFormat.format(System.currentTimeMillis())
 
@@ -105,35 +118,57 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
             var totalAmount = 0
             var timeDifference = ""
             if (elapsedDays > 0){
-                totalAmount = (120*elapsedDays).toInt()
-                timeDifference = "$elapsedDays gün, $elapsedHours saat"
-
+                try {
+                    totalAmount = (daily.value.toInt()*elapsedDays).toInt()
+                    timeDifference = "$elapsedDays gün, $elapsedHours saat"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }
             }
             else if (elapsedHours >= 0 && elapsedHours < 1) {
-                totalAmount = 36
-                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                try {
+                    totalAmount = hourly1.value.toInt()
+                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }
             }
             else if (elapsedHours >= 1 && elapsedHours < 2) {
-                totalAmount = 48
-                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-
+                try {
+                    totalAmount = hourly2.value.toInt()
+                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }
             }
             else if (elapsedHours >= 2 && elapsedHours < 4) {
-                totalAmount = 60
-                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-            }
+                try {
+                    totalAmount = hourly3.value.toInt()
+                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }            }
             else if (elapsedHours >= 4 && elapsedHours < 8) {
-                totalAmount = 72
-                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-            }
+                try {
+                    totalAmount = hourly4.value.toInt()
+                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }            }
             else if (elapsedHours >= 8 && elapsedHours < 12) {
-                totalAmount = 90
-                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-            }
+                try {
+                    totalAmount = hourly5.value.toInt()
+                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }            }
             else if (elapsedHours >= 12 && elapsedHours < 24) {
-                totalAmount = 120
-                timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-            }
+                try {
+                    totalAmount = daily.value.toInt()
+                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
+                } catch (e: NumberFormatException) {
+                    println("Invalid number format")
+                }            }
             else{
                 println("Invalid Operation")
             }

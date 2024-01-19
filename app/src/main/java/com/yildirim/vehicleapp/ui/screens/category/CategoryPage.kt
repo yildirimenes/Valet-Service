@@ -90,10 +90,9 @@ fun CategoryPage(navController: NavController){
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet {
+            ModalDrawerSheet(modifier = Modifier.fillMaxWidth(0.7f)) {
                 DrawerSheet()
-            }
-        },
+            } },
         ) {
         Scaffold(
             topBar = {
@@ -192,6 +191,7 @@ fun CategoryPage(navController: NavController){
                                 modifier = Modifier
                                     .padding(all = 5.dp)
                                     .fillMaxWidth(),
+                                    //.height(250.dp),
                                 colors = CardDefaults.cardColors(
                                     containerColor = colorResource(id = R.color.color_3),
                                 )) {
@@ -265,4 +265,5 @@ fun CategoryPage(navController: NavController){
         }
     }
 }
+
 

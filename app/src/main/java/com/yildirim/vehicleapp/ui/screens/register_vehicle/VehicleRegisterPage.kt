@@ -35,6 +35,7 @@ import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.ui.components.CustomButton
 import com.yildirim.vehicleapp.ui.components.PhoneField
+import com.yildirim.vehicleapp.ui.components.RegisterOutlinedNumberPlateTextField
 import com.yildirim.vehicleapp.ui.components.RegisterOutlinedTextField
 import com.yildirim.vehicleapp.ui.screens.register_vehicle.viewmodel.VehicleRegisterViewModel
 import com.yildirim.vehicleapp.ui.screens.register_vehicle.viewmodel.VehicleRegisterViewModelFactory
@@ -104,7 +105,7 @@ fun VehicleRegisterPage(navController: NavController){
                 label = { Text(text = stringResource(id = R.string.vehicle_name))}
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
+            RegisterOutlinedNumberPlateTextField(
                 value = tfNumberPlate.value,
                 onValueChange = {tfNumberPlate.value = it},
                 label = { Text(text = stringResource(id = R.string.vehicle_number_plate))}
@@ -115,7 +116,6 @@ fun VehicleRegisterPage(navController: NavController){
                 onValueChange = {tfVehicleLocationDescription.value = it},
                 label = { Text(text = stringResource(id = R.string.vehicle_location_description))}
             )
-
             Spacer(modifier = Modifier.size(30.dp))
             CustomButton(
                 onClick = {

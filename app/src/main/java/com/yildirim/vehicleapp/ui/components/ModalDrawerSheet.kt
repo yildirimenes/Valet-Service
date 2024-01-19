@@ -3,7 +3,7 @@ package com.yildirim.vehicleapp.ui.components
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -16,8 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.yildirim.vehicleapp.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -31,12 +29,13 @@ fun DrawerSheet() {
     ){
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxHeight()
                 .padding(top = 70.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
         ) {
+
             CustomSettingsCard(iconRes = R.drawable.baseline_workspace_premium_24, text = stringResource(id = R.string.valet_premium), onClick = {})
             CustomSettingsCard(iconRes = R.drawable.baseline_language_24, text = stringResource(id = R.string.language_option), onClick = {})
             CustomSettingsCard(iconRes = R.drawable.baseline_thumb_up_alt_24, text = stringResource(id = R.string.rate_us), onClick = {})

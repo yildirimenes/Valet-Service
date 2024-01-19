@@ -37,6 +37,7 @@ import com.yildirim.vehicleapp.ui.components.CustomButton
 import com.yildirim.vehicleapp.ui.components.PhoneField
 import com.yildirim.vehicleapp.ui.components.UpdateOutlinedTextField
 import com.yildirim.vehicleapp.data.model.Vehicles
+import com.yildirim.vehicleapp.ui.components.RegisterOutlinedNumberPlateTextField
 import com.yildirim.vehicleapp.ui.screens.update_vehicle.viewmodel.VehicleUpdateViewModel
 import com.yildirim.vehicleapp.ui.screens.update_vehicle.viewmodel.VehicleUpdateViewModelFactory
 
@@ -111,7 +112,7 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
                 label = {Text(stringResource(id = R.string.vehicle_name))},
             )
             Spacer(modifier = Modifier.size(30.dp))
-            UpdateOutlinedTextField(
+            RegisterOutlinedNumberPlateTextField(
                 value = tfVehicleNumberPlate.value,
                 onValueChange = {tfVehicleNumberPlate.value = it},
                 label = {Text(stringResource(id = R.string.vehicle_number_plate))},

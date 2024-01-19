@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -57,22 +58,38 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
     val valetFee = remember { mutableStateOf("") }
     val vehicleNumberPlate = remember { mutableStateOf("") }
     val vehicleLocationDescription = remember { mutableStateOf("") }
+    val hourly1 = remember { mutableStateOf("") }
+    val hourly2 = remember { mutableStateOf("") }
+    val hourly3 = remember { mutableStateOf("") }
+    val hourly4 = remember { mutableStateOf("") }
+    val hourly5 = remember { mutableStateOf("") }
+    val daily = remember { mutableStateOf("") }
     val context = LocalContext.current
     val viewModel : VehicleViewModel = viewModel(
         factory = VehicleViewModelFactory(context.applicationContext as Application)
     )
+    val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
     LaunchedEffect(key1 = true){
+        viewModel.load()
         //User Information
         customerName.value = getVehicles.customer_name
         vehicleName.value = getVehicles.vehicle_name
         vehicleNumberPlate.value = getVehicles.vehicle_number_plate
         vehicleLocationDescription.value = getVehicles.vehicle_location_description
-        //Calculation Price Operations
-        val startDateValue = getVehicles.vehicle_check_in_date
-        val result = viewModel.calculateTimeDifference(startDateValue)
-        elapsedTime.value = result.first
-        valetFee.value = result.second.toString()
     }
+    //Calculation Price Operations
+    val hourlyFee = hourlyFeeList.value.firstOrNull()
+    val startDateValue = getVehicles.vehicle_check_in_date
+    hourly1.value = hourlyFee?.hourly_v1.toString()
+    hourly2.value = hourlyFee?.hourly_v2.toString()
+    hourly3.value = hourlyFee?.hourly_v3.toString()
+    hourly4.value = hourlyFee?.hourly_v4.toString()
+    hourly5.value = hourlyFee?.hourly_v5.toString()
+    daily.value = hourlyFee?.daily.toString()
+
+    val result = viewModel.calculateTimeDifference(startDateValue,hourly1,hourly2,hourly3,hourly4,hourly5,daily)
+    elapsedTime.value = result.first
+    valetFee.value = result.second.toString()
 
     Scaffold(
         topBar = {
@@ -144,6 +161,8 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                 }
             }
             Spacer(modifier = Modifier.size(10.dp))
+
+
             FlipCard(
                 frontContent = {
                     Row(
