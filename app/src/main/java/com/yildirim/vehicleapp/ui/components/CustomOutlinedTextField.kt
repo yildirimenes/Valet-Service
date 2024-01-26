@@ -75,12 +75,12 @@ fun RegisterOutlinedNumberPlateTextField(
         shape = RoundedCornerShape(12.dp),
         maxLines = maxLines,
         keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-        autoCorrect = true,
-        capitalization = KeyboardCapitalization.Characters,
-        imeAction = ImeAction.Done
-    ),
-    keyboardActions = KeyboardActions.Default,
+            keyboardType = KeyboardType.Text,
+            autoCorrect = true,
+            capitalization = KeyboardCapitalization.Characters,
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions = KeyboardActions.Default,
 
-    )
+        )
 }

@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.yildirim.vehicleapp.R
 
 @Composable
-fun CustomSettingsCard(iconRes: Int, text: String,onClick: () -> Unit) {
+fun CustomSettingsCard(iconRes: Int, text: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(all = 5.dp)

@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.ui.screens.vehicle.viewmodel
+
 import android.Manifest
 import android.app.Activity
 import android.app.Application
@@ -18,7 +19,7 @@ import com.yildirim.vehicleapp.data.repository.VehiclesDaoRepository
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class VehicleViewModel(application: Application) : AndroidViewModel(application){
+class VehicleViewModel(application: Application) : AndroidViewModel(application) {
     var vrepo = VehiclesDaoRepository(application)
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
 
@@ -27,7 +28,7 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         hourlyFeeList = vrepo.getHourlyFee()
     }
 
-    fun load(){
+    fun load() {
         vrepo.getAllHourlyFee()
     }
 
@@ -40,7 +41,11 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
 
             val permission = Manifest.permission.CALL_PHONE
 
-            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    permission
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 context.startActivity(intent)
             } else {
                 ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 0)
@@ -51,13 +56,25 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun sendMessage(context: Context, customerName: String, vehicleNumberPlate: String, vehicleLocationDescription: String, phoneNumber: String, currentHours: String) {
+    fun sendMessage(
+        context: Context,
+        customerName: String,
+        vehicleNumberPlate: String,
+        vehicleLocationDescription: String,
+        phoneNumber: String,
+        currentHours: String
+    ) {
         val formattedPhone = "0$phoneNumber"
         try {
-            val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
+            val message =
+                "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
             val permission = Manifest.permission.SEND_SMS
 
-            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    permission
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 val smsManager: SmsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage(formattedPhone, null, message, null, null)
                 Toast.makeText(context, "Successful Message", Toast.LENGTH_LONG).show()
@@ -76,7 +93,11 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
             val messages = "Sn. $customerName aracınız teslim edilmiştir."
             val permission = Manifest.permission.SEND_SMS
 
-            if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    permission
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 val smsManager: SmsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage(formattedPhone, null, messages, null, null)
                 Toast.makeText(context, "Successful Message", Toast.LENGTH_LONG).show()
@@ -117,59 +138,56 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
 
             var totalAmount = 0
             var timeDifference = ""
-            if (elapsedDays > 0){
+            if (elapsedDays > 0) {
                 try {
-                    totalAmount = (daily.value.toInt()*elapsedDays).toInt()
+                    totalAmount = (daily.value.toInt() * elapsedDays).toInt()
                     timeDifference = "$elapsedDays gün, $elapsedHours saat"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
                 }
-            }
-            else if (elapsedHours >= 0 && elapsedHours < 1) {
+            } else if (elapsedHours >= 0 && elapsedHours < 1) {
                 try {
                     totalAmount = hourly1.value.toInt()
                     timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
                 }
-            }
-            else if (elapsedHours >= 1 && elapsedHours < 2) {
+            } else if (elapsedHours >= 1 && elapsedHours < 2) {
                 try {
                     totalAmount = hourly2.value.toInt()
                     timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
                 }
-            }
-            else if (elapsedHours >= 2 && elapsedHours < 4) {
+            } else if (elapsedHours >= 2 && elapsedHours < 4) {
                 try {
                     totalAmount = hourly3.value.toInt()
                     timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
-                }            }
-            else if (elapsedHours >= 4 && elapsedHours < 8) {
+                }
+            } else if (elapsedHours >= 4 && elapsedHours < 8) {
                 try {
                     totalAmount = hourly4.value.toInt()
                     timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
-                }            }
-            else if (elapsedHours >= 8 && elapsedHours < 12) {
+                }
+            } else if (elapsedHours >= 8 && elapsedHours < 12) {
                 try {
                     totalAmount = hourly5.value.toInt()
                     timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
-                }            }
-            else if (elapsedHours >= 12 && elapsedHours < 24) {
+                }
+            } else if (elapsedHours >= 12 && elapsedHours < 24) {
                 try {
                     totalAmount = daily.value.toInt()
                     timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
                 } catch (e: NumberFormatException) {
                     println("Invalid number format")
-                }            }
-            else{
+                }
+            } else {
                 println("Invalid Operation")
             }
             val price = "$totalAmount ₺"

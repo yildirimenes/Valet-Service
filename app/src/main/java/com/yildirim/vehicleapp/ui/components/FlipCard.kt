@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.ui.components
+
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -58,9 +59,9 @@ fun FlipCard(
             .clickable {
                 rotated = !rotated
             },
-            colors = CardDefaults.cardColors(
-                containerColor = colorResource(id = R.color.color_3)
-            )
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.color_3)
+        )
     )
     {
         Row(
@@ -82,7 +83,6 @@ fun FlipCard(
         }
     }
 }
-
 
 
 @Composable

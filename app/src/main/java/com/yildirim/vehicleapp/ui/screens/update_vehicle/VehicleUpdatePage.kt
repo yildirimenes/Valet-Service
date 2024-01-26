@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,19 +46,21 @@ import com.yildirim.vehicleapp.ui.screens.update_vehicle.viewmodel.VehicleUpdate
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
+fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
     val tfCustomerName = remember { mutableStateOf("") }
     val tfCustomerPhoneNumber = remember { mutableStateOf("") }
     val tfVehicleName = remember { mutableStateOf("") }
     val tfVehicleNumberPlate = remember { mutableStateOf("") }
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
+    val selectedBrand by remember { mutableStateOf("") }
+    val selectedModel by remember { mutableStateOf("") }
     val context = LocalContext.current
-    val viewModel : VehicleUpdateViewModel = viewModel(
+    val viewModel: VehicleUpdateViewModel = viewModel(
         factory = VehicleUpdateViewModelFactory(context.applicationContext as Application)
     )
     val localFocusManager = LocalFocusManager.current
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         tfCustomerName.value = getVehicles.customer_name
         tfCustomerPhoneNumber.value = getVehicles.customer_phone_number
         tfVehicleName.value = getVehicles.vehicle_name
@@ -72,7 +75,7 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
                     Text(text = stringResource(id = R.string.car_update))
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -96,14 +99,20 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
             )
             UpdateOutlinedTextField(
                 value = tfCustomerName.value,
-                onValueChange = {tfCustomerName.value = it},
-                label = {Text(stringResource(id = R.string.customer_name))},
+                onValueChange = { tfCustomerName.value = it },
+                label = { Text(stringResource(id = R.string.customer_name)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             PhoneField(
                 phone = tfCustomerPhoneNumber.value,
-                label = {Text(stringResource(id = R.string.customer_phone_number))},
-                onPhoneChanged = {tfCustomerPhoneNumber.value = it}
+                label = { Text(stringResource(id = R.string.customer_phone_number)) },
+                onPhoneChanged = { tfCustomerPhoneNumber.value = it }
+            )
+            Spacer(modifier = Modifier.size(30.dp))
+            RegisterOutlinedNumberPlateTextField(
+                value = tfVehicleNumberPlate.value,
+                onValueChange = { tfVehicleNumberPlate.value = it },
+                label = { Text(stringResource(id = R.string.vehicle_number_plate)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedTextField(
@@ -112,30 +121,23 @@ fun VehicleUpdatePage(navController: NavController,getVehicles: Vehicles){
                 label = {Text(stringResource(id = R.string.vehicle_name))},
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedNumberPlateTextField(
-                value = tfVehicleNumberPlate.value,
-                onValueChange = {tfVehicleNumberPlate.value = it},
-                label = {Text(stringResource(id = R.string.vehicle_number_plate))},
-            )
-            Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedTextField(
                 value = tfVehicleLocationDescription.value,
-                onValueChange = {tfVehicleLocationDescription.value = it},
-                label = {Text(stringResource(id = R.string.vehicle_location_description))},
+                onValueChange = { tfVehicleLocationDescription.value = it },
+                label = { Text(stringResource(id = R.string.vehicle_location_description)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
-
             CustomButton(
                 onClick = {
                     val customerName = tfCustomerName.value
                     val customerPhoneNumber = tfCustomerPhoneNumber.value
-                    val vehicleName = tfVehicleName.value
+                    val vehicleName = "$selectedBrand $selectedModel"
                     val vehicleNumberPlate = tfVehicleNumberPlate.value
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
                     val vehicleCheckInDate = getVehicles.vehicle_check_in_date
                     val vehicleCheckInHours = getVehicles.vehicle_check_in_hours
 
-                    viewModel.update(getVehicles.vehicle_id,customerName,customerPhoneNumber,vehicleName,vehicleNumberPlate,vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
+                    viewModel.update(getVehicles.vehicle_id, customerName, customerPhoneNumber, vehicleName, vehicleNumberPlate, vehicleLocationDescription, vehicleCheckInDate, vehicleCheckInHours)
                     localFocusManager.clearFocus()
                     navController.navigate("category_page")
                 },

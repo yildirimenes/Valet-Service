@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.ui.components
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.fadeIn

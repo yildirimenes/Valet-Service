@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.ui.screens.category
+
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.Image
@@ -68,7 +69,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoryPage(navController: NavController){
+fun CategoryPage(navController: NavController) {
     val isCall = remember { mutableStateOf(false) }
     val tf = remember { mutableStateOf("") }
     val defaultController = remember { mutableStateOf(false) }
@@ -79,12 +80,12 @@ fun CategoryPage(navController: NavController){
     var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
     val listState = rememberLazyGridState()
     val fabVisibility by derivedStateOf { listState.firstVisibleItemIndex == 0 }
-    val viewModel : CategoryViewModel = viewModel(
+    val viewModel: CategoryViewModel = viewModel(
         factory = CategoryViewModelFactory(context.applicationContext as Application)
     )
     val vehiclesList = viewModel.vehicleList.observeAsState(listOf())
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         viewModel.load()
     }
     ModalNavigationDrawer(
@@ -92,8 +93,9 @@ fun CategoryPage(navController: NavController){
         drawerContent = {
             ModalDrawerSheet(modifier = Modifier.fillMaxWidth(0.7f)) {
                 DrawerSheet()
-            } },
-        ) {
+            }
+        },
+    ) {
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -104,7 +106,8 @@ fun CategoryPage(navController: NavController){
                                     drawerState.apply {
                                         if (isClosed) open() else close()
                                     }
-                                } }
+                                }
+                            }
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Menu,
@@ -153,7 +156,7 @@ fun CategoryPage(navController: NavController){
                                 )
                             }
                         }
-                        IconButton(onClick = {navController.navigate("hourly_fee_page")}) {
+                        IconButton(onClick = { navController.navigate("hourly_fee_page") }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.baseline_feed_24),
                                 contentDescription = "Localized description"
@@ -167,7 +170,7 @@ fun CategoryPage(navController: NavController){
                 CustomFabButton(modifier = Modifier
                     .padding(all = 5.dp),
                     isVisibleBecauseOfScrolling = fabVisibility,
-                    onClick = {navController.navigate("vehicle_register_page")}
+                    onClick = { navController.navigate("vehicle_register_page") }
                 )
             }
 
@@ -191,10 +194,11 @@ fun CategoryPage(navController: NavController){
                                 modifier = Modifier
                                     .padding(all = 5.dp)
                                     .fillMaxWidth(),
-                                    //.height(250.dp),
+                                //.height(250.dp),
                                 colors = CardDefaults.cardColors(
                                     containerColor = colorResource(id = R.color.color_3),
-                                )) {
+                                )
+                            ) {
                                 Column(modifier = Modifier.clickable {
                                     val vehicleJson = Gson().toJson(vehicle)
                                     navController.navigate("vehicle_page/${vehicleJson}")
@@ -216,7 +220,7 @@ fun CategoryPage(navController: NavController){
                                                 .shadow(15.dp, shape = CircleShape),
                                             painter = painterResource(id = R.drawable.default_image),
                                             contentDescription = "",
-                                         )
+                                        )
                                         Row(
                                             modifier = Modifier
                                                 .padding(all = 8.dp)

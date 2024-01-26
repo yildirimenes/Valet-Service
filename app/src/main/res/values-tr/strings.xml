@@ -5,6 +5,8 @@
     <string name="valet_service">Vale Servisi</string>
     <string name="update">Güncelle</string>
     <string name="register">Kaydet</string>
+    <string name="call"> Arama </string>
+    <string name="notification"> Bildirim </string>
     <string name="delete">Sil</string>
     <string name="delete_operation">Bu aracı silmek istediğinize onaylıyor musunuz ?</string>
     <string name="confirm">Eminim</string>
@@ -22,7 +24,7 @@
     <string name="vehicle_brand">Araç Markası</string>
     <string name="car_plate">Araç Plakası</string>
     <string name="location_information">Konum Bilgisi</string>
-    <string name="valet_premium">Vallet Premium</string>
+    <string name="valet_premium">Premium Hesap</string>
     <string name="price_schedule">Fiyat Tarifesi</string>
     <string name="language_option">Dil Seçenekleri</string>
     <string name="dark_mode">Gece Modu</string>

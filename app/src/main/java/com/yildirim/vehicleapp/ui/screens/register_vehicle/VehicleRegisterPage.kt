@@ -21,8 +21,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
+import com.yildirim.vehicleapp.ui.components.CarSelectionDropdown
 import com.yildirim.vehicleapp.ui.components.CustomButton
 import com.yildirim.vehicleapp.ui.components.PhoneField
 import com.yildirim.vehicleapp.ui.components.RegisterOutlinedNumberPlateTextField
@@ -43,26 +46,27 @@ import com.yildirim.vehicleapp.ui.screens.register_vehicle.viewmodel.VehicleRegi
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun VehicleRegisterPage(navController: NavController){
+fun VehicleRegisterPage(navController: NavController) {
     val tfCustomerName = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val tfCustomerPhoneNumber = remember { mutableStateOf("") }
-    val tfVehicleName = remember { mutableStateOf("") }
     val tfNumberPlate = remember { mutableStateOf("") }
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
+    var selectedBrand by remember { mutableStateOf("") }
+    var selectedModel by remember { mutableStateOf("") }
     val context = LocalContext.current
     val localFocusManager = LocalFocusManager.current
-    val viewModel : VehicleRegisterViewModel = viewModel(
+    val viewModel: VehicleRegisterViewModel = viewModel(
         factory = VehicleRegisterViewModelFactory(context.applicationContext as Application)
     )
-    Scaffold (
+    Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(text = stringResource(id = R.string.car_register))
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -72,7 +76,7 @@ fun VehicleRegisterPage(navController: NavController){
             )
         },
 
-        ){
+        ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -80,7 +84,7 @@ fun VehicleRegisterPage(navController: NavController){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
 
-        ) {
+            ) {
             Box(
                 modifier = Modifier
                     .height(70.dp)
@@ -88,51 +92,51 @@ fun VehicleRegisterPage(navController: NavController){
             )
             RegisterOutlinedTextField(
                 value = tfCustomerName.value,
-                onValueChange = {tfCustomerName.value = it},
-                label = { Text(text = stringResource(id = R.string.customer_name))}
+                onValueChange = { tfCustomerName.value = it },
+                label = { Text(text = stringResource(id = R.string.customer_name)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
             PhoneField(tfCustomerPhoneNumber.value,
                 mask = "(000) 000 00 00",
                 maskNumber = '0',
-                label = { Text(text = stringResource(id = R.string.customer_phone_number))},
+                label = { Text(text = stringResource(id = R.string.customer_phone_number)) },
                 onPhoneChanged = { tfCustomerPhoneNumber.value = it }
-            )
-            Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
-                value = tfVehicleName.value,
-                onValueChange = {tfVehicleName.value = it},
-                label = { Text(text = stringResource(id = R.string.vehicle_name))}
             )
             Spacer(modifier = Modifier.size(30.dp))
             RegisterOutlinedNumberPlateTextField(
                 value = tfNumberPlate.value,
-                onValueChange = {tfNumberPlate.value = it},
-                label = { Text(text = stringResource(id = R.string.vehicle_number_plate))}
+                onValueChange = { tfNumberPlate.value = it },
+                label = { Text(text = stringResource(id = R.string.vehicle_number_plate)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
             RegisterOutlinedTextField(
                 value = tfVehicleLocationDescription.value,
-                onValueChange = {tfVehicleLocationDescription.value = it},
-                label = { Text(text = stringResource(id = R.string.vehicle_location_description))}
+                onValueChange = { tfVehicleLocationDescription.value = it },
+                label = { Text(text = stringResource(id = R.string.vehicle_location_description)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(15.dp))
+
+            CarSelectionDropdown { brand, model ->
+                selectedBrand = brand
+                selectedModel = model
+            }
+            Spacer(modifier = Modifier.size(15.dp))
             CustomButton(
                 onClick = {
                     val customerName = tfCustomerName.value
                     val customerPhoneNumber = tfCustomerPhoneNumber.value
-                    val vehicleName = tfVehicleName.value
+                    val vehicleName = "$selectedBrand $selectedModel"
                     val vehicleNumberPlate = tfNumberPlate.value
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
                     val vehicleCheckInDate = viewModel.currentDate()
                     val vehicleCheckInHours = viewModel.currentTime()
 
                     if (customerName.isNotEmpty() && vehicleName.isNotEmpty() && vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()) {
-                        viewModel.register(customerName,customerPhoneNumber ,vehicleName, vehicleNumberPlate, vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
+                        viewModel.register(customerName, customerPhoneNumber, vehicleName, vehicleNumberPlate, vehicleLocationDescription, vehicleCheckInDate, vehicleCheckInHours)
                         localFocusManager.clearFocus()
                         navController.navigate("category_page")
                     } else {
-                        Toast.makeText(context,"Invalid Information", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Invalid Information", Toast.LENGTH_SHORT).show()
                     }
                 },
                 text = stringResource(id = R.string.register)
@@ -140,3 +144,4 @@ fun VehicleRegisterPage(navController: NavController){
         }
     }
 }
+

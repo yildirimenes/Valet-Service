@@ -5,6 +5,8 @@
     <string name="valet_service">Valet Service</string>
     <string name="update">Update</string>
     <string name="register">Register</string>
+    <string name="call"> Call </string>
+    <string name="notification"> Notification </string>
     <string name="delete">Delete</string>
     <string name="delete_operation">Are you sure you want to delete this car?</string>
     <string name="confirm">Confirm</string>
@@ -22,7 +24,7 @@
     <string name="vehicle_brand">Car Brand</string>
     <string name="car_plate">Car Plate</string>
     <string name="location_information">Location Information</string>
-    <string name="valet_premium">Valet Premium</string>
+    <string name="valet_premium">Premium Account</string>
     <string name="price_schedule">Price Schedule</string>
     <string name="language_option">Language Option</string>
     <string name="dark_mode">Dark Mode</string>

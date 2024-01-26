@@ -1,5 +1,7 @@
 @file:Suppress("NAME_SHADOWING")
+
 package com.yildirim.vehicleapp.ui.screens.vehicle
+
 import com.yildirim.vehicleapp.ui.components.FlipCard
 import android.annotation.SuppressLint
 import android.app.Application
@@ -51,7 +53,7 @@ import com.yildirim.vehicleapp.ui.screens.vehicle.viewmodel.VehicleViewModelFact
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
+fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     val customerName = remember { mutableStateOf("") }
     val vehicleName = remember { mutableStateOf("") }
     val elapsedTime = remember { mutableStateOf("") }
@@ -65,11 +67,11 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
     val hourly5 = remember { mutableStateOf("") }
     val daily = remember { mutableStateOf("") }
     val context = LocalContext.current
-    val viewModel : VehicleViewModel = viewModel(
+    val viewModel: VehicleViewModel = viewModel(
         factory = VehicleViewModelFactory(context.applicationContext as Application)
     )
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         viewModel.load()
         //User Information
         customerName.value = getVehicles.customer_name
@@ -87,7 +89,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
     hourly5.value = hourlyFee?.hourly_v5.toString()
     daily.value = hourlyFee?.daily.toString()
 
-    val result = viewModel.calculateTimeDifference(startDateValue,hourly1,hourly2,hourly3,hourly4,hourly5,daily)
+    val result = viewModel.calculateTimeDifference(startDateValue, hourly1, hourly2, hourly3, hourly4, hourly5, daily)
     elapsedTime.value = result.first
     valetFee.value = result.second.toString()
 
@@ -98,7 +100,7 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                     Text(text = stringResource(id = R.string.car_information))
                 },
                 navigationIcon = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back"
@@ -116,22 +118,38 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
             horizontalAlignment = Alignment.CenterHorizontally,
 
 
-        ) {
+            ) {
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
                 modifier = Modifier
                     .padding(all = 5.dp)
                     .fillMaxWidth(),
                 colors = CardDefaults.cardColors(
-                    containerColor = colorResource(id = R.color.color_3))
-                ) {
+                    containerColor = colorResource(id = R.color.color_3)
+                )
+            ) {
                 Column {
                     Spacer(modifier = Modifier.size(10.dp))
-                    CustomRow(iconRes = R.drawable.baseline_person_24, text = getVehicles.customer_name)
-                    CustomRow(iconRes = R.drawable.baseline_directions_car_24, text = getVehicles.vehicle_name)
-                    CustomRow(iconRes = R.drawable.baseline_call_to_action_24, text = getVehicles.vehicle_number_plate)
-                    CustomRow(iconRes = R.drawable.baseline_date_range_24, text = getVehicles.vehicle_check_in_date)
-                    CustomRow(iconRes = R.drawable.baseline_location_on_24, text = getVehicles.vehicle_location_description)
+                    CustomRow(
+                        iconRes = R.drawable.baseline_person_24,
+                        text = getVehicles.customer_name
+                    )
+                    CustomRow(
+                        iconRes = R.drawable.baseline_directions_car_24,
+                        text = getVehicles.vehicle_name
+                    )
+                    CustomRow(
+                        iconRes = R.drawable.baseline_call_to_action_24,
+                        text = getVehicles.vehicle_number_plate
+                    )
+                    CustomRow(
+                        iconRes = R.drawable.baseline_date_range_24,
+                        text = getVehicles.vehicle_check_in_date
+                    )
+                    CustomRow(
+                        iconRes = R.drawable.baseline_location_on_24,
+                        text = getVehicles.vehicle_location_description
+                    )
 
                     Row(
                         modifier = Modifier
@@ -139,25 +157,28 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceEvenly
-                    ){
+                    ) {
                         CallButton(
                             onClick = {
-                                viewModel.makePhoneCall(customerPhone = getVehicles.customer_phone_number,context)
+                                viewModel.makePhoneCall(
+                                    customerPhone = getVehicles.customer_phone_number,
+                                    context
+                                )
                             }
                         )
                         MessageButton(
                             onClick = {
                                 val customerName = getVehicles.customer_name
                                 val vehicleNumberPlate = getVehicles.vehicle_number_plate
-                                val vehicleLocationDescription = getVehicles.vehicle_location_description
+                                val vehicleLocationDescription =
+                                    getVehicles.vehicle_location_description
                                 val formattedPhoneNumber = getVehicles.customer_phone_number
                                 val currentHours = getVehicles.vehicle_check_in_hours
 
-                                viewModel.sendMessage(context, customerName, vehicleNumberPlate, vehicleLocationDescription, formattedPhoneNumber,currentHours)
+                                viewModel.sendMessage(context, customerName, vehicleNumberPlate, vehicleLocationDescription, formattedPhoneNumber, currentHours)
                             }
                         )
                     }
-
                 }
             }
             Spacer(modifier = Modifier.size(10.dp))
@@ -174,18 +195,24 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                     ) {
                         Column {
                             Spacer(modifier = Modifier.size(10.dp))
-                            CustomRow(iconRes = R.drawable.baseline_price_change_24, text = valetFee.value)
-                            CustomRow(iconRes = R.drawable.baseline_access_time_filled_24, text = elapsedTime.value)
+                            CustomRow(
+                                iconRes = R.drawable.baseline_price_change_24,
+                                text = valetFee.value
+                            )
+                            CustomRow(
+                                iconRes = R.drawable.baseline_access_time_filled_24,
+                                text = elapsedTime.value
+                            )
                         }
                         FloatingActionButton(
-                            modifier = Modifier.padding(top = 25.dp, end =   10.dp),
+                            modifier = Modifier.padding(top = 25.dp, end = 10.dp),
                             onClick = {
-                                viewModel.msgBillButton(context,getVehicles.customer_name,getVehicles.customer_phone_number)
+                                viewModel.msgBillButton(context, getVehicles.customer_name, getVehicles.customer_phone_number)
                             },
                             containerColor = colorResource(id = R.color.color_1),
                             content = {
                                 Icon(
-                                    painter = painterResource(id = R.drawable.baseline_feed_24),
+                                    painter = painterResource(id = R.drawable.baseline_done_outline_24),
                                     contentDescription = "", tint = Color.White
                                 )
                             }
@@ -203,13 +230,17 @@ fun VehiclePage(navController: NavController ,getVehicles: Vehicles){
                     ) {
                         Column {
                             Spacer(modifier = Modifier.size(32.dp))
-                            Text(text = stringResource(id = R.string.time_fee_infos), fontSize = 25.sp, fontWeight = FontWeight.W400, fontStyle = FontStyle.Normal)
+                            Text(
+                                text = stringResource(id = R.string.time_fee_infos),
+                                fontSize = 25.sp,
+                                fontWeight = FontWeight.W400,
+                                fontStyle = FontStyle.Normal
+                            )
                             Spacer(modifier = Modifier.size(32.dp))
 
                         }
                     }
-                },
-
+                }
             )
         }
     }

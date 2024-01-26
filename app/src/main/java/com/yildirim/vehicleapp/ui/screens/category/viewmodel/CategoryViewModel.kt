@@ -15,15 +15,15 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         vehicleList = vrepo.getVehicles()
     }
 
-    fun load(){
+    fun load() {
         vrepo.getAllVehicles()
     }
 
-    fun search(searchPlate:String){
+    fun search(searchPlate: String) {
         vrepo.searchVehicles(searchPlate)
     }
 
-    fun delete(vehicle_id:Int){
+    fun delete(vehicle_id: Int) {
         vrepo.delVehicle(vehicle_id)
 
     }
