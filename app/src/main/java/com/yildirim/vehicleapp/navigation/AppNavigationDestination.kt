@@ -7,11 +7,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.yildirim.vehicleapp.data.model.Vehicles
-import com.yildirim.vehicleapp.ui.screens.category.CategoryPage
-import com.yildirim.vehicleapp.ui.screens.hourly_fee.HourlyFeePage
-import com.yildirim.vehicleapp.ui.screens.register_vehicle.VehicleRegisterPage
-import com.yildirim.vehicleapp.ui.screens.update_vehicle.VehicleUpdatePage
-import com.yildirim.vehicleapp.ui.screens.vehicle.VehiclePage
+import com.yildirim.vehicleapp.presentation.screens.category.CategoryPage
+import com.yildirim.vehicleapp.presentation.screens.hourly_fee.HourlyFeePage
+import com.yildirim.vehicleapp.presentation.screens.register_vehicle.VehicleRegisterPage
+import com.yildirim.vehicleapp.presentation.screens.update_vehicle.VehicleUpdatePage
+import com.yildirim.vehicleapp.presentation.screens.vehicle.VehiclePage
 
 @Composable
 fun PageController() {
