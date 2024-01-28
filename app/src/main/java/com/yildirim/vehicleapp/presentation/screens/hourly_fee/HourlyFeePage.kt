@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.presentation.screens.hourly_fee
+
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
@@ -44,9 +45,9 @@ import com.yildirim.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyF
 @Composable
 
 fun HourlyFeePage(navController: NavController) {
-    val scrollState = rememberScrollState()
     val context = LocalContext.current
     val localFocusManager = LocalFocusManager.current
+    val scrollState = rememberScrollState()
     val tfHourlyV1 = remember { mutableStateOf("") }
     val tfHourlyV2 = remember { mutableStateOf("") }
     val tfHourlyV3 = remember { mutableStateOf("") }
@@ -57,18 +58,18 @@ fun HourlyFeePage(navController: NavController) {
         factory = HourlyFeeViewModelFactory(context.applicationContext as Application)
     )
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
+
     LaunchedEffect(key1 = true) {
         viewModel.load()
     }
-    val hourlyFee = hourlyFeeList.value.firstOrNull()
 
+    val hourlyFee = hourlyFeeList.value.firstOrNull()
     tfHourlyV1.value = hourlyFee?.hourly_v1.toString()
     tfHourlyV2.value = hourlyFee?.hourly_v2.toString()
     tfHourlyV3.value = hourlyFee?.hourly_v3.toString()
     tfHourlyV4.value = hourlyFee?.hourly_v4.toString()
     tfHourlyV5.value = hourlyFee?.hourly_v5.toString()
     tfDaily.value = hourlyFee?.daily.toString()
-
 
     Scaffold(
         topBar = {
@@ -93,8 +94,7 @@ fun HourlyFeePage(navController: NavController) {
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
-
-            ) {
+        ) {
             Box(
                 modifier = Modifier
                     .height(70.dp)

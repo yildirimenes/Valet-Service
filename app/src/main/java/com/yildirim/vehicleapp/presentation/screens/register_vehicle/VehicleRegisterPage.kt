@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.presentation.screens.register_vehicle
+
 import android.annotation.SuppressLint
 import android.app.Application
 import android.widget.Toast
@@ -47,15 +48,15 @@ import com.yildirim.vehicleapp.presentation.screens.register_vehicle.viewmodel.V
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun VehicleRegisterPage(navController: NavController) {
+    val context = LocalContext.current
+    val localFocusManager = LocalFocusManager.current
     val tfCustomerName = remember { mutableStateOf("") }
-    val scrollState = rememberScrollState()
     val tfCustomerPhoneNumber = remember { mutableStateOf("") }
     val tfNumberPlate = remember { mutableStateOf("") }
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
     var selectedBrand by remember { mutableStateOf("") }
     var selectedModel by remember { mutableStateOf("") }
-    val context = LocalContext.current
-    val localFocusManager = LocalFocusManager.current
+    val scrollState = rememberScrollState()
     val viewModel: VehicleRegisterViewModel = viewModel(
         factory = VehicleRegisterViewModelFactory(context.applicationContext as Application)
     )
@@ -131,7 +132,15 @@ fun VehicleRegisterPage(navController: NavController) {
                     val vehicleCheckInHours = viewModel.currentTime()
 
                     if (customerName.isNotEmpty() && vehicleName.isNotEmpty() && vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()) {
-                        viewModel.register(customerName, customerPhoneNumber, vehicleName, vehicleNumberPlate, vehicleLocationDescription, vehicleCheckInDate, vehicleCheckInHours)
+                        viewModel.register(
+                            customerName,
+                            customerPhoneNumber,
+                            vehicleName,
+                            vehicleNumberPlate,
+                            vehicleLocationDescription,
+                            vehicleCheckInDate,
+                            vehicleCheckInHours
+                        )
                         localFocusManager.clearFocus()
                         navController.navigate("category_page")
                     } else {

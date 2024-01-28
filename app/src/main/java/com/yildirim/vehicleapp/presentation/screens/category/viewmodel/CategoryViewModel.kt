@@ -7,7 +7,7 @@ import com.yildirim.vehicleapp.data.model.Vehicles
 import com.yildirim.vehicleapp.data.repository.VehiclesDaoRepository
 
 class CategoryViewModel(application: Application) : AndroidViewModel(application) {
-    var vrepo = VehiclesDaoRepository(application)
+    private var vrepo = VehiclesDaoRepository(application)
     var vehicleList = MutableLiveData<List<Vehicles>>()
 
     init {
@@ -23,8 +23,8 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
         vrepo.searchVehicles(searchPlate)
     }
 
-    fun delete(vehicle_id: Int) {
-        vrepo.delVehicle(vehicle_id)
+    fun delete(vehicleId: Int) {
+        vrepo.delVehicle(vehicleId)
 
     }
 

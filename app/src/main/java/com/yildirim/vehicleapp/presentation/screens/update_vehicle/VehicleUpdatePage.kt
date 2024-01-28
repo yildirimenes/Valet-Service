@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.presentation.screens.update_vehicle
+
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -42,24 +42,20 @@ import com.yildirim.vehicleapp.presentation.components.RegisterOutlinedNumberPla
 import com.yildirim.vehicleapp.presentation.screens.update_vehicle.viewmodel.VehicleUpdateViewModel
 import com.yildirim.vehicleapp.presentation.screens.update_vehicle.viewmodel.VehicleUpdateViewModelFactory
 
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
+    val context = LocalContext.current
+    val localFocusManager = LocalFocusManager.current
     val tfCustomerName = remember { mutableStateOf("") }
     val tfCustomerPhoneNumber = remember { mutableStateOf("") }
     val tfVehicleName = remember { mutableStateOf("") }
     val tfVehicleNumberPlate = remember { mutableStateOf("") }
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
-    val selectedBrand by remember { mutableStateOf("") }
-    val selectedModel by remember { mutableStateOf("") }
-    val context = LocalContext.current
     val viewModel: VehicleUpdateViewModel = viewModel(
         factory = VehicleUpdateViewModelFactory(context.applicationContext as Application)
     )
-    val localFocusManager = LocalFocusManager.current
-
     LaunchedEffect(key1 = true) {
         tfCustomerName.value = getVehicles.customer_name
         tfCustomerPhoneNumber.value = getVehicles.customer_phone_number
@@ -117,8 +113,8 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedTextField(
                 value = tfVehicleName.value,
-                onValueChange = {tfVehicleName.value = it},
-                label = {Text(stringResource(id = R.string.vehicle_name))},
+                onValueChange = { tfVehicleName.value = it },
+                label = { Text(stringResource(id = R.string.vehicle_name)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedTextField(
@@ -131,13 +127,22 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                 onClick = {
                     val customerName = tfCustomerName.value
                     val customerPhoneNumber = tfCustomerPhoneNumber.value
-                    val vehicleName = "$selectedBrand $selectedModel"
+                    val vehicleName = tfVehicleName.value
                     val vehicleNumberPlate = tfVehicleNumberPlate.value
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
                     val vehicleCheckInDate = getVehicles.vehicle_check_in_date
                     val vehicleCheckInHours = getVehicles.vehicle_check_in_hours
 
-                    viewModel.update(getVehicles.vehicle_id, customerName, customerPhoneNumber, vehicleName, vehicleNumberPlate, vehicleLocationDescription, vehicleCheckInDate, vehicleCheckInHours)
+                    viewModel.update(
+                        getVehicles.vehicle_id,
+                        customerName,
+                        customerPhoneNumber,
+                        vehicleName,
+                        vehicleNumberPlate,
+                        vehicleLocationDescription,
+                        vehicleCheckInDate,
+                        vehicleCheckInHours
+                    )
                     localFocusManager.clearFocus()
                     navController.navigate("category_page")
                 },

@@ -1,7 +1,5 @@
 @file:Suppress("NAME_SHADOWING")
-
 package com.yildirim.vehicleapp.presentation.screens.vehicle
-
 import com.yildirim.vehicleapp.presentation.components.FlipCard
 import android.annotation.SuppressLint
 import android.app.Application
@@ -54,19 +52,19 @@ import com.yildirim.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleVie
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
+    val context = LocalContext.current
     val customerName = remember { mutableStateOf("") }
     val vehicleName = remember { mutableStateOf("") }
-    val elapsedTime = remember { mutableStateOf("") }
-    val valetFee = remember { mutableStateOf("") }
     val vehicleNumberPlate = remember { mutableStateOf("") }
     val vehicleLocationDescription = remember { mutableStateOf("") }
+    val elapsedTime = remember { mutableStateOf("") }
+    val valetFee = remember { mutableStateOf("") }
     val hourly1 = remember { mutableStateOf("") }
     val hourly2 = remember { mutableStateOf("") }
     val hourly3 = remember { mutableStateOf("") }
     val hourly4 = remember { mutableStateOf("") }
     val hourly5 = remember { mutableStateOf("") }
     val daily = remember { mutableStateOf("") }
-    val context = LocalContext.current
     val viewModel: VehicleViewModel = viewModel(
         factory = VehicleViewModelFactory(context.applicationContext as Application)
     )

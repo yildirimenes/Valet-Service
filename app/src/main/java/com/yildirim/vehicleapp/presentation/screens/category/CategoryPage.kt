@@ -59,7 +59,7 @@ import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.presentation.components.DeleteAlertDialog
-import com.yildirim.vehicleapp.presentation.components.DrawerSheet
+import com.yildirim.vehicleapp.presentation.screens.navigation_drawer.DrawerSheet
 import com.yildirim.vehicleapp.data.model.Vehicles
 import com.yildirim.vehicleapp.presentation.components.CustomFabButton
 import com.yildirim.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModel
@@ -70,14 +70,14 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryPage(navController: NavController) {
-    val isCall = remember { mutableStateOf(false) }
-    val tf = remember { mutableStateOf("") }
-    val defaultController = remember { mutableStateOf(false) }
     val context = LocalContext.current
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
+    val tf = remember { mutableStateOf("") }
     var isDeleteDialogVisible by remember { mutableStateOf(false) }
     var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
+    val isCall = remember { mutableStateOf(false) }
+    val defaultController = remember { mutableStateOf(false) }
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
     val listState = rememberLazyGridState()
     val fabVisibility by derivedStateOf { listState.firstVisibleItemIndex == 0 }
     val viewModel: CategoryViewModel = viewModel(

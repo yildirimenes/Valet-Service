@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,10 +24,13 @@ import com.yildirim.vehicleapp.R
 @Composable
 fun CustomSettingsCard(iconRes: Int, text: String, onClick: () -> Unit) {
     Card(
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.color_3)
+
+        ),
         modifier = Modifier
             .padding(all = 5.dp)
             .fillMaxSize()
-            .background(colorResource(id = R.color.color_3))
             .clickable { onClick() }
     ) {
         Row(modifier = Modifier.padding(all = 15.dp)) {

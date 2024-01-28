@@ -8,7 +8,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class VehicleRegisterViewModel(application: Application) : AndroidViewModel(application) {
-    var vrepo = VehiclesDaoRepository(application)
+    private var vrepo = VehiclesDaoRepository(application)
 
     fun currentDate(): String {
         val currentDateTime = Calendar.getInstance().time

@@ -7,7 +7,7 @@ import com.yildirim.vehicleapp.data.model.HourlyFee
 import com.yildirim.vehicleapp.data.repository.VehiclesDaoRepository
 
 class HourlyFeeViewModel(application: Application) : AndroidViewModel(application) {
-    var vrepo = VehiclesDaoRepository(application)
+    private var vrepo = VehiclesDaoRepository(application)
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
 
     init {

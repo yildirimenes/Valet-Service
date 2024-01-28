@@ -69,7 +69,5 @@ fun RegisterOutlinedNumberPlateTextField(
             capitalization = KeyboardCapitalization.Characters,
             imeAction = ImeAction.Done
         ),
-        keyboardActions = KeyboardActions.Default,
-
-        )
+        keyboardActions = KeyboardActions.Default,)
 }
