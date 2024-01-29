@@ -194,7 +194,6 @@ fun CategoryPage(navController: NavController) {
                                 modifier = Modifier
                                     .padding(all = 5.dp)
                                     .fillMaxWidth(),
-                                //.height(250.dp),
                                 colors = CardDefaults.cardColors(
                                     containerColor = colorResource(id = R.color.color_3),
                                 )
@@ -212,7 +211,8 @@ fun CategoryPage(navController: NavController) {
                                         Text(
                                             text = vehicle.vehicle_number_plate,
                                             fontSize = 18.sp,
-                                            fontWeight = FontWeight.W300
+                                            fontWeight = FontWeight.W300,
+                                            color = colorResource(id = R.color.black)
                                         )
                                         Spacer(modifier = Modifier.size(15.dp))
                                         Image(

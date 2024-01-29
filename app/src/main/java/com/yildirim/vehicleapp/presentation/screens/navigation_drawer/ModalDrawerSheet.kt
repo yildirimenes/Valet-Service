@@ -67,7 +67,7 @@ fun DrawerSheet() {
                     )
             }
             CustomSettingsCard(
-                iconRes = R.drawable.baseline_workspace_premium_24,
+                iconRes = R.drawable.baseline_email_24,
                 text = stringResource(id = R.string.valet_premium),
                 onClick = {
                     viewModel.sendMail(

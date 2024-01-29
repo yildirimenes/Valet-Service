@@ -248,7 +248,8 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                                 text = stringResource(id = R.string.time_fee_infos),
                                 fontSize = 25.sp,
                                 fontWeight = FontWeight.W400,
-                                fontStyle = FontStyle.Normal
+                                fontStyle = FontStyle.Normal,
+                                color = colorResource(id = R.color.black)
                             )
                             Spacer(modifier = Modifier.size(32.dp))
                         }
@@ -258,6 +259,4 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
         }
     }
 }
-
-
 

@@ -1,4 +1,5 @@
 package com.yildirim.vehicleapp.presentation.components
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -50,6 +51,34 @@ fun RegisterOutlinedTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedNumberPlateTextField(
+    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit, maxLines: Int = 1
+) {
+    val maxLength = 30
+    OutlinedTextField(
+        modifier = Modifier
+            .width(200.dp),
+        value = value,
+        onValueChange = { newText ->
+            if (newText.length <= maxLength) {
+                onValueChange(newText)
+            }
+        },
+        label = label,
+        shape = RoundedCornerShape(12.dp),
+        maxLines = maxLines,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            autoCorrect = true,
+            capitalization = KeyboardCapitalization.Characters,
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions = KeyboardActions.Default,)
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalComposeUiApi
+@Composable
+fun UpdateOutlinedNumberPlateTextField(
     value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit, maxLines: Int = 1
 ) {
     val maxLength = 30

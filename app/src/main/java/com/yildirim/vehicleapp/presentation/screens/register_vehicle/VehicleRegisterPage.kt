@@ -37,9 +37,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.presentation.components.CarNameDropdown
+import com.yildirim.vehicleapp.presentation.components.CombinedDropdownAndTextField
 import com.yildirim.vehicleapp.presentation.components.CustomButton
 import com.yildirim.vehicleapp.presentation.components.PhoneField
-import com.yildirim.vehicleapp.presentation.components.RegisterOutlinedNumberPlateTextField
 import com.yildirim.vehicleapp.presentation.components.RegisterOutlinedTextField
 import com.yildirim.vehicleapp.presentation.screens.register_vehicle.viewmodel.VehicleRegisterViewModel
 import com.yildirim.vehicleapp.presentation.screens.register_vehicle.viewmodel.VehicleRegisterViewModelFactory
@@ -52,10 +52,11 @@ fun VehicleRegisterPage(navController: NavController) {
     val localFocusManager = LocalFocusManager.current
     val tfCustomerName = remember { mutableStateOf("") }
     val tfCustomerPhoneNumber = remember { mutableStateOf("") }
-    val tfNumberPlate = remember { mutableStateOf("") }
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
     var selectedBrand by remember { mutableStateOf("") }
     var selectedModel by remember { mutableStateOf("") }
+    var selectedNumber by remember { mutableStateOf("") }
+    var textFieldValue by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val viewModel: VehicleRegisterViewModel = viewModel(
         factory = VehicleRegisterViewModelFactory(context.applicationContext as Application)
@@ -104,29 +105,34 @@ fun VehicleRegisterPage(navController: NavController) {
                 onPhoneChanged = { tfCustomerPhoneNumber.value = it }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedNumberPlateTextField(
-                value = tfNumberPlate.value,
-                onValueChange = { tfNumberPlate.value = it },
-                label = { Text(text = stringResource(id = R.string.vehicle_number_plate)) }
-            )
-            Spacer(modifier = Modifier.size(30.dp))
             RegisterOutlinedTextField(
                 value = tfVehicleLocationDescription.value,
                 onValueChange = { tfVehicleLocationDescription.value = it },
                 label = { Text(text = stringResource(id = R.string.vehicle_location_description)) }
             )
-            Spacer(modifier = Modifier.size(15.dp))
+            Spacer(modifier = Modifier.size(20.dp))
+            CombinedDropdownAndTextField(
+                onSelectionChanged = { newSelection ->
+                    selectedNumber = newSelection
+                },
+                textFieldValue = textFieldValue,
+                onTextFieldValueChanged = { newValue ->
+                    textFieldValue = newValue
+                },
+                label = { Text(text = stringResource(id = R.string.vehicle_number_plate))}
+            )
+            Spacer(modifier = Modifier.size(20.dp))
             CarNameDropdown { brand, model ->
                 selectedBrand = brand
                 selectedModel = model
             }
-            Spacer(modifier = Modifier.size(15.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             CustomButton(
                 onClick = {
                     val customerName = tfCustomerName.value
                     val customerPhoneNumber = tfCustomerPhoneNumber.value
                     val vehicleName = "$selectedBrand $selectedModel"
-                    val vehicleNumberPlate = tfNumberPlate.value
+                    val vehicleNumberPlate = "$selectedNumber $textFieldValue"
                     val vehicleLocationDescription = tfVehicleLocationDescription.value
                     val vehicleCheckInDate = viewModel.currentDate()
                     val vehicleCheckInHours = viewModel.currentTime()

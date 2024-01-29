@@ -19,8 +19,9 @@ import com.yildirim.vehicleapp.data.repository.VehiclesDaoRepository
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+@Suppress("DEPRECATION")
 class VehicleViewModel(application: Application) : AndroidViewModel(application) {
-    var vrepo = VehiclesDaoRepository(application)
+    private var vrepo = VehiclesDaoRepository(application)
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
 
     init {

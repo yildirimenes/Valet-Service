@@ -317,7 +317,6 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    //.wrapContentWidth(0.5f)
                     .width(125.dp)
                     .height(50.dp)
                     .padding(5.dp)
