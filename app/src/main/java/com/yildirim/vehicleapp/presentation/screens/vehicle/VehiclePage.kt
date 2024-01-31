@@ -45,6 +45,7 @@ import com.yildirim.vehicleapp.presentation.components.CallButton
 import com.yildirim.vehicleapp.presentation.components.CustomRow
 import com.yildirim.vehicleapp.presentation.components.MessageButton
 import com.yildirim.vehicleapp.data.model.Vehicles
+import com.yildirim.vehicleapp.presentation.components.AdmobBanner
 import com.yildirim.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleViewModel
 import com.yildirim.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleViewModelFactory
 
@@ -237,7 +238,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 backContent = {
                     Row(
                         modifier = Modifier
-                            .padding(all = 2.dp)
+                            .padding(all = 5.dp)
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.Top,
                         horizontalArrangement = Arrangement.Center
@@ -256,6 +257,8 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                     }
                 }
             )
+            Spacer(modifier = Modifier.size(15.dp))
+            AdmobBanner(modifier = Modifier.fillMaxWidth())
         }
     }
 }

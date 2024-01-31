@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.presentation.components.CustomSettingsCard
 import com.yildirim.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModel
@@ -36,7 +37,7 @@ import com.yildirim.vehicleapp.util.AppConstant.MAIL_SUBJECT
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrawerSheet() {
+fun DrawerSheet(navController:NavController) {
     val context = LocalContext.current
     val viewModel: NavigationDrawerViewModel = viewModel(
         factory = NavigationDrawerViewModelFactory(context.applicationContext as Application)
@@ -76,10 +77,6 @@ fun DrawerSheet() {
                         subject = MAIL_SUBJECT
                     )
                 })
-            CustomSettingsCard(
-                iconRes = R.drawable.baseline_language_24,
-                text = stringResource(id = R.string.language_option),
-                onClick = {})
             CustomSettingsCard(
                 iconRes = R.drawable.baseline_thumb_up_alt_24,
                 text = stringResource(id = R.string.rate_us),

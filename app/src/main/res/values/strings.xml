@@ -27,6 +27,7 @@
     <string name="valet_premium">Premium Account</string>
     <string name="valet_premium_info">Premium Account Information</string>
     <string name="price_schedule">Price Schedule</string>
+    <string name="valet_fee">Valet Fee</string>
     <string name="language_option">Language Option</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="rate_us">Rate Us</string>

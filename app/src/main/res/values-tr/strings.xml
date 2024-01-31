@@ -27,6 +27,7 @@
     <string name="valet_premium">Premium Hesap</string>
     <string name="valet_premium_info">Premium Hesap Bilgisi</string>
     <string name="price_schedule">Fiyat Tarifesi</string>
+    <string name="valet_fee">Valet Fee</string>
     <string name="language_option">Dil Seçenekleri</string>
     <string name="dark_mode">Gece Modu</string>
     <string name="rate_us">Bizi Oyla</string>
