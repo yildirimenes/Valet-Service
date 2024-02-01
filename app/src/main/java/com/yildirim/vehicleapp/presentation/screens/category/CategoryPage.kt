@@ -1,5 +1,4 @@
 package com.yildirim.vehicleapp.presentation.screens.category
-
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.compose.foundation.Image
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -62,7 +60,6 @@ import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.presentation.components.DeleteAlertDialog
 import com.yildirim.vehicleapp.presentation.screens.navigation_drawer.DrawerSheet
 import com.yildirim.vehicleapp.data.model.Vehicles
-import com.yildirim.vehicleapp.presentation.components.AdmobBanner
 import com.yildirim.vehicleapp.presentation.components.CustomFabButton
 import com.yildirim.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModel
 import com.yildirim.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModelFactory

@@ -55,7 +55,7 @@ fun VehicleRegisterPage(navController: NavController) {
     val tfVehicleLocationDescription = remember { mutableStateOf("") }
     var selectedBrand by remember { mutableStateOf("") }
     var selectedModel by remember { mutableStateOf("") }
-    var selectedNumber by remember { mutableStateOf("") }
+    var selectedNumber by remember { mutableStateOf("34") }
     var textFieldValue by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val viewModel: VehicleRegisterViewModel = viewModel(
@@ -112,12 +112,13 @@ fun VehicleRegisterPage(navController: NavController) {
             )
             Spacer(modifier = Modifier.size(20.dp))
             CombinedDropdownAndTextField(
-                onSelectionChanged = { newSelection ->
-                    selectedNumber = newSelection
+                selectedNumber = selectedNumber,
+                onSelectionChanged = {
+                    selectedNumber = it
                 },
                 textFieldValue = textFieldValue,
-                onTextFieldValueChanged = { newValue ->
-                    textFieldValue = newValue
+                onTextFieldValueChanged = {
+                    textFieldValue = it
                 },
                 label = { Text(text = stringResource(id = R.string.vehicle_number_plate))}
             )

@@ -150,7 +150,7 @@ fun HourlyFeePage(navController: NavController) {
                     navController.navigate("category_page")
 
                 },
-                text = stringResource(id = R.string.register)
+                text = stringResource(id = R.string.update)
             )
         }
     }
