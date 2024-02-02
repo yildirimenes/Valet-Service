@@ -24,20 +24,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.presentation.components.CustomSettingsCard
 import com.yildirim.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModel
 import com.yildirim.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModelFactory
 import com.yildirim.vehicleapp.util.AppConstant.APP_NAME
-import com.yildirim.vehicleapp.util.AppConstant.APP_URL
 import com.yildirim.vehicleapp.util.AppConstant.CONTACT_MAIL
 import com.yildirim.vehicleapp.util.AppConstant.MAIL_SUBJECT
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrawerSheet(navController:NavController) {
+fun DrawerSheet() {
     val context = LocalContext.current
     val viewModel: NavigationDrawerViewModel = viewModel(
         factory = NavigationDrawerViewModelFactory(context.applicationContext as Application)
@@ -81,7 +79,7 @@ fun DrawerSheet(navController:NavController) {
                 iconRes = R.drawable.baseline_thumb_up_alt_24,
                 text = stringResource(id = R.string.rate_us),
                 onClick = {
-                    viewModel.openPlayStore(context,APP_URL)
+                    //viewModel.openPlayStore(context,APP_URL)
                 })
         }
     }

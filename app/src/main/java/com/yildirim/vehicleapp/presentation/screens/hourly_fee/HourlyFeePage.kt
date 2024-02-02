@@ -36,7 +36,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.yildirim.vehicleapp.R
 import com.yildirim.vehicleapp.presentation.components.CustomButton
-import com.yildirim.vehicleapp.presentation.components.RegisterOutlinedTextField
+import com.yildirim.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
 import com.yildirim.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyFeeViewModel
 import com.yildirim.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyFeeViewModelFactory
 
@@ -100,37 +100,37 @@ fun HourlyFeePage(navController: NavController) {
                     .height(70.dp)
                     .fillMaxWidth()
             )
-            RegisterOutlinedTextField(
+            HourlyFeeOutlinedTextField(
                 value = tfHourlyV1.value,
                 onValueChange = { tfHourlyV1.value = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V1)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
+            HourlyFeeOutlinedTextField(
                 value = tfHourlyV2.value,
                 onValueChange = { tfHourlyV2.value = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V2)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
+            HourlyFeeOutlinedTextField(
                 value = tfHourlyV3.value,
                 onValueChange = { tfHourlyV3.value = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V3)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
+            HourlyFeeOutlinedTextField(
                 value = tfHourlyV4.value,
                 onValueChange = { tfHourlyV4.value = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V4)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
+            HourlyFeeOutlinedTextField(
                 value = tfHourlyV5.value,
                 onValueChange = { tfHourlyV5.value = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V5)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
+            HourlyFeeOutlinedTextField(
                 value = tfDaily.value,
                 onValueChange = { tfDaily.value = it },
                 label = { Text(text = stringResource(id = R.string.daily)) }
@@ -138,7 +138,6 @@ fun HourlyFeePage(navController: NavController) {
             Spacer(modifier = Modifier.size(30.dp))
             CustomButton(
                 onClick = {
-
                     val hourlyV1 = tfHourlyV1.value.toInt()
                     val hourlyV2 = tfHourlyV2.value.toInt()
                     val hourlyV3 = tfHourlyV3.value.toInt()

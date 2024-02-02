@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -33,8 +34,6 @@ fun CityNumberDropdown(onSelectionChanged: (String) -> Unit) {
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-
-        // Number Dropdown
         OutlinedCard(modifier = Modifier.padding(top = 5.dp)) {
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
@@ -55,7 +54,8 @@ fun CityNumberDropdown(onSelectionChanged: (String) -> Unit) {
 
             DropdownMenu(
                 expanded = dropdownControl,
-                onDismissRequest = { dropdownControl = false }
+                onDismissRequest = { dropdownControl = false },
+                modifier = Modifier.requiredSizeIn(maxHeight = 300.dp)
             ) {
                 for (i in 1..81) {
                     DropdownMenuItem(

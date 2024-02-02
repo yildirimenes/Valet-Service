@@ -22,12 +22,22 @@ fun UpdateOutlinedTextField(
     label: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val maxLength = 30
     OutlinedTextField(
         value = value,
-        onValueChange = onValueChange,
+        onValueChange = { newText ->
+            if (newText.length <= maxLength) {
+                onValueChange(newText)
+            }
+        },
         label = label,
         shape = RoundedCornerShape(12.dp),
-        modifier = modifier
+        modifier = modifier,
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next
+        )
     )
 }
 
@@ -35,15 +45,23 @@ fun UpdateOutlinedTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedTextField(
-    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit, maxLines: Int = 1
+    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
 ) {
     val maxLength = 30
     OutlinedTextField(
-        value = value, onValueChange = { newText ->
+        value = value,
+        onValueChange = { newText ->
             if (newText.length <= maxLength) {
                 onValueChange(newText)
             }
-        }, label = label, shape = RoundedCornerShape(12.dp), maxLines = maxLines
+        },
+        label = label,
+        shape = RoundedCornerShape(12.dp),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next
+        )
     )
 }
 
@@ -51,9 +69,9 @@ fun RegisterOutlinedTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedNumberPlateTextField(
-    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit, maxLines: Int = 1
+    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
 ) {
-    val maxLength = 30
+    val maxLength = 10
     OutlinedTextField(
         modifier = Modifier
             .width(200.dp),
@@ -65,21 +83,52 @@ fun RegisterOutlinedNumberPlateTextField(
         },
         label = label,
         shape = RoundedCornerShape(12.dp),
-        maxLines = maxLines,
+        singleLine = true,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
             autoCorrect = true,
             capitalization = KeyboardCapitalization.Characters,
             imeAction = ImeAction.Done
         ),
-        keyboardActions = KeyboardActions.Default,)
+        keyboardActions = KeyboardActions.Default
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun UpdateOutlinedNumberPlateTextField(
-    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit, maxLines: Int = 1
+    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
+) {
+    val maxLength = 15
+    OutlinedTextField(
+        value = value,
+        onValueChange = { newText ->
+            if (newText.length <= maxLength) {
+                onValueChange(newText)
+            }
+        },
+        label = label,
+        shape = RoundedCornerShape(12.dp),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            autoCorrect = true,
+            capitalization = KeyboardCapitalization.Characters,
+            imeAction = ImeAction.Next
+        ),
+        keyboardActions = KeyboardActions.Default
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalComposeUiApi
+@Composable
+fun UpdateOutlinedLocationTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val maxLength = 30
     OutlinedTextField(
@@ -91,12 +140,34 @@ fun UpdateOutlinedNumberPlateTextField(
         },
         label = label,
         shape = RoundedCornerShape(12.dp),
-        maxLines = maxLines,
+        modifier = modifier,
+        singleLine = true,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text,
-            autoCorrect = true,
-            capitalization = KeyboardCapitalization.Characters,
             imeAction = ImeAction.Done
         ),
-        keyboardActions = KeyboardActions.Default,)
+    )
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@ExperimentalComposeUiApi
+@Composable
+fun HourlyFeeOutlinedTextField(
+    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
+) {
+    val maxLength = 30
+    OutlinedTextField(
+        value = value,
+        onValueChange = { newText ->
+            if (newText.length <= maxLength) {
+                onValueChange(newText)
+            }
+        },
+        label = label,
+        shape = RoundedCornerShape(12.dp),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Number,
+            imeAction = ImeAction.Next
+        )
+    )
 }

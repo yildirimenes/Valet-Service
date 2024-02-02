@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -333,7 +334,8 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
 
             DropdownMenu(
                 expanded = brandDropDownControl,
-                onDismissRequest = { brandDropDownControl = false }
+                onDismissRequest = { brandDropDownControl = false },
+                modifier = Modifier.requiredSizeIn(maxHeight = 300.dp)
             ) {
                 carBrands.forEachIndexed { index, brand ->
                     DropdownMenuItem(
@@ -375,7 +377,8 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
 
             DropdownMenu(
                 expanded = modelDropDownControl,
-                onDismissRequest = { modelDropDownControl = false }
+                onDismissRequest = { modelDropDownControl = false },
+                modifier = Modifier.requiredSizeIn(maxHeight = 300.dp)
             ) {
                 carModels[selectedBrandIndex].forEachIndexed { index, model ->
                     DropdownMenuItem(
