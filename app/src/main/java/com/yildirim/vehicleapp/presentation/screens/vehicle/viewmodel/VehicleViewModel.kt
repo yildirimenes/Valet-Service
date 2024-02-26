@@ -1,17 +1,10 @@
 package com.yildirim.vehicleapp.presentation.screens.vehicle.viewmodel
-
-import android.Manifest
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.telephony.SmsManager
 import android.widget.Toast
 import androidx.compose.runtime.MutableState
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.yildirim.vehicleapp.data.model.HourlyFee
@@ -36,20 +29,14 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
     fun makePhoneCall(customerPhone: String, context: Context) {
         try {
             val formattedPhone = "0$customerPhone"
-            val intent = Intent(Intent.ACTION_CALL)
-            val phoneUri = Uri.parse("tel:$formattedPhone")
-            intent.data = phoneUri
-
-            val permission = Manifest.permission.CALL_PHONE
-
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    permission
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+            if (formattedPhone != null) {
+                val intent = Intent(Intent.ACTION_DIAL)
+                val phoneUri = Uri.parse("tel:$formattedPhone")
+                intent.data = phoneUri
                 context.startActivity(intent)
-            } else {
-                ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 0)
+            }
+            else{
+                Toast.makeText(context, "Error making phone call", Toast.LENGTH_LONG).show()
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -66,22 +53,15 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
         currentHours: String
     ) {
         val formattedPhone = "0$phoneNumber"
-        try {
-            val message =
-                "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
-            val permission = Manifest.permission.SEND_SMS
+        val message =
+            "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
 
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    permission
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                val smsManager: SmsManager = SmsManager.getDefault()
-                smsManager.sendTextMessage(formattedPhone, null, message, null, null)
-                Toast.makeText(context, "Successful Message", Toast.LENGTH_LONG).show()
-            } else {
-                ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 0)
-            }
+        try {
+            val smsIntent = Intent(Intent.ACTION_SEND)
+            smsIntent.type = "text/plain"
+            smsIntent.putExtra(Intent.EXTRA_TEXT, message)
+            smsIntent.putExtra("address", formattedPhone)
+            context.startActivity(Intent.createChooser(smsIntent, "Mesaj Gönder"))
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(context, "Error sending SMS", Toast.LENGTH_LONG).show()
@@ -90,22 +70,14 @@ class VehicleViewModel(application: Application) : AndroidViewModel(application)
 
     fun msgBillButton(context: Context, customerName: String, phoneNumber: String) {
         val formattedPhone = "0$phoneNumber"
+        val messages = "Sn. $customerName aracınız teslim edilmiştir."
+
         try {
-            val messages = "Sn. $customerName aracınız teslim edilmiştir."
-            val permission = Manifest.permission.SEND_SMS
-
-            if (ContextCompat.checkSelfPermission(
-                    context,
-                    permission
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                val smsManager: SmsManager = SmsManager.getDefault()
-                smsManager.sendTextMessage(formattedPhone, null, messages, null, null)
-                Toast.makeText(context, "Successful Message", Toast.LENGTH_LONG).show()
-            } else {
-                ActivityCompat.requestPermissions(context as Activity, arrayOf(permission), 0)
-            }
-
+            val smsIntent = Intent(Intent.ACTION_SEND)
+            smsIntent.type = "text/plain"
+            smsIntent.putExtra(Intent.EXTRA_TEXT, messages)
+            smsIntent.putExtra("address", formattedPhone)
+            context.startActivity(Intent.createChooser(smsIntent, "Mesaj Gönder"))
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(context, "Error sending SMS", Toast.LENGTH_LONG).show()
