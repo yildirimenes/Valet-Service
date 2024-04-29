@@ -174,15 +174,16 @@ fun CategoryPage(navController: NavController) {
                 )
             }
 
-        ) {
+        ) { it ->
             LazyVerticalGrid(
+                modifier = Modifier
+                    .padding(it),
                 columns = GridCells.Fixed(2),
                 state = listState,
                 contentPadding = PaddingValues(
                     start = 12.dp,
-                    top = 70.dp,
                     end = 12.dp,
-                    bottom = 16.dp
+                    bottom = 12.dp
                 ),
                 content = {
                     items(

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Valet Service</string>
+    <string name="app_name">ValeApp</string>
     <string name="language_prompt">Select a language:</string>
     <string name="search">Arama</string>
     <string name="valet_service">Vale Servisi</string>

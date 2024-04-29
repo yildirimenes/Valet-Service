@@ -51,7 +51,6 @@ android {
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.0")
@@ -91,7 +90,5 @@ dependencies {
     // Google Play Review
     implementation ("com.google.android.play:review:2.0.1")
     implementation ("com.google.android.play:review-ktx:2.0.1")
-
     implementation("com.google.android.gms:play-services-ads:22.6.0")
-
 }

@@ -98,11 +98,10 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 70.dp, start = 20.dp, end = 20.dp),
+                .padding(10.dp)
+                .padding(it),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
-
-
             ) {
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
