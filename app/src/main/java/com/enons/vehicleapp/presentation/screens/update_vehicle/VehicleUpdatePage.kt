@@ -36,6 +36,7 @@ import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.PhoneField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedTextField
 import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedLocationTextField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedNumberPlateTextField
 import com.enons.vehicleapp.presentation.screens.update_vehicle.viewmodel.VehicleUpdateViewModel
@@ -139,7 +140,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                         vehicleCheckInHours
                     )
                     localFocusManager.clearFocus()
-                    navController.navigate("category_page")
+                    navController.navigate(Screen.CategoryPage.route)
                 },
                 text = stringResource(id = R.string.update)
             )

@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
+import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
 import com.enons.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyFeeViewModel
@@ -146,7 +147,7 @@ fun HourlyFeePage(navController: NavController) {
                     val daily = tfDaily.value.toInt()
                     viewModel.update(1, hourlyV1, hourlyV2, hourlyV3, hourlyV4, hourlyV5, daily)
                     localFocusManager.clearFocus()
-                    navController.navigate("category_page")
+                    navController.navigate(Screen.CategoryPage.route)
 
                 },
                 text = stringResource(id = R.string.update)

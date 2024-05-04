@@ -13,29 +13,38 @@ import com.enons.vehicleapp.presentation.screens.register_vehicle.VehicleRegiste
 import com.enons.vehicleapp.presentation.screens.update_vehicle.VehicleUpdatePage
 import com.enons.vehicleapp.presentation.screens.vehicle.VehiclePage
 
+sealed class Screen (val route: String) {
+    object CategoryPage : Screen("category_page")
+    object VehiclePage : Screen("vehicle_page")
+    object VehicleRegisterPage : Screen("vehicle_register_page")
+    object HourlyFeePage : Screen("hourly_fee_page")
+    object VehicleUpdatePage : Screen("vehicle_update_page")
+}
 @Composable
-fun PageController() {
+fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "category_page") {
-        composable("category_page") {
+    NavHost(navController = navController, startDestination = Screen.CategoryPage.route) {
+        composable(Screen.CategoryPage.route) {
             CategoryPage(navController = navController)
         }
-        composable("vehicle_page/{vehicle}", arguments = listOf(
+        composable(Screen.VehiclePage.route+"/{vehicle}",
+            arguments = listOf(
             navArgument("vehicle") { type = NavType.StringType }
         )) {
             val json = it.arguments?.getString("vehicle")
             val objects = Gson().fromJson(json, Vehicles::class.java)
             VehiclePage(navController = navController, objects)
         }
-        composable("vehicle_register_page") {
+        composable(Screen.VehicleRegisterPage.route) {
             VehicleRegisterPage(navController = navController)
 
         }
-        composable("hourly_fee_page") {
+        composable(Screen.HourlyFeePage.route) {
             HourlyFeePage(navController = navController)
 
         }
-        composable("vehicle_update_page/{vehicle}", arguments = listOf(
+        composable(Screen.VehicleUpdatePage.route+"/{vehicle}",
+            arguments = listOf(
             navArgument("vehicle") { type = NavType.StringType }
         )) {
             val json = it.arguments?.getString("vehicle")

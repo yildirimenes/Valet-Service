@@ -60,6 +60,7 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
 import com.enons.vehicleapp.presentation.screens.navigation_drawer.DrawerSheet
 import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomFabButton
 import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModel
 import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModelFactory
@@ -156,7 +157,7 @@ fun CategoryPage(navController: NavController) {
                                 )
                             }
                         }
-                        IconButton(onClick = { navController.navigate("hourly_fee_page") }) {
+                        IconButton(onClick = { navController.navigate(Screen.HourlyFeePage.route) }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.baseline_feed_24),
                                 contentDescription = "Localized description"
@@ -170,7 +171,7 @@ fun CategoryPage(navController: NavController) {
                 CustomFabButton(modifier = Modifier
                     .padding(all = 5.dp),
                     isVisibleBecauseOfScrolling = fabVisibility,
-                    onClick = { navController.navigate("vehicle_register_page") }
+                    onClick = { navController.navigate(Screen.VehicleRegisterPage.route) }
                 )
             }
 
@@ -201,7 +202,7 @@ fun CategoryPage(navController: NavController) {
                             ) {
                                 Column(modifier = Modifier.clickable {
                                     val vehicleJson = Gson().toJson(vehicle)
-                                    navController.navigate("vehicle_page/${vehicleJson}")
+                                    navController.navigate(Screen.VehiclePage.route+"/${vehicleJson}")
                                 }) {
                                     Column(
                                         modifier = Modifier.fillMaxSize(),
@@ -232,7 +233,7 @@ fun CategoryPage(navController: NavController) {
                                         ) {
                                             TextButton(onClick = {
                                                 val vehicleJson = Gson().toJson(vehicle)
-                                                navController.navigate("vehicle_update_page/${vehicleJson}")
+                                                navController.navigate(Screen.VehicleUpdatePage.route+"/${vehicleJson}")
                                             }) {
                                                 Text(text = stringResource(id = R.string.update))
                                             }

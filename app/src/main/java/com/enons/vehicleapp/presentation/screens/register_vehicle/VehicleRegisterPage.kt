@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
+import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CarNameDropdown
 import com.enons.vehicleapp.presentation.components.CombinedDropdownAndTextField
 import com.enons.vehicleapp.presentation.components.CustomButton
@@ -143,7 +144,7 @@ fun VehicleRegisterPage(navController: NavController) {
                             vehicleCheckInHours
                         )
                         localFocusManager.clearFocus()
-                        navController.navigate("category_page")
+                        navController.navigate(Screen.CategoryPage.route)
                     } else {
                         Toast.makeText(context, "Invalid Information", Toast.LENGTH_SHORT).show()
                     }

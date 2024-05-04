@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.enons.vehicleapp.navigation.PageController
+import com.enons.vehicleapp.navigation.AppNavigation
 import com.enons.vehicleapp.ui.theme.VehicleAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PageController()
+                    AppNavigation()
                 }
             }
         }
