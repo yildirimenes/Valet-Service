@@ -2,7 +2,7 @@ package com.enons.vehicleapp.util
 
 object AppConstant {
     const val APP_NAME = "Valet Service"
-    const val APP_URL = "https://play.google.com/store/apps/details?id=com.whatsapp&hl=tr&gl=US"
+    const val APP_URL = "https://play.google.com/store/apps/details?id=com.enons.vehicleapp"
     const val CONTACT_MAIL = "enons.app@gmail.com"
     const val MAIL_SUBJECT = "Premium Hesap Bilgisi"
     const val APP_ID = "com.google.android.gms.ads.APPLICATION_ID"

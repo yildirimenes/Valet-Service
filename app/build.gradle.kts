@@ -2,6 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -92,4 +95,15 @@ dependencies {
     implementation ("com.google.android.play:review:2.0.1")
     implementation ("com.google.android.play:review-ktx:2.0.1")
     implementation("com.google.android.gms:play-services-ads:22.6.0")
+    // Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("androidx.navigation:navigation-compose:2.7.5")
+
+}
+
+kapt {
+    correctErrorTypes = true
 }

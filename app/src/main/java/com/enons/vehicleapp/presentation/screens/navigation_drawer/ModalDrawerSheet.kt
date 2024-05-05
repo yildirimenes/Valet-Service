@@ -1,6 +1,7 @@
 package com.enons.vehicleapp.presentation.screens.navigation_drawer
 import android.annotation.SuppressLint
 import android.app.Application
+import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,6 +30,7 @@ import com.enons.vehicleapp.presentation.components.CustomSettingsCard
 import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModel
 import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModelFactory
 import com.enons.vehicleapp.util.AppConstant.APP_NAME
+import com.enons.vehicleapp.util.AppConstant.APP_URL
 import com.enons.vehicleapp.util.AppConstant.CONTACT_MAIL
 import com.enons.vehicleapp.util.AppConstant.MAIL_SUBJECT
 import kotlinx.coroutines.CoroutineScope
@@ -73,23 +75,20 @@ fun DrawerSheet() {
                 iconRes = R.drawable.baseline_email_24,
                 text = stringResource(id = R.string.valet_premium),
                 onClick = {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        viewModel.sendMail(
-                            context,
-                            to = CONTACT_MAIL,
-                            subject = MAIL_SUBJECT
-                        )
-                        delay(500)
-                    }
-                }
+                    viewModel.sendMail(
+                        context,
+                        to = CONTACT_MAIL,
+                        subject = MAIL_SUBJECT
+                    )
+                },
             )
-
             CustomSettingsCard(
                 iconRes = R.drawable.baseline_thumb_up_alt_24,
                 text = stringResource(id = R.string.rate_us),
                 onClick = {
-                    //viewModel.openPlayStore(context,APP_URL)
-                })
+                    viewModel.openPlayStore(context,APP_URL)
+                }
+            )
         }
     }
 }
