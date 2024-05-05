@@ -31,6 +31,10 @@ import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.Nav
 import com.enons.vehicleapp.util.AppConstant.APP_NAME
 import com.enons.vehicleapp.util.AppConstant.CONTACT_MAIL
 import com.enons.vehicleapp.util.AppConstant.MAIL_SUBJECT
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,12 +73,17 @@ fun DrawerSheet() {
                 iconRes = R.drawable.baseline_email_24,
                 text = stringResource(id = R.string.valet_premium),
                 onClick = {
-                    viewModel.sendMail(
-                        context,
-                        to = CONTACT_MAIL,
-                        subject = MAIL_SUBJECT
-                    )
-                })
+                    CoroutineScope(Dispatchers.Main).launch {
+                        viewModel.sendMail(
+                            context,
+                            to = CONTACT_MAIL,
+                            subject = MAIL_SUBJECT
+                        )
+                        delay(500)
+                    }
+                }
+            )
+
             CustomSettingsCard(
                 iconRes = R.drawable.baseline_thumb_up_alt_24,
                 text = stringResource(id = R.string.rate_us),

@@ -29,8 +29,6 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -62,6 +60,7 @@ import com.enons.vehicleapp.presentation.screens.navigation_drawer.DrawerSheet
 import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomFabButton
+import com.enons.vehicleapp.presentation.components.SearchTextField
 import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModel
 import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModelFactory
 import kotlinx.coroutines.launch
@@ -74,8 +73,8 @@ fun CategoryPage(navController: NavController) {
     val tf = remember { mutableStateOf("") }
     var isDeleteDialogVisible by remember { mutableStateOf(false) }
     var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
-    val isCall = remember { mutableStateOf(false) }
-    val defaultController = remember { mutableStateOf(false) }
+    var isCall by remember { mutableStateOf(false) }
+    var defaultController by remember { mutableStateOf(false) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val listState = rememberLazyGridState()
@@ -116,32 +115,25 @@ fun CategoryPage(navController: NavController) {
                         }
                     },
                     title = {
-                        if (isCall.value) {
-                            TextField(
+                        if (isCall) {
+                            SearchTextField(
                                 value = tf.value,
                                 onValueChange = {
                                     tf.value = it
                                     viewModel.search(it)
                                 },
                                 label = { Text(text = stringResource(id = R.string.search)) },
-                                singleLine = true,
-                                colors = TextFieldDefaults.textFieldColors(
-                                    containerColor = Color.Transparent,
-                                    focusedIndicatorColor = Color.White,
-                                    unfocusedIndicatorColor = Color.White,
-                                    textColor = Color.Black
-                                )
                             )
                         } else {
                             Text(text = stringResource(id = R.string.valet_service))
                         }
                     },
                     actions = {
-                        if (isCall.value) {
+                        if (isCall) {
                             IconButton(onClick = {
-                                isCall.value = false
-                                tf.value = ""
-                            }) {
+                                isCall = false
+                                tf.value = "" }
+                            ) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.close_image),
                                     contentDescription = "", tint = Color.Black
@@ -149,8 +141,8 @@ fun CategoryPage(navController: NavController) {
                             }
                         } else {
                             IconButton(onClick = {
-                                isCall.value = true
-                            }) {
+                                isCall = true }
+                            ) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.search_image),
                                     contentDescription = "", tint = Color.Black
@@ -166,7 +158,6 @@ fun CategoryPage(navController: NavController) {
                     },
                 )
             },
-
             floatingActionButton = {
                 CustomFabButton(modifier = Modifier
                     .padding(all = 5.dp),
@@ -181,11 +172,7 @@ fun CategoryPage(navController: NavController) {
                     .padding(it),
                 columns = GridCells.Fixed(2),
                 state = listState,
-                contentPadding = PaddingValues(
-                    start = 12.dp,
-                    end = 12.dp,
-                    bottom = 12.dp
-                ),
+                contentPadding = PaddingValues(8.dp),
                 content = {
                     items(
                         count = vehiclesList.value!!.count(),
@@ -249,7 +236,7 @@ fun CategoryPage(navController: NavController) {
                                                         viewModel.delete(id)
                                                     }
                                                     isDeleteDialogVisible = false
-                                                    defaultController.value = true
+                                                    defaultController = true
                                                 }
                                             )
                                             TextButton(

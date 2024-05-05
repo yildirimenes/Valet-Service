@@ -61,6 +61,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.camera:camera-core:1.3.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.libraries.mapsplatform.transportation:transportation-consumer:2.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

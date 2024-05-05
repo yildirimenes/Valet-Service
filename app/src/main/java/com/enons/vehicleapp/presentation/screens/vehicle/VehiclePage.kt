@@ -24,9 +24,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -53,18 +55,18 @@ import com.enons.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleViewMo
 @Composable
 fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     val context = LocalContext.current
-    val customerName = remember { mutableStateOf("") }
-    val vehicleName = remember { mutableStateOf("") }
-    val vehicleNumberPlate = remember { mutableStateOf("") }
-    val vehicleLocationDescription = remember { mutableStateOf("") }
-    val elapsedTime = remember { mutableStateOf("") }
-    val valetFee = remember { mutableStateOf("") }
-    val hourly1 = remember { mutableStateOf("") }
-    val hourly2 = remember { mutableStateOf("") }
-    val hourly3 = remember { mutableStateOf("") }
-    val hourly4 = remember { mutableStateOf("") }
-    val hourly5 = remember { mutableStateOf("") }
-    val daily = remember { mutableStateOf("") }
+    var customerName by remember { mutableStateOf("") }
+    var vehicleName by remember { mutableStateOf("") }
+    var vehicleNumberPlate by remember { mutableStateOf("") }
+    var vehicleLocationDescription by remember { mutableStateOf("") }
+    var elapsedTime by remember { mutableStateOf("") }
+    var valetFee by remember { mutableStateOf("") }
+    var hourly1 by remember { mutableStateOf("") }
+    var hourly2 by remember { mutableStateOf("") }
+    var hourly3 by remember { mutableStateOf("") }
+    var hourly4 by remember { mutableStateOf("") }
+    var hourly5 by remember { mutableStateOf("") }
+    var daily by remember { mutableStateOf("") }
     val viewModel: VehicleViewModel = viewModel(
         factory = VehicleViewModelFactory(context.applicationContext as Application)
     )
@@ -72,10 +74,10 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     LaunchedEffect(key1 = true) {
         viewModel.load()
         //User Information
-        customerName.value = getVehicles.customer_name
-        vehicleName.value = getVehicles.vehicle_name
-        vehicleNumberPlate.value = getVehicles.vehicle_number_plate
-        vehicleLocationDescription.value = getVehicles.vehicle_location_description
+        customerName = getVehicles.customer_name
+        vehicleName = getVehicles.vehicle_name
+        vehicleNumberPlate = getVehicles.vehicle_number_plate
+        vehicleLocationDescription = getVehicles.vehicle_location_description
     }
 
     Scaffold(
@@ -178,12 +180,12 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                     //Calculation Price Operations
                     val hourlyFee = hourlyFeeList.value.firstOrNull()
                     val startDateValue = getVehicles.vehicle_check_in_date
-                    hourly1.value = hourlyFee?.hourly_v1.toString()
-                    hourly2.value = hourlyFee?.hourly_v2.toString()
-                    hourly3.value = hourlyFee?.hourly_v3.toString()
-                    hourly4.value = hourlyFee?.hourly_v4.toString()
-                    hourly5.value = hourlyFee?.hourly_v5.toString()
-                    daily.value = hourlyFee?.daily.toString()
+                    hourly1 = hourlyFee?.hourly_v1.toString()
+                    hourly2 = hourlyFee?.hourly_v2.toString()
+                    hourly3 = hourlyFee?.hourly_v3.toString()
+                    hourly4 = hourlyFee?.hourly_v4.toString()
+                    hourly5 = hourlyFee?.hourly_v5.toString()
+                    daily = hourlyFee?.daily.toString()
                     val result = viewModel.calculateTimeDifference(
                         startDateValue,
                         hourly1,
@@ -193,8 +195,8 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         hourly5,
                         daily
                     )
-                    elapsedTime.value = result.first
-                    valetFee.value = result.second.toString()
+                    elapsedTime = result.first
+                    valetFee = result.second.toString()
 
                     Row(
                         modifier = Modifier
@@ -207,11 +209,11 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                             Spacer(modifier = Modifier.size(10.dp))
                             CustomRow(
                                 iconRes = R.drawable.baseline_price_change_24,
-                                text = valetFee.value
+                                text = valetFee
                             )
                             CustomRow(
                                 iconRes = R.drawable.baseline_access_time_filled_24,
-                                text = elapsedTime.value
+                                text = elapsedTime
                             )
                         }
                         FloatingActionButton(

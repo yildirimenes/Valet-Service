@@ -20,8 +20,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -48,20 +50,20 @@ import com.enons.vehicleapp.presentation.screens.update_vehicle.viewmodel.Vehicl
 fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
     val context = LocalContext.current
     val localFocusManager = LocalFocusManager.current
-    val tfCustomerName = remember { mutableStateOf("") }
-    val tfCustomerPhoneNumber = remember { mutableStateOf("") }
-    val tfVehicleName = remember { mutableStateOf("") }
-    val tfVehicleNumberPlate = remember { mutableStateOf("") }
-    val tfVehicleLocationDescription = remember { mutableStateOf("") }
+    var tfCustomerName by remember { mutableStateOf("") }
+    var tfCustomerPhoneNumber by remember { mutableStateOf("") }
+    var tfVehicleName by remember { mutableStateOf("") }
+    var tfVehicleNumberPlate by remember { mutableStateOf("") }
+    var tfVehicleLocationDescription by remember { mutableStateOf("") }
     val viewModel: VehicleUpdateViewModel = viewModel(
         factory = VehicleUpdateViewModelFactory(context.applicationContext as Application)
     )
     LaunchedEffect(key1 = true) {
-        tfCustomerName.value = getVehicles.customer_name
-        tfCustomerPhoneNumber.value = getVehicles.customer_phone_number
-        tfVehicleName.value = getVehicles.vehicle_name
-        tfVehicleNumberPlate.value = getVehicles.vehicle_number_plate
-        tfVehicleLocationDescription.value = getVehicles.vehicle_location_description
+        tfCustomerName = getVehicles.customer_name
+        tfCustomerPhoneNumber = getVehicles.customer_phone_number
+        tfVehicleName = getVehicles.vehicle_name
+        tfVehicleNumberPlate = getVehicles.vehicle_number_plate
+        tfVehicleLocationDescription = getVehicles.vehicle_location_description
     }
 
     Scaffold(
@@ -90,42 +92,42 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             UpdateOutlinedTextField(
-                value = tfCustomerName.value,
-                onValueChange = { tfCustomerName.value = it },
+                value = tfCustomerName,
+                onValueChange = { tfCustomerName = it },
                 label = { Text(stringResource(id = R.string.customer_name)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             PhoneField(
-                phone = tfCustomerPhoneNumber.value,
+                phone = tfCustomerPhoneNumber,
                 label = { Text(stringResource(id = R.string.customer_phone_number)) },
-                onPhoneChanged = { tfCustomerPhoneNumber.value = it }
+                onPhoneChanged = { tfCustomerPhoneNumber = it }
             )
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedNumberPlateTextField(
-                value = tfVehicleNumberPlate.value,
-                onValueChange = { tfVehicleNumberPlate.value = it },
+                value = tfVehicleNumberPlate,
+                onValueChange = { tfVehicleNumberPlate = it },
                 label = { Text(stringResource(id = R.string.vehicle_number_plate)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedTextField(
-                value = tfVehicleName.value,
-                onValueChange = { tfVehicleName.value = it },
+                value = tfVehicleName,
+                onValueChange = { tfVehicleName = it },
                 label = { Text(stringResource(id = R.string.vehicle_name)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedLocationTextField(
-                value = tfVehicleLocationDescription.value,
-                onValueChange = { tfVehicleLocationDescription.value = it },
+                value = tfVehicleLocationDescription,
+                onValueChange = { tfVehicleLocationDescription = it },
                 label = { Text(stringResource(id = R.string.vehicle_location_description)) },
             )
             Spacer(modifier = Modifier.size(30.dp))
             CustomButton(
                 onClick = {
-                    val customerName = tfCustomerName.value
-                    val customerPhoneNumber = tfCustomerPhoneNumber.value
-                    val vehicleName = tfVehicleName.value
-                    val vehicleNumberPlate = tfVehicleNumberPlate.value
-                    val vehicleLocationDescription = tfVehicleLocationDescription.value
+                    val customerName = tfCustomerName
+                    val customerPhoneNumber = tfCustomerPhoneNumber
+                    val vehicleName = tfVehicleName
+                    val vehicleNumberPlate = tfVehicleNumberPlate
+                    val vehicleLocationDescription = tfVehicleLocationDescription
                     val vehicleCheckInDate = getVehicles.vehicle_check_in_date
                     val vehicleCheckInHours = getVehicles.vehicle_check_in_hours
 

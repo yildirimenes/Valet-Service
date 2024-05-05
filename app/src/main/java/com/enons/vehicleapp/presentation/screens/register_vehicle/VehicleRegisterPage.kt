@@ -49,9 +49,9 @@ import com.enons.vehicleapp.presentation.screens.register_vehicle.viewmodel.Vehi
 fun VehicleRegisterPage(navController: NavController) {
     val context = LocalContext.current
     val localFocusManager = LocalFocusManager.current
-    val tfCustomerName = remember { mutableStateOf("") }
-    val tfCustomerPhoneNumber = remember { mutableStateOf("") }
-    val tfVehicleLocationDescription = remember { mutableStateOf("") }
+    var tfCustomerName by remember { mutableStateOf("") }
+    var tfCustomerPhoneNumber by remember { mutableStateOf("") }
+    var tfVehicleLocationDescription by remember { mutableStateOf("") }
     var selectedBrand by remember { mutableStateOf("") }
     var selectedModel by remember { mutableStateOf("") }
     var selectedNumber by remember { mutableStateOf("34") }
@@ -88,21 +88,21 @@ fun VehicleRegisterPage(navController: NavController) {
 
             ) {
             RegisterOutlinedTextField(
-                value = tfCustomerName.value,
-                onValueChange = { tfCustomerName.value = it },
+                value = tfCustomerName,
+                onValueChange = { tfCustomerName = it },
                 label = { Text(text = stringResource(id = R.string.customer_name)) }
             )
             Spacer(modifier = Modifier.size(30.dp))
-            PhoneField(tfCustomerPhoneNumber.value,
+            PhoneField(tfCustomerPhoneNumber,
                 mask = "(000) 000 00 00",
                 maskNumber = '0',
                 label = { Text(text = stringResource(id = R.string.customer_phone_number)) },
-                onPhoneChanged = { tfCustomerPhoneNumber.value = it }
+                onPhoneChanged = { tfCustomerPhoneNumber = it }
             )
             Spacer(modifier = Modifier.size(30.dp))
             RegisterOutlinedTextField(
-                value = tfVehicleLocationDescription.value,
-                onValueChange = { tfVehicleLocationDescription.value = it },
+                value = tfVehicleLocationDescription,
+                onValueChange = { tfVehicleLocationDescription = it },
                 label = { Text(text = stringResource(id = R.string.vehicle_location_description)) }
             )
             Spacer(modifier = Modifier.size(20.dp))
@@ -125,11 +125,11 @@ fun VehicleRegisterPage(navController: NavController) {
             Spacer(modifier = Modifier.size(20.dp))
             CustomButton(
                 onClick = {
-                    val customerName = tfCustomerName.value
-                    val customerPhoneNumber = tfCustomerPhoneNumber.value
+                    val customerName = tfCustomerName
+                    val customerPhoneNumber = tfCustomerPhoneNumber
                     val vehicleName = "$selectedBrand $selectedModel"
                     val vehicleNumberPlate = "$selectedNumber $textFieldValue"
-                    val vehicleLocationDescription = tfVehicleLocationDescription.value
+                    val vehicleLocationDescription = tfVehicleLocationDescription
                     val vehicleCheckInDate = viewModel.currentDate()
                     val vehicleCheckInHours = viewModel.currentTime()
 
