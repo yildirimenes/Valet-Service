@@ -1,7 +1,5 @@
 package com.enons.vehicleapp.presentation.screens.navigation_drawer
 import android.annotation.SuppressLint
-import android.app.Application
-import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,28 +22,21 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
-import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModel
-import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.NavigationDrawerViewModelFactory
+import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.DrawerViewModel
 import com.enons.vehicleapp.util.AppConstant.APP_NAME
 import com.enons.vehicleapp.util.AppConstant.APP_URL
 import com.enons.vehicleapp.util.AppConstant.CONTACT_MAIL
 import com.enons.vehicleapp.util.AppConstant.MAIL_SUBJECT
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DrawerSheet() {
     val context = LocalContext.current
-    val viewModel: NavigationDrawerViewModel = viewModel(
-        factory = NavigationDrawerViewModelFactory(context.applicationContext as Application)
-    )
+    val viewModel: DrawerViewModel = hiltViewModel()
 
     Scaffold {
         Column(

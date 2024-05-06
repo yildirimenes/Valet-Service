@@ -1,13 +1,12 @@
 package com.enons.vehicleapp.presentation.screens.update_vehicle.viewmodel
-
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class VehicleUpdateViewModel(application: Application) : AndroidViewModel(application){
-    private var vrepo = VehiclesDaoRepository(application)
-
+@HiltViewModel
+class VehicleUpdateViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     fun update(vehicleId:Int,customerPhoneNumber:String,customerName:String,vehicleName:String,vehicleNumberPlate:String,vehicleLocationDescription:String,vehicleCheckInDate:String,vehicleCheckInHours:String){
-        vrepo.updateVehicle(vehicleId,customerPhoneNumber,customerName,vehicleName, vehicleNumberPlate, vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
+        repository.updateVehicle(vehicleId,customerPhoneNumber,customerName,vehicleName, vehicleNumberPlate, vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
     }
 }

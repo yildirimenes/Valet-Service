@@ -1,6 +1,5 @@
 package com.enons.vehicleapp.presentation.screens.category
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -44,14 +43,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.enons.vehicleapp.R
@@ -62,14 +60,12 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomFabButton
 import com.enons.vehicleapp.presentation.components.SearchTextField
 import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModel
-import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModelFactory
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryPage(navController: NavController) {
-    val context = LocalContext.current
     val tf = remember { mutableStateOf("") }
     var isDeleteDialogVisible by remember { mutableStateOf(false) }
     var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
@@ -79,9 +75,7 @@ fun CategoryPage(navController: NavController) {
     val scope = rememberCoroutineScope()
     val listState = rememberLazyGridState()
     val fabVisibility by derivedStateOf { listState.firstVisibleItemIndex == 0 }
-    val viewModel: CategoryViewModel = viewModel(
-        factory = CategoryViewModelFactory(context.applicationContext as Application)
-    )
+    val viewModel: CategoryViewModel = hiltViewModel()
     val vehiclesList = viewModel.vehicleList.observeAsState(listOf())
 
     LaunchedEffect(key1 = true) {

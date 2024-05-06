@@ -1,7 +1,5 @@
 package com.enons.vehicleapp.presentation.screens.hourly_fee
-
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,25 +28,22 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
 import com.enons.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyFeeViewModel
-import com.enons.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyFeeViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 
 fun HourlyFeePage(navController: NavController) {
-    val context = LocalContext.current
     val localFocusManager = LocalFocusManager.current
     val scrollState = rememberScrollState()
     var tfHourlyV1 by remember { mutableStateOf("") }
@@ -57,9 +52,7 @@ fun HourlyFeePage(navController: NavController) {
     var tfHourlyV4 by remember { mutableStateOf("") }
     var tfHourlyV5 by remember { mutableStateOf("") }
     var tfDaily by remember { mutableStateOf("") }
-    val viewModel: HourlyFeeViewModel = viewModel(
-        factory = HourlyFeeViewModelFactory(context.applicationContext as Application)
-    )
+    val viewModel: HourlyFeeViewModel = hiltViewModel()
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
 
     LaunchedEffect(key1 = true) {

@@ -1,12 +1,15 @@
 package com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel
-import android.app.Application
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class NavigationDrawerViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class DrawerViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     fun openPlayStore(activityContext: Context, appURL: String) {
         val playIntent: Intent = Intent().apply {
 

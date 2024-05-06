@@ -1,15 +1,15 @@
 package com.enons.vehicleapp.presentation.screens.register_vehicle.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import javax.inject.Inject
 
-class VehicleRegisterViewModel(application: Application) : AndroidViewModel(application) {
-    private var vrepo = VehiclesDaoRepository(application)
-
+@HiltViewModel
+class VehicleRegisterViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     fun currentDate(): String {
         val currentDateTime = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
@@ -24,7 +24,7 @@ class VehicleRegisterViewModel(application: Application) : AndroidViewModel(appl
     }
 
     fun register(customerName:String,customerPhoneNumber:String,vehicleName:String, vehicleNumberPlate:String,vehicleLocationDescription:String,vehicleCheckInDate:String,vehicleCheckInHours:String){
-        vrepo.registerVehicle(customerName,customerPhoneNumber,vehicleName,vehicleNumberPlate,vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
+        repository.registerVehicle(customerName,customerPhoneNumber,vehicleName,vehicleNumberPlate,vehicleLocationDescription,vehicleCheckInDate,vehicleCheckInHours)
 
     }
 }

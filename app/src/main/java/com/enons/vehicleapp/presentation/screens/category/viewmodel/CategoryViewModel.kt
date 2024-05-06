@@ -1,31 +1,32 @@
 package com.enons.vehicleapp.presentation.screens.category.viewmodel
-
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CategoryViewModel(application: Application) : AndroidViewModel(application) {
-    private var vrepo = VehiclesDaoRepository(application)
+@HiltViewModel
+class CategoryViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     var vehicleList = MutableLiveData<List<Vehicles>>()
 
     init {
         load()
-        vehicleList = vrepo.getVehicles()
+        vehicleList = repository.getVehicles()
     }
 
     fun load() {
-        vrepo.getAllVehicles()
+        repository.getAllVehicles()
     }
 
     fun search(searchPlate: String) {
-        vrepo.searchVehicles(searchPlate)
+        repository.searchVehicles(searchPlate)
     }
 
     fun delete(vehicleId: Int) {
-        vrepo.delVehicle(vehicleId)
+        repository.delVehicle(vehicleId)
 
     }
 
 }
+

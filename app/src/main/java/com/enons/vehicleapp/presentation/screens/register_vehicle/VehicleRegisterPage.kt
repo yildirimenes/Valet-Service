@@ -1,7 +1,6 @@
 package com.enons.vehicleapp.presentation.screens.register_vehicle
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
@@ -41,7 +40,6 @@ import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.PhoneField
 import com.enons.vehicleapp.presentation.components.RegisterOutlinedTextField
 import com.enons.vehicleapp.presentation.screens.register_vehicle.viewmodel.VehicleRegisterViewModel
-import com.enons.vehicleapp.presentation.screens.register_vehicle.viewmodel.VehicleRegisterViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -57,9 +55,7 @@ fun VehicleRegisterPage(navController: NavController) {
     var selectedNumber by remember { mutableStateOf("34") }
     var textFieldValue by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
-    val viewModel: VehicleRegisterViewModel = viewModel(
-        factory = VehicleRegisterViewModelFactory(context.applicationContext as Application)
-    )
+    val viewModel: VehicleRegisterViewModel = hiltViewModel()
     Scaffold(
         topBar = {
             TopAppBar(

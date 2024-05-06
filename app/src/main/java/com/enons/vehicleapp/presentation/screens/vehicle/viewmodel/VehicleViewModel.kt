@@ -1,27 +1,28 @@
 package com.enons.vehicleapp.presentation.screens.vehicle.viewmodel
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
+import javax.inject.Inject
 
-class VehicleViewModel(application: Application) : AndroidViewModel(application) {
-    private var vrepo = VehiclesDaoRepository(application)
+@HiltViewModel
+class VehicleViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
 
     init {
         load()
-        hourlyFeeList = vrepo.getHourlyFee()
+        hourlyFeeList = repository.getHourlyFee()
     }
 
     fun load() {
-        vrepo.getAllHourlyFee()
+        repository.getAllHourlyFee()
     }
 
     fun makePhoneCall(customerPhone: String, context: Context) {

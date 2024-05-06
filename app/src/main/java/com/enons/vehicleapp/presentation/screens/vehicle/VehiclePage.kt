@@ -2,7 +2,6 @@
 package com.enons.vehicleapp.presentation.screens.vehicle
 import com.enons.vehicleapp.presentation.components.FlipCard
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,7 +39,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CallButton
@@ -48,7 +47,6 @@ import com.enons.vehicleapp.presentation.components.CustomRow
 import com.enons.vehicleapp.presentation.components.MessageButton
 import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleViewModel
-import com.enons.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,9 +65,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     var hourly4 by remember { mutableStateOf("") }
     var hourly5 by remember { mutableStateOf("") }
     var daily by remember { mutableStateOf("") }
-    val viewModel: VehicleViewModel = viewModel(
-        factory = VehicleViewModelFactory(context.applicationContext as Application)
-    )
+    val viewModel: VehicleViewModel = hiltViewModel()
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
     LaunchedEffect(key1 = true) {
         viewModel.load()

@@ -1,7 +1,6 @@
 package com.enons.vehicleapp.presentation.screens.update_vehicle
 
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,11 +26,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomButton
@@ -42,22 +40,19 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedLocationTextField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedNumberPlateTextField
 import com.enons.vehicleapp.presentation.screens.update_vehicle.viewmodel.VehicleUpdateViewModel
-import com.enons.vehicleapp.presentation.screens.update_vehicle.viewmodel.VehicleUpdateViewModelFactory
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
-    val context = LocalContext.current
     val localFocusManager = LocalFocusManager.current
     var tfCustomerName by remember { mutableStateOf("") }
     var tfCustomerPhoneNumber by remember { mutableStateOf("") }
     var tfVehicleName by remember { mutableStateOf("") }
     var tfVehicleNumberPlate by remember { mutableStateOf("") }
     var tfVehicleLocationDescription by remember { mutableStateOf("") }
-    val viewModel: VehicleUpdateViewModel = viewModel(
-        factory = VehicleUpdateViewModelFactory(context.applicationContext as Application)
-    )
+    val viewModel: VehicleUpdateViewModel = hiltViewModel()
+
     LaunchedEffect(key1 = true) {
         tfCustomerName = getVehicles.customer_name
         tfCustomerPhoneNumber = getVehicles.customer_phone_number
