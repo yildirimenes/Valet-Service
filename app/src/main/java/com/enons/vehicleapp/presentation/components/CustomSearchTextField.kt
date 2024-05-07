@@ -26,7 +26,7 @@ fun SearchTextField(
             containerColor = Color.Transparent,
             focusedIndicatorColor = Color.White,
             unfocusedIndicatorColor = Color.White,
-            textColor = Color.Black
+            //textColor = Color.Black
         )
     )
 }

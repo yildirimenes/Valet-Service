@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.hourly_fee
+package com.enons.vehicleapp.presentation.screens.view
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,7 +37,7 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.hourly_fee.viewmodel.HourlyFeeViewModel
+import com.enons.vehicleapp.presentation.screens.viewmodel.HourlyFeeViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)

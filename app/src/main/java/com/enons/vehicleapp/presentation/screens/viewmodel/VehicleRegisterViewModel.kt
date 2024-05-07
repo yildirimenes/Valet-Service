@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.register_vehicle.viewmodel
+package com.enons.vehicleapp.presentation.screens.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository

@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.vehicle.viewmodel
+package com.enons.vehicleapp.presentation.screens.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -13,7 +13,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class VehicleViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
+class VehiclePageViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
 
     init {

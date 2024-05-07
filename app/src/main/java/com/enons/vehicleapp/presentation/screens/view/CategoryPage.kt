@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.category
+package com.enons.vehicleapp.presentation.screens.view
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -54,12 +54,11 @@ import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
-import com.enons.vehicleapp.presentation.screens.navigation_drawer.DrawerSheet
 import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomFabButton
 import com.enons.vehicleapp.presentation.components.SearchTextField
-import com.enons.vehicleapp.presentation.screens.category.viewmodel.CategoryViewModel
+import com.enons.vehicleapp.presentation.screens.viewmodel.CategoryViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")

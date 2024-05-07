@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.update_vehicle.viewmodel
+package com.enons.vehicleapp.presentation.screens.viewmodel
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

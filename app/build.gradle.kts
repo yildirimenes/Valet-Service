@@ -72,34 +72,47 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
     //ViewModel
     implementation("androidx.navigation:navigation-compose:2.7.4")
     implementation("com.google.code.gson:gson:2.8.6")
+
     //Live data
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
+
     //Room
     implementation("androidx.room:room-runtime:2.5.2")
     kapt("androidx.room:room-compiler:2.5.2")
+
     //Coroutine
     implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
     //Sqlite
     implementation("androidx.sqlite:sqlite:2.2.6")
+
     //Preferences DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     // Lifecycle component & Kotlin coroutines components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
     // Google Play Review
     implementation ("com.google.android.play:review:2.0.1")
     implementation ("com.google.android.play:review-ktx:2.0.1")
     implementation("com.google.android.gms:play-services-ads:22.6.0")
+
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    
+    //SplashScreen
+    implementation ("com.airbnb.android:lottie-compose:6.3.0")
+
 }
 
 kapt {

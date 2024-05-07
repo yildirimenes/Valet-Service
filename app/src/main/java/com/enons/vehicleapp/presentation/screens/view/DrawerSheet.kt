@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.navigation_drawer
+package com.enons.vehicleapp.presentation.screens.view
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,14 +24,13 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
-import com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel.DrawerViewModel
+import com.enons.vehicleapp.presentation.screens.viewmodel.DrawerViewModel
 import com.enons.vehicleapp.util.AppConstant.APP_NAME
 import com.enons.vehicleapp.util.AppConstant.APP_URL
 import com.enons.vehicleapp.util.AppConstant.CONTACT_MAIL
 import com.enons.vehicleapp.util.AppConstant.MAIL_SUBJECT
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DrawerSheet() {
     val context = LocalContext.current

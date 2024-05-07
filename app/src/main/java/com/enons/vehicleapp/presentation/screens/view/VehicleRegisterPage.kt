@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.register_vehicle
+package com.enons.vehicleapp.presentation.screens.view
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -39,7 +39,7 @@ import com.enons.vehicleapp.presentation.components.CombinedDropdownAndTextField
 import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.PhoneField
 import com.enons.vehicleapp.presentation.components.RegisterOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.register_vehicle.viewmodel.VehicleRegisterViewModel
+import com.enons.vehicleapp.presentation.screens.viewmodel.VehicleRegisterViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)

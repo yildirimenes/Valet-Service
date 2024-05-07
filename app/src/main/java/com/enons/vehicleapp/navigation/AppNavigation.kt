@@ -7,13 +7,15 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.enons.vehicleapp.data.model.Vehicles
-import com.enons.vehicleapp.presentation.screens.category.CategoryPage
-import com.enons.vehicleapp.presentation.screens.hourly_fee.HourlyFeePage
-import com.enons.vehicleapp.presentation.screens.register_vehicle.VehicleRegisterPage
-import com.enons.vehicleapp.presentation.screens.update_vehicle.VehicleUpdatePage
-import com.enons.vehicleapp.presentation.screens.vehicle.VehiclePage
+import com.enons.vehicleapp.presentation.screens.view.CategoryPage
+import com.enons.vehicleapp.presentation.screens.view.HourlyFeePage
+import com.enons.vehicleapp.presentation.screens.view.SplashScreen
+import com.enons.vehicleapp.presentation.screens.view.VehicleRegisterPage
+import com.enons.vehicleapp.presentation.screens.view.VehicleUpdatePage
+import com.enons.vehicleapp.presentation.screens.view.VehiclePage
 
 sealed class Screen (val route: String) {
+    object SplashPage : Screen("splash_screen")
     object CategoryPage : Screen("category_page")
     object VehiclePage : Screen("vehicle_page")
     object VehicleRegisterPage : Screen("vehicle_register_page")
@@ -23,7 +25,10 @@ sealed class Screen (val route: String) {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.CategoryPage.route) {
+    NavHost(navController = navController, startDestination = Screen.SplashPage.route) {
+        composable(Screen.SplashPage.route){
+            SplashScreen(navController = navController)
+        }
         composable(Screen.CategoryPage.route) {
             CategoryPage(navController = navController)
         }

@@ -1,5 +1,5 @@
 @file:Suppress("NAME_SHADOWING")
-package com.enons.vehicleapp.presentation.screens.vehicle
+package com.enons.vehicleapp.presentation.screens.view
 import com.enons.vehicleapp.presentation.components.FlipCard
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -46,7 +46,7 @@ import com.enons.vehicleapp.presentation.components.CallButton
 import com.enons.vehicleapp.presentation.components.CustomRow
 import com.enons.vehicleapp.presentation.components.MessageButton
 import com.enons.vehicleapp.data.model.Vehicles
-import com.enons.vehicleapp.presentation.screens.vehicle.viewmodel.VehicleViewModel
+import com.enons.vehicleapp.presentation.screens.viewmodel.VehiclePageViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +65,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     var hourly4 by remember { mutableStateOf("") }
     var hourly5 by remember { mutableStateOf("") }
     var daily by remember { mutableStateOf("") }
-    val viewModel: VehicleViewModel = hiltViewModel()
+    val viewModel: VehiclePageViewModel = hiltViewModel()
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
     LaunchedEffect(key1 = true) {
         viewModel.load()

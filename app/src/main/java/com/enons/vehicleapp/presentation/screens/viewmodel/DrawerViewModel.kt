@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.navigation_drawer.viewmodel
+package com.enons.vehicleapp.presentation.screens.viewmodel
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
