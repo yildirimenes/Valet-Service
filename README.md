@@ -13,15 +13,21 @@ The main features of this project include:
 -   An information message can be sent when the vehicle is received.
 -   Calls can be made to communicate in emergencies.
 -   Vehicle registration date and time can be informed to the customer by message.
-## Technologies
-
-We utilized the following key technologies and tools in the development of this project:
-
-- Navigation component for smooth app navigation.
--	LiveData to observe and react to data changes.
--	MVVM (Model-View-ViewModel) architecture for a clean and maintainable codebase.
 
 
+## Tech Stacks
+
+This project is trying to use the latest Android tech stacks.
+
+- Language: [Kotlin](https://kotlinlang.org)
+- Architecture: [Android App Architecture (MVVM) ](https://developer.android.com/topic/architecture)
+- User Interface: [Jetpack Compose](https://developer.android.com/jetpack/compose)
+- Concurrency: [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
+- Dependency Injection: [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- Local Database: [Room](https://developer.android.com/training/data-storage/room)
+- Image Loading: [Coil](https://coil-kt.github.io) 
+- Others:
+  - [Accompanist](https://google.github.io/accompanist) (Jetpack Compose Extensions)
 ## User Interfaces
 
 <p align="center">
