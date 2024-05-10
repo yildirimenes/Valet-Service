@@ -40,4 +40,5 @@
     <string name="daily">1 Daily</string>
     <string name="time_fee_infos">Time &amp; Fee Information</string>
     <string name="delete_button">Delete Vehicle</string>
+    <string name="error_message">Error Message</string>
 </resources>

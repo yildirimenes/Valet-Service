@@ -9,13 +9,11 @@ import com.google.gson.Gson
 import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.presentation.screens.view.CategoryPage
 import com.enons.vehicleapp.presentation.screens.view.HourlyFeePage
-import com.enons.vehicleapp.presentation.screens.view.SplashScreen
 import com.enons.vehicleapp.presentation.screens.view.VehicleRegisterPage
 import com.enons.vehicleapp.presentation.screens.view.VehicleUpdatePage
 import com.enons.vehicleapp.presentation.screens.view.VehiclePage
 
 sealed class Screen (val route: String) {
-    object SplashPage : Screen("splash_screen")
     object CategoryPage : Screen("category_page")
     object VehiclePage : Screen("vehicle_page")
     object VehicleRegisterPage : Screen("vehicle_register_page")
@@ -25,10 +23,7 @@ sealed class Screen (val route: String) {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.SplashPage.route) {
-        composable(Screen.SplashPage.route){
-            SplashScreen(navController = navController)
-        }
+    NavHost(navController = navController, startDestination = Screen.CategoryPage.route) {
         composable(Screen.CategoryPage.route) {
             CategoryPage(navController = navController)
         }

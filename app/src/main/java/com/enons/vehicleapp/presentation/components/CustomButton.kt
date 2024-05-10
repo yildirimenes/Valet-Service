@@ -95,7 +95,7 @@ fun DeleteButton(
             .fillMaxWidth()
             .height(45.dp),
         colors = ButtonDefaults.buttonColors(containerColor = containerColor),
-        elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
+        elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp)
 
     ) {
         Text(

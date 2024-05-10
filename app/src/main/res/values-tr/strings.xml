@@ -40,6 +40,6 @@
     <string name="daily">1 Gün</string>
     <string name="time_fee_infos">Zaman &amp; Ücret Bilgisi</string>
     <string name="delete_button">Aracı Sil</string>
-
+    <string name="error_message">Error Message</string>
 
 </resources>

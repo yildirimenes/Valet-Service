@@ -24,26 +24,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
-import com.enons.vehicleapp.presentation.components.CarNameDropdown
-import com.enons.vehicleapp.presentation.components.CombinedDropdownAndTextField
 import com.enons.vehicleapp.presentation.components.CustomButton
-import com.enons.vehicleapp.presentation.components.PhoneField
-import com.enons.vehicleapp.presentation.components.RegisterOutlinedTextField
+import com.enons.vehicleapp.presentation.components.RegisterForm
 import com.enons.vehicleapp.presentation.screens.viewmodel.VehicleRegisterViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VehicleRegisterPage(navController: NavController) {
     val context = LocalContext.current
@@ -57,68 +52,41 @@ fun VehicleRegisterPage(navController: NavController) {
     var textFieldValue by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val viewModel: VehicleRegisterViewModel = hiltViewModel()
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.car_register))
-                },
+                title = { Text(text = stringResource(id = R.string.car_register)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
+                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "")
                     }
-                },
+                }
             )
-        },
-
-        ) { it ->
+        }
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .padding(it),
+                .padding(paddingValues),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-
-            ) {
-            RegisterOutlinedTextField(
-                value = tfCustomerName,
-                onValueChange = { tfCustomerName = it },
-                label = { Text(text = stringResource(id = R.string.customer_name)) }
-            )
-            Spacer(modifier = Modifier.size(30.dp))
-            PhoneField(tfCustomerPhoneNumber,
-                mask = "(000) 000 00 00",
-                maskNumber = '0',
-                label = { Text(text = stringResource(id = R.string.customer_phone_number)) },
-                onPhoneChanged = { tfCustomerPhoneNumber = it }
-            )
-            Spacer(modifier = Modifier.size(30.dp))
-            RegisterOutlinedTextField(
-                value = tfVehicleLocationDescription,
-                onValueChange = { tfVehicleLocationDescription = it },
-                label = { Text(text = stringResource(id = R.string.vehicle_location_description)) }
-            )
-            Spacer(modifier = Modifier.size(20.dp))
-            CombinedDropdownAndTextField(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            RegisterForm(
+                tfCustomerName = tfCustomerName,
+                tfCustomerPhoneNumber = tfCustomerPhoneNumber,
+                tfVehicleLocationDescription = tfVehicleLocationDescription,
                 selectedNumber = selectedNumber,
-                onSelectionChanged = {
-                    selectedNumber = it
-                },
                 textFieldValue = textFieldValue,
-                onTextFieldValueChanged = {
-                    textFieldValue = it
-                },
-                label = { Text(text = stringResource(id = R.string.vehicle_number_plate))}
+                onCustomerNameChanged = { tfCustomerName = it },
+                onCustomerPhoneNumberChanged = { tfCustomerPhoneNumber = it },
+                onVehicleLocationDescriptionChanged = { tfVehicleLocationDescription = it },
+                onSelectedBrandChanged = { selectedBrand = it },
+                onSelectedModelChanged = { selectedModel = it },
+                onSelectedNumberChanged = { selectedNumber = it },
+                onTextFieldValueChanged = { textFieldValue = it }
             )
-            Spacer(modifier = Modifier.size(20.dp))
-            CarNameDropdown { brand, model ->
-                selectedBrand = brand
-                selectedModel = model
-            }
             Spacer(modifier = Modifier.size(20.dp))
             CustomButton(
                 onClick = {
@@ -143,10 +111,10 @@ fun VehicleRegisterPage(navController: NavController) {
                         localFocusManager.clearFocus()
                         navController.navigate(Screen.CategoryPage.route)
                     } else {
-                        Toast.makeText(context, "Invalid Information", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Error Message", Toast.LENGTH_SHORT).show()
                     }
                 },
-                text = stringResource(id = R.string.register),
+                text = stringResource(id = R.string.register)
             )
         }
     }
