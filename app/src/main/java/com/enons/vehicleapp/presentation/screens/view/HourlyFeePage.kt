@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -145,7 +146,7 @@ fun HourlyFeePage(navController: NavController) {
                     navController.navigate(Screen.CategoryPage.route)
 
                 },
-                text = stringResource(id = R.string.update)
+                text = stringResource(id = R.string.update),
             )
         }
     }

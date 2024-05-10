@@ -15,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class VehiclePageViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
-
     init {
         load()
         hourlyFeeList = repository.getHourlyFee()
@@ -23,6 +22,10 @@ class VehiclePageViewModel @Inject constructor(private val repository: VehiclesD
 
     fun load() {
         repository.getAllHourlyFee()
+    }
+
+    fun delete(vehicleId: Int) {
+        repository.delVehicle(vehicleId)
     }
 
     fun makePhoneCall(customerPhone: String, context: Context) {

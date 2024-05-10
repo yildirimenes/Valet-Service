@@ -46,13 +46,20 @@ import com.enons.vehicleapp.presentation.components.CallButton
 import com.enons.vehicleapp.presentation.components.CustomRow
 import com.enons.vehicleapp.presentation.components.MessageButton
 import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.navigation.Screen
+import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
+import com.enons.vehicleapp.presentation.components.DeleteButton
 import com.enons.vehicleapp.presentation.screens.viewmodel.VehiclePageViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
+    var isDeleteDialogVisible by remember { mutableStateOf(false) }
+    var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
+    var defaultController by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    var vehicleId by remember { mutableStateOf("") }
     var customerName by remember { mutableStateOf("") }
     var vehicleName by remember { mutableStateOf("") }
     var vehicleNumberPlate by remember { mutableStateOf("") }
@@ -70,6 +77,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     LaunchedEffect(key1 = true) {
         viewModel.load()
         //User Information
+        vehicleId = getVehicles.vehicle_id.toString()
         customerName = getVehicles.customer_name
         vehicleName = getVehicles.vehicle_name
         vehicleNumberPlate = getVehicles.vehicle_number_plate
@@ -221,7 +229,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                                     getVehicles.customer_phone_number
                                 )
                             },
-                            containerColor = colorResource(id = R.color.color_1),
+                            containerColor = colorResource(id = R.color.light_green),
                             content = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.baseline_done_outline_24),
@@ -254,6 +262,30 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 }
             )
             Spacer(modifier = Modifier.size(15.dp))
+            DeleteAlertDialog(
+                isDeleteDialogVisible = isDeleteDialogVisible,
+                onDismiss = {
+                    isDeleteDialogVisible = false
+                    vehicleToDelete = null
+                },
+                onConfirm = {
+                    vehicleToDelete?.vehicle_id?.let {
+                        viewModel.delete(getVehicles.vehicle_id)
+                        navController.navigate(Screen.CategoryPage.route)
+                    }
+                    isDeleteDialogVisible = false
+                    defaultController = true
+                }
+            )
+            DeleteButton(
+                onClick = {
+                    vehicleToDelete = getVehicles
+                    isDeleteDialogVisible = true
+                },
+                text = stringResource(id = R.string.delete_button),
+                containerColor = colorResource(id = R.color.dark_red),
+                modifier = Modifier.padding(horizontal = 10.dp),
+            )
         }
     }
 }

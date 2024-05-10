@@ -39,12 +39,7 @@
     <string name="hourly_V5">8-12 Saat</string>
     <string name="daily">1 Gün</string>
     <string name="time_fee_infos">Zaman &amp; Ücret Bilgisi</string>
-
-
-
-
-
-
+    <string name="delete_button">Aracı Sil</string>
 
 
 </resources>

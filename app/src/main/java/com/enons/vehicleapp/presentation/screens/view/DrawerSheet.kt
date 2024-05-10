@@ -48,7 +48,7 @@ fun DrawerSheet() {
                 Modifier
                     .fillMaxSize()
                     .height(150.dp)
-                    .background(colorResource(id = R.color.color_1))
+                    .background(colorResource(id = R.color.dark_green))
             ) {
                 Text(
                     APP_NAME,

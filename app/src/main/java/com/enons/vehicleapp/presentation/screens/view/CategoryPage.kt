@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,7 +26,6 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -53,8 +51,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.enons.vehicleapp.R
-import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
-import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomFabButton
 import com.enons.vehicleapp.presentation.components.SearchTextField
@@ -66,10 +62,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CategoryPage(navController: NavController) {
     val tf = remember { mutableStateOf("") }
-    var isDeleteDialogVisible by remember { mutableStateOf(false) }
-    var vehicleToDelete: Vehicles? by remember { mutableStateOf(null) }
     var isCall by remember { mutableStateOf(false) }
-    var defaultController by remember { mutableStateOf(false) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val listState = rememberLazyGridState()
@@ -189,58 +182,37 @@ fun CategoryPage(navController: NavController) {
                                         verticalArrangement = Arrangement.Center,
                                         horizontalAlignment = Alignment.CenterHorizontally
                                     ) {
-                                        Spacer(modifier = Modifier.size(15.dp))
-                                        Text(
-                                            text = vehicle.vehicle_number_plate,
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.W300,
-                                            color = colorResource(id = R.color.black)
-                                        )
-                                        Spacer(modifier = Modifier.size(15.dp))
+                                        IconButton(
+                                            modifier = Modifier
+                                                .align(Alignment.End)
+                                                .size(48.dp),
+                                            onClick = {
+                                                val vehicleJson = Gson().toJson(vehicle)
+                                                navController.navigate(Screen.VehicleUpdatePage.route+"/${vehicleJson}")
+                                            },
+
+                                            ) {
+                                            Icon(
+                                                painter = painterResource(id = R.drawable.baseline_edit_24),
+                                                contentDescription = "Localized description",
+                                                tint = Color.LightGray
+                                            )
+                                        }
                                         Image(
                                             modifier = Modifier
                                                 .shadow(15.dp, shape = CircleShape),
                                             painter = painterResource(id = R.drawable.default_image),
                                             contentDescription = "",
                                         )
-                                        Row(
-                                            modifier = Modifier
-                                                .padding(all = 8.dp)
-                                                .fillMaxWidth(),
-                                            verticalAlignment = Alignment.CenterVertically,
-                                            horizontalArrangement = Arrangement.SpaceEvenly
+                                        Spacer(modifier = Modifier.size(20.dp))
+                                        Text(
+                                            text = vehicle.vehicle_number_plate,
+                                            fontSize = 20.sp,
+                                            fontWeight = FontWeight.W300,
+                                            color = colorResource(id = R.color.black)
+                                        )
+                                        Spacer(modifier = Modifier.size(15.dp))
 
-                                        ) {
-                                            TextButton(onClick = {
-                                                val vehicleJson = Gson().toJson(vehicle)
-                                                navController.navigate(Screen.VehicleUpdatePage.route+"/${vehicleJson}")
-                                            }) {
-                                                Text(text = stringResource(id = R.string.update))
-                                            }
-
-                                            DeleteAlertDialog(
-                                                isDeleteDialogVisible = isDeleteDialogVisible,
-                                                onDismiss = {
-                                                    isDeleteDialogVisible = false
-                                                    vehicleToDelete = null
-                                                },
-                                                onConfirm = {
-                                                    vehicleToDelete?.vehicle_id?.let { id ->
-                                                        viewModel.delete(id)
-                                                    }
-                                                    isDeleteDialogVisible = false
-                                                    defaultController = true
-                                                }
-                                            )
-                                            TextButton(
-                                                onClick = {
-                                                    vehicleToDelete = vehicle
-                                                    isDeleteDialogVisible = true
-                                                }
-                                            ) {
-                                                Text(text = stringResource(id = R.string.delete))
-                                            }
-                                        }
                                     }
                                 }
                             }

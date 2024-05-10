@@ -139,7 +139,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                     localFocusManager.clearFocus()
                     navController.navigate(Screen.CategoryPage.route)
                 },
-                text = stringResource(id = R.string.update)
+                text = stringResource(id = R.string.update),
             )
 
         }
