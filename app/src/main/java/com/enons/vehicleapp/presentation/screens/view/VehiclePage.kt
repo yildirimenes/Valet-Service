@@ -47,9 +47,11 @@ import com.enons.vehicleapp.presentation.components.CustomRow
 import com.enons.vehicleapp.presentation.components.MessageButton
 import com.enons.vehicleapp.data.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
+import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
 import com.enons.vehicleapp.presentation.components.DeleteButton
 import com.enons.vehicleapp.presentation.screens.viewmodel.VehiclePageViewModel
+import com.enons.vehicleapp.util.AppConstant.ADD_UNIT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -109,6 +111,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
             ) {
+            BannerAd(modifier = Modifier.fillMaxWidth(), adId = ADD_UNIT_ID)
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
                 modifier = Modifier

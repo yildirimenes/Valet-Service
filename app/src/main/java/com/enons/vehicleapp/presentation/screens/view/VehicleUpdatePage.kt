@@ -40,6 +40,7 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedLocationTextField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedNumberPlateTextField
 import com.enons.vehicleapp.presentation.screens.viewmodel.VehicleUpdateViewModel
+import java.util.Locale
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -100,7 +101,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(30.dp))
             UpdateOutlinedNumberPlateTextField(
                 value = tfVehicleNumberPlate,
-                onValueChange = { tfVehicleNumberPlate = it },
+                onValueChange = { tfVehicleNumberPlate = it.uppercase(Locale.ROOT) },
                 label = { Text(stringResource(id = R.string.vehicle_number_plate)) },
             )
             Spacer(modifier = Modifier.size(30.dp))

@@ -3,7 +3,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -12,8 +11,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
+import java.util.Locale
 
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun UpdateOutlinedTextField(
@@ -41,7 +41,6 @@ fun UpdateOutlinedTextField(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedTextField(
@@ -65,7 +64,6 @@ fun RegisterOutlinedTextField(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedNumberPlateTextField(
@@ -78,7 +76,8 @@ fun RegisterOutlinedNumberPlateTextField(
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength) {
-                onValueChange(newText)
+                onValueChange(newText.uppercase(Locale.ROOT))
+
             }
         },
         label = label,
@@ -94,7 +93,6 @@ fun RegisterOutlinedNumberPlateTextField(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun UpdateOutlinedNumberPlateTextField(
@@ -121,7 +119,6 @@ fun UpdateOutlinedNumberPlateTextField(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun UpdateOutlinedLocationTextField(
@@ -148,7 +145,6 @@ fun UpdateOutlinedLocationTextField(
         ),
     )
 }
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalComposeUiApi
 @Composable
 fun HourlyFeeOutlinedTextField(
@@ -158,7 +154,7 @@ fun HourlyFeeOutlinedTextField(
     OutlinedTextField(
         value = value,
         onValueChange = { newText ->
-            if (newText.length <= maxLength) {
+            if (newText.length <= maxLength && newText.isDigitsOnly()) {
                 onValueChange(newText)
             }
         },

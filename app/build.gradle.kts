@@ -102,6 +102,8 @@ dependencies {
     // Google Play Review
     implementation ("com.google.android.play:review:2.0.1")
     implementation ("com.google.android.play:review-ktx:2.0.1")
+
+    // Admob
     implementation("com.google.android.gms:play-services-ads:22.6.0")
 
     // Dagger Hilt

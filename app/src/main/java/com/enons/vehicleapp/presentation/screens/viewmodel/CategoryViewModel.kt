@@ -27,6 +27,5 @@ class CategoryViewModel @Inject constructor(private val repository: VehiclesDaoR
         repository.delVehicle(vehicleId)
 
     }
-
 }
 

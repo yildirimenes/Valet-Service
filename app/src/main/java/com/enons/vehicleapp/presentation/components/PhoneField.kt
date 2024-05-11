@@ -3,7 +3,6 @@ package com.enons.vehicleapp.presentation.components
 import android.annotation.SuppressLint
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
@@ -14,9 +13,9 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhoneField(
     phone: String,
@@ -28,7 +27,9 @@ fun PhoneField(
     OutlinedTextField(
         value = phone,
         onValueChange = { it ->
-            onPhoneChanged(it.take(mask.count { it == maskNumber }))
+            if (it.isDigitsOnly()) {
+                onPhoneChanged(it.take(mask.count { it == maskNumber }))
+            }
         },
         label = label,
         shape = RoundedCornerShape(12.dp),
