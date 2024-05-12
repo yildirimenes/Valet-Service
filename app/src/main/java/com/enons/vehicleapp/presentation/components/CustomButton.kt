@@ -23,17 +23,16 @@ import com.enons.vehicleapp.R
 @Composable
 fun CustomButton(
     onClick: () -> Unit,
-    text: String
+    text: String,
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = {
             onClick()
         },
-        modifier = Modifier
-            .size(250.dp, 50.dp),
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.dark_green))
-
-        ) {
+    ) {
         Text(text = text)
     }
 }

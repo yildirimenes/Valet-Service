@@ -16,7 +16,6 @@ import com.google.android.gms.ads.AdView
 fun BannerAd(modifier: Modifier,adId: String) {
 
     Column(modifier = modifier) {
-        Spacer(modifier = Modifier.size(12.dp))
         AndroidView(
             modifier = Modifier.fillMaxWidth(),
             factory = {
@@ -27,6 +26,5 @@ fun BannerAd(modifier: Modifier,adId: String) {
                 }
             }
         )
-        Spacer(modifier = Modifier.size(12.dp))
     }
 }

@@ -26,6 +26,7 @@ import com.enons.vehicleapp.R
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun FlipCard(
+    modifier: Modifier = Modifier,
     frontContent: @Composable () -> Unit,
     backContent: @Composable () -> Unit
 ) {
@@ -49,7 +50,7 @@ fun FlipCard(
 
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-        modifier = Modifier
+        modifier = modifier
             .padding(all = 5.dp)
             .fillMaxWidth()
             .graphicsLayer {
@@ -83,7 +84,6 @@ fun FlipCard(
         }
     }
 }
-
 
 @Composable
 fun CardContent(content: @Composable () -> Unit) {

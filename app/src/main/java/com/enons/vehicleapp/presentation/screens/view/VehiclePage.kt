@@ -112,6 +112,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
             horizontalAlignment = Alignment.CenterHorizontally,
             ) {
             BannerAd(modifier = Modifier.fillMaxWidth(), adId = ADD_UNIT_ID)
+            Spacer(modifier = Modifier.size(10.dp))
             Card(
                 elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
                 modifier = Modifier

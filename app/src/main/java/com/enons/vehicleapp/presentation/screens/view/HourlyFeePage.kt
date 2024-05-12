@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -88,15 +89,11 @@ fun HourlyFeePage(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState),
+                .verticalScroll(scrollState)
+                .padding(it),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Box(
-                modifier = Modifier
-                    .height(70.dp)
-                    .fillMaxWidth()
-            )
             HourlyFeeOutlinedTextField(
                 value = tfHourlyV1,
                 onValueChange = { tfHourlyV1 = it },

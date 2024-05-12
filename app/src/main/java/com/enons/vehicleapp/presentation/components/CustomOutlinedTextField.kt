@@ -148,10 +148,14 @@ fun UpdateOutlinedLocationTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun HourlyFeeOutlinedTextField(
-    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: @Composable () -> Unit
 ) {
     val maxLength = 30
     OutlinedTextField(
+        modifier = modifier,
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength && newText.isDigitsOnly()) {
