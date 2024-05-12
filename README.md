@@ -1,5 +1,6 @@
 # Valet Service App
 
+## Introduction
 This project enables companies providing valet services to do their work in a digital environment, reliably and easily.
 
 ## Features
@@ -27,18 +28,51 @@ This project is trying to use the latest Android tech stacks.
 - Local Database: [Room](https://developer.android.com/training/data-storage/room)
 - Image Loading: [Coil](https://coil-kt.github.io) 
 - Others:
-  - [Accompanist](https://google.github.io/accompanist) (Jetpack Compose Extensions)
+  - [Jetpack Compose Extensions](https://google.github.io/accompanist)
+  - [SplashScreen](https://developer.android.com/develop/ui/views/launch/splash-screen)
+  - [Admob](https://admob.google.com/intl/tr/home/)
+  - [Google Play Review](https://developer.android.com/guide/playcore/in-app-review)
+  
 ## User Interfaces
+  <table>
+  <tr>
+  <td><img src="images/category_page.png" width="250" height="550"></td>
+  <td><img src="images/drawer_page.png" width="250" height="550"></td>
+  <td><img src="images/car_detail.png" width="250" height="550"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+  <td><img src="images/car_register.png" width="250" height="550"></td>
+  <td><img src="images/car_update.png" width="250" height="550"></td>
+  <td><img src="images/car_search.png" width="250" height="550"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+  <td><img src="images/car_delete.png" width="250" height="550"></td>
+  <td><img src="images/car_information_message.jpeg" width="250" height="550"></td>
+  <td><img src="images/vale_message.jpeg" width="250" height="550"></td>
+  </tr>
+</table>
 
-<p align="center">
-  <img src="images/category_page.png" width="250" height="550">
-  <img src="images/drawer_page.png" width="250" height="550">
-  <img src="images/car_detail.png" width="250" height="550">
-  <img src="images/car_register.png" width="250" height="550">
-  <img src="images/car_update.png" width="250" height="550">
-  <img src="images/car_search.png" width="250" height="550">
-  <img src="images/car_delete.png" width="250" height="550">
-  <img src="images/car_information_message.jpeg" width="250" height="550">
-  <img src="images/vale_message.jpeg" width="250" height="550">
+## Download
 
-</p>
+### If You Want to Use the App on an Android Phone:
+
+* You can download the apk file of the app by clicking [here](https://drive.google.com/drive/folders/18cOxlrR9eJNvtUxZmmBriI-itHjHCdRg?usp=drive_link) and install the app on your phone.
+
+## Clone Project
+
+1. Clone this repository to your preferred directory using the following command:
+
+```
+git clone https://github.com/yildirimenes/Valet-Service
+```
+2. Open the cloned project in Android Studio.
+
+3. Build and run the app on an emulator or a physical device.
+
+
+## License
+This project is licensed under the Apache License, Version 2.0. See the [LICENSE](LICENSE) file for details.
