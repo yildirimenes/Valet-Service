@@ -60,7 +60,7 @@ This project is trying to use the latest Android tech stacks.
 
 ### If You Want to Use the App on an Android Phone:
 
-* You can download the apk file of the app by clicking [here](https://drive.google.com/drive/folders/18cOxlrR9eJNvtUxZmmBriI-itHjHCdRg?usp=drive_link) and install the app on your phone.
+* You can download the apk file of the app by clicking [here](https://drive.google.com/drive/folders/18cOxlrR9eJNvtUxZmmBriI-itHjHCdRg?usp=sharing) and install the app on your phone.
 
 ## Clone Project
 
