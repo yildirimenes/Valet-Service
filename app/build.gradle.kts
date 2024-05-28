@@ -15,8 +15,8 @@ android {
         applicationId = "com.enons.vehicleapp"
         minSdk = 26
         targetSdk = 33
-        versionCode = 2
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -113,7 +113,6 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     
     //SplashScreen
-    implementation ("com.airbnb.android:lottie-compose:6.3.0")
     implementation ("androidx.core:core-splashscreen:1.0.1")
 
 }

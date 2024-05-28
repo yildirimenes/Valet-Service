@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.ui.theme
+package com.enons.vehicleapp.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

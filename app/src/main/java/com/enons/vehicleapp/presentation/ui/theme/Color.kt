@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.ui.theme
+package com.enons.vehicleapp.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
