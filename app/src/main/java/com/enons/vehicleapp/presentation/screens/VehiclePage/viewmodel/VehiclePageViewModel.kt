@@ -31,15 +31,10 @@ class VehiclePageViewModel @Inject constructor(private val repository: VehiclesD
     fun makePhoneCall(customerPhone: String, context: Context) {
         try {
             val formattedPhone = "0$customerPhone"
-            if (formattedPhone != null) {
-                val intent = Intent(Intent.ACTION_DIAL)
-                val phoneUri = Uri.parse("tel:$formattedPhone")
-                intent.data = phoneUri
-                context.startActivity(intent)
-            }
-            else{
-                Toast.makeText(context, "Error making phone call", Toast.LENGTH_LONG).show()
-            }
+            val intent = Intent(Intent.ACTION_DIAL)
+            val phoneUri = Uri.parse("tel:$formattedPhone")
+            intent.data = phoneUri
+            context.startActivity(intent)
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(context, "Error making phone call", Toast.LENGTH_LONG).show()

@@ -47,7 +47,6 @@ fun RegisterForm(
     )
     Spacer(modifier = Modifier.size(20.dp))
     CombinedDropdownAndTextField(
-        selectedNumber = selectedNumber,
         onSelectionChanged = onSelectedNumberChanged,
         textFieldValue = textFieldValue,
         onTextFieldValueChanged = onTextFieldValueChanged,

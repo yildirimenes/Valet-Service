@@ -2,7 +2,6 @@ package com.enons.vehicleapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
 import com.enons.vehicleapp.data.local.dao.VehiclesDao
 import com.enons.vehicleapp.data.local.db.VehicleDatabase
 import dagger.Module
@@ -14,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object DatabaseModule {
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext appContext: Context): VehicleDatabase {
@@ -32,12 +31,4 @@ object AppModule {
     fun provideVehicleDao(appDatabase: VehicleDatabase): VehiclesDao {
         return appDatabase.vehiclesDao()
     }
-
-    @Provides
-    @Singleton
-    fun provideVehicleRepository(vehiclesDao: VehiclesDao): VehiclesDaoRepository {
-        return VehiclesDaoRepository(vehiclesDao)
-    }
-
-
 }

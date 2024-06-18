@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.CategoryPage
+package com.enons.vehicleapp.presentation.screens.HomePage
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,20 +39,20 @@ import com.enons.vehicleapp.presentation.components.CustomFabButton
 import com.enons.vehicleapp.presentation.components.SearchTextField
 import com.enons.vehicleapp.presentation.components.VehicleListContent
 import com.enons.vehicleapp.presentation.screens.DrawerSheet.DrawerSheet
-import com.enons.vehicleapp.presentation.screens.CategoryPage.viewmodel.CategoryViewModel
+import com.enons.vehicleapp.presentation.screens.HomePage.viewmodel.HomepageViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoryPage(navController: NavController) {
+fun HomePage(navController: NavController) {
     val tf = remember { mutableStateOf("") }
     var isCall by remember { mutableStateOf(false) }
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val listState = rememberLazyGridState()
     val fabVisibility by derivedStateOf { listState.firstVisibleItemIndex == 0 }
-    val viewModel: CategoryViewModel = hiltViewModel()
+    val viewModel: HomepageViewModel = hiltViewModel()
     val vehiclesList = viewModel.vehicleList.observeAsState(listOf())
 
     LaunchedEffect(key1 = true) {

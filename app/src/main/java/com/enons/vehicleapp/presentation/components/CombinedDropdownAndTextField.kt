@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CombinedDropdownAndTextField(
-    selectedNumber: String,
     onSelectionChanged: (String) -> Unit,
     textFieldValue: String,
     onTextFieldValueChanged: (String) -> Unit,

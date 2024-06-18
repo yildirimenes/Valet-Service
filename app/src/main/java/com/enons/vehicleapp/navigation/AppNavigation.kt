@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.enons.vehicleapp.data.local.model.Vehicles
-import com.enons.vehicleapp.presentation.screens.CategoryPage.CategoryPage
+import com.enons.vehicleapp.presentation.screens.HomePage.HomePage
 import com.enons.vehicleapp.presentation.screens.HourlyFeePage.HourlyFeePage
 import com.enons.vehicleapp.presentation.screens.VehicleRegisterPage.VehicleRegisterPage
 import com.enons.vehicleapp.presentation.screens.VehicleUpdatePage.VehicleUpdatePage
@@ -27,7 +27,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.CategoryPage.route) {
         composable(Screen.CategoryPage.route) {
-            CategoryPage(navController = navController)
+            HomePage(navController = navController)
         }
         composable(Screen.VehiclePage.route + "/{vehicle}",
             arguments = listOf(
