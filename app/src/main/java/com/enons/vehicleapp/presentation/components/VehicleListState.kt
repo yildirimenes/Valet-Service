@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.data.local.model.Vehicles
 
 @Composable
 fun VehicleListContent(

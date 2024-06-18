@@ -1,5 +1,7 @@
 @file:Suppress("NAME_SHADOWING")
-package com.enons.vehicleapp.presentation.screens.view
+
+package com.enons.vehicleapp.presentation.screens.VehiclePage
+
 import com.enons.vehicleapp.presentation.components.FlipCard
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -45,12 +47,12 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CallButton
 import com.enons.vehicleapp.presentation.components.CustomRow
 import com.enons.vehicleapp.presentation.components.MessageButton
-import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
 import com.enons.vehicleapp.presentation.components.DeleteButton
-import com.enons.vehicleapp.presentation.screens.viewmodel.VehiclePageViewModel
+import com.enons.vehicleapp.presentation.screens.VehiclePage.viewmodel.VehiclePageViewModel
 import com.enons.vehicleapp.util.AppConstant.ADD_UNIT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -110,7 +112,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 .padding(it),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+        ) {
             BannerAd(modifier = Modifier.fillMaxWidth(), adId = ADD_UNIT_ID)
             Spacer(modifier = Modifier.size(10.dp))
             Card(

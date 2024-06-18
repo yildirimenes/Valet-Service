@@ -1,4 +1,5 @@
-package com.enons.vehicleapp.presentation.screens.view
+package com.enons.vehicleapp.presentation.screens.CategoryPage
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -37,7 +38,8 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomFabButton
 import com.enons.vehicleapp.presentation.components.SearchTextField
 import com.enons.vehicleapp.presentation.components.VehicleListContent
-import com.enons.vehicleapp.presentation.screens.viewmodel.CategoryViewModel
+import com.enons.vehicleapp.presentation.screens.DrawerSheet.DrawerSheet
+import com.enons.vehicleapp.presentation.screens.CategoryPage.viewmodel.CategoryViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
@@ -101,7 +103,8 @@ fun CategoryPage(navController: NavController) {
                         if (isCall) {
                             IconButton(onClick = {
                                 isCall = false
-                                tf.value = "" }
+                                tf.value = ""
+                            }
                             ) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.close_image),
@@ -110,7 +113,8 @@ fun CategoryPage(navController: NavController) {
                             }
                         } else {
                             IconButton(onClick = {
-                                isCall = true }
+                                isCall = true
+                            }
                             ) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.search_image),
@@ -141,11 +145,11 @@ fun CategoryPage(navController: NavController) {
                 contentPadding = contentPadding,
                 onItemClick = { vehicle ->
                     val vehicleJson = Gson().toJson(vehicle)
-                    navController.navigate(Screen.VehiclePage.route+"/${vehicleJson}")
+                    navController.navigate(Screen.VehiclePage.route + "/${vehicleJson}")
                 },
                 onEditClick = { vehicle ->
                     val vehicleJson = Gson().toJson(vehicle)
-                    navController.navigate(Screen.VehicleUpdatePage.route+"/${vehicleJson}")
+                    navController.navigate(Screen.VehicleUpdatePage.route + "/${vehicleJson}")
                 }
             )
         }

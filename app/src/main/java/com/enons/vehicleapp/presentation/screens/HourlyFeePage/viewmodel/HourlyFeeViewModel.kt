@@ -1,7 +1,7 @@
-package com.enons.vehicleapp.presentation.screens.viewmodel
+package com.enons.vehicleapp.presentation.screens.HourlyFeePage.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.data.model.HourlyFee
+import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

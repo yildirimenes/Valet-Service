@@ -1,11 +1,11 @@
-package com.enons.vehicleapp.presentation.screens.viewmodel
+package com.enons.vehicleapp.presentation.screens.VehiclePage.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.data.model.HourlyFee
+import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat

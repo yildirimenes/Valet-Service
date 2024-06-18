@@ -37,7 +37,8 @@ fun PhoneField(
         shape = RoundedCornerShape(12.dp),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone,
-            imeAction = ImeAction.Next),
+            imeAction = ImeAction.Next
+        ),
         visualTransformation = PhoneVisualTransformation(mask, maskNumber),
         singleLine = true
     )

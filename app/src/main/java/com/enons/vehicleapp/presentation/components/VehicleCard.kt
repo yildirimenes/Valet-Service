@@ -26,7 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enons.vehicleapp.R
-import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.data.local.model.Vehicles
 
 @Composable
 fun VehicleCard(

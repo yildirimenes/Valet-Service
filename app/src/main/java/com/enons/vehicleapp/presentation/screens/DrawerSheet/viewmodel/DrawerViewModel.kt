@@ -1,4 +1,5 @@
-package com.enons.vehicleapp.presentation.screens.viewmodel
+package com.enons.vehicleapp.presentation.screens.DrawerSheet.viewmodel
+
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -9,7 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DrawerViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
+class DrawerViewModel @Inject constructor(private val repository: VehiclesDaoRepository) :
+    ViewModel() {
     fun openPlayStore(activityContext: Context, appURL: String) {
         val playIntent: Intent = Intent().apply {
 

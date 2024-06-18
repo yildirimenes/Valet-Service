@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.view
+package com.enons.vehicleapp.presentation.screens.VehicleUpdatePage
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -35,11 +35,11 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomButton
 import com.enons.vehicleapp.presentation.components.PhoneField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedTextField
-import com.enons.vehicleapp.data.model.Vehicles
+import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedLocationTextField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedNumberPlateTextField
-import com.enons.vehicleapp.presentation.screens.viewmodel.VehicleUpdateViewModel
+import com.enons.vehicleapp.presentation.screens.VehicleUpdatePage.viewmodel.VehicleUpdateViewModel
 import java.util.Locale
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

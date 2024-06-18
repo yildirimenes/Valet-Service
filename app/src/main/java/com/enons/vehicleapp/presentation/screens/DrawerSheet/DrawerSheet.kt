@@ -1,4 +1,5 @@
-package com.enons.vehicleapp.presentation.screens.view
+package com.enons.vehicleapp.presentation.screens.DrawerSheet
+
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
-import com.enons.vehicleapp.presentation.screens.viewmodel.DrawerViewModel
+import com.enons.vehicleapp.presentation.screens.DrawerSheet.viewmodel.DrawerViewModel
 import com.enons.vehicleapp.util.AppConstant.APP_NAME
 import com.enons.vehicleapp.util.AppConstant.APP_URL
 import com.enons.vehicleapp.util.AppConstant.CONTACT_MAIL
@@ -60,7 +61,7 @@ fun DrawerSheet() {
                     fontWeight = FontWeight.W500,
                     fontSize = 40.sp,
                     color = colorResource(id = R.color.color_3),
-                    )
+                )
             }
             CustomSettingsCard(
                 iconRes = R.drawable.baseline_email_24,
@@ -77,7 +78,7 @@ fun DrawerSheet() {
                 iconRes = R.drawable.baseline_thumb_up_alt_24,
                 text = stringResource(id = R.string.rate_us),
                 onClick = {
-                    viewModel.openPlayStore(context,APP_URL)
+                    viewModel.openPlayStore(context, APP_URL)
                 }
             )
         }

@@ -96,12 +96,12 @@ dependencies {
 
     // Lifecycle component & Kotlin coroutines components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 
     // Google Play Review
-    implementation ("com.google.android.play:review:2.0.1")
-    implementation ("com.google.android.play:review-ktx:2.0.1")
+    implementation("com.google.android.play:review:2.0.1")
+    implementation("com.google.android.play:review-ktx:2.0.1")
 
     // Admob
     implementation("com.google.android.gms:play-services-ads:22.6.0")
@@ -111,9 +111,9 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    
+
     //SplashScreen
-    implementation ("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
 }
 

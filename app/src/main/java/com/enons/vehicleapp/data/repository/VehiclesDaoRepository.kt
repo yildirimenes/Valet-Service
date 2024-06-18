@@ -1,9 +1,9 @@
 package com.enons.vehicleapp.data.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.enons.vehicleapp.data.model.HourlyFee
-import com.enons.vehicleapp.data.model.Vehicles
-import com.enons.vehicleapp.data.room.dao.VehiclesDao
+import com.enons.vehicleapp.data.local.model.HourlyFee
+import com.enons.vehicleapp.data.local.model.Vehicles
+import com.enons.vehicleapp.data.local.dao.VehiclesDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
