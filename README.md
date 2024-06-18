@@ -34,27 +34,41 @@ This project is trying to use the latest Android tech stacks.
   - [Google Play Review](https://developer.android.com/guide/playcore/in-app-review)
   
 ## User Interfaces
-  <table>
-  <tr>
-  <td><img src="images/category_page.png" width="250" height="550"></td>
-  <td><img src="images/drawer_page.png" width="250" height="550"></td>
-  <td><img src="images/car_detail.png" width="250" height="550"></td>
-  </tr>
+<table>
+<tr>
+<td><center><h3> Category Screen</h3></center><hr><img src="images/category_page.png" width="250" height="550"></td>
+<td><center><h3> Drawer Screen</h3></center><hr><img src="images/drawer_page.png" width="250" height="550"></td>
+<td><center><h3> Detail Screen</h3></center><hr><img src="images/car_detail.png" width="250" height="550"></td>
+</tr>
 </table>
 <table>
-  <tr>
-  <td><img src="images/car_register.png" width="250" height="550"></td>
-  <td><img src="images/car_update.png" width="250" height="550"></td>
-  <td><img src="images/car_search.png" width="250" height="550"></td>
-  </tr>
+<tr>
+<td><center><h3> Register Screen</h3></center><hr><img src="images/car_register.png" width="250" height="550"></td>
+<td><center><h3> Update Screen</h3></center><hr><img src="images/car_update.png" width="250" height="550"></td>
+<td><center><h3> Search Screen</h3></center><hr><img src="images/car_search.png" width="250" height="550"></td>
+</tr>
 </table>
 <table>
-  <tr>
-  <td><img src="images/car_delete.png" width="250" height="550"></td>
-  <td><img src="images/car_information_message.jpeg" width="250" height="550"></td>
-  <td><img src="images/vale_message.jpeg" width="250" height="550"></td>
-  </tr>
+<tr>
+<td><center><h3>Delete Screen</h3></center><hr><img src="images/car_delete.png" width="250" height="550"></td>
+<td><center><h3>Information Message Screen</h3></center><hr><img src="images/car_information_message.jpeg" width="250" height="550"></td>
+<td><center><h3>Vale Message Screen</h3></center><hr><img src="images/vale_message.jpeg" width="250" height="550"></td>
+</tr>
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Download
 
