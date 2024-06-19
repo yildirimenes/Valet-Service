@@ -23,7 +23,7 @@ class DrawerViewModel @Inject constructor(private val repository: VehiclesReposi
         try {
             activityContext.startActivity(playIntent)
         } catch (e: Exception) {
-            // handle the exception
+            e.printStackTrace()
         }
     }
 

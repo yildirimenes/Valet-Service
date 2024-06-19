@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -76,6 +78,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     var hourly4 by remember { mutableStateOf("") }
     var hourly5 by remember { mutableStateOf("") }
     var daily by remember { mutableStateOf("") }
+    val scrollState = rememberScrollState()
     val viewModel: VehiclePageViewModel = hiltViewModel()
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
     LaunchedEffect(key1 = true) {
@@ -109,6 +112,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(10.dp)
+                .verticalScroll(scrollState)
                 .padding(it),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -284,14 +288,17 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 }
             )
             DeleteButton(
+                modifier = Modifier
+                    .fillMaxWidth(0.7f)
+                    .padding(horizontal = 10.dp),
                 onClick = {
                     vehicleToDelete = getVehicles
                     isDeleteDialogVisible = true
                 },
                 text = stringResource(id = R.string.delete_button),
                 containerColor = colorResource(id = R.color.dark_red),
-                modifier = Modifier.padding(horizontal = 10.dp),
             )
+            Spacer(modifier = Modifier.size(30.dp))
         }
     }
 }

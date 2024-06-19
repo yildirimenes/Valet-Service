@@ -312,7 +312,7 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
     ) {
 
         // Brand Dropdown
-        OutlinedCard(modifier = Modifier.padding(16.dp)) {
+        OutlinedCard(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically,
@@ -355,7 +355,7 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
         }
 
         // Model Dropdown
-        OutlinedCard(modifier = Modifier.padding(16.dp)) {
+        OutlinedCard(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
             Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,

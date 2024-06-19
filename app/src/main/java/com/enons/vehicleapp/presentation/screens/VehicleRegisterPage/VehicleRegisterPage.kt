@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -89,6 +90,7 @@ fun VehicleRegisterPage(navController: NavController) {
             )
             Spacer(modifier = Modifier.size(20.dp))
             CustomButton(
+                modifier = Modifier.fillMaxWidth(0.7f),
                 onClick = {
                     val customerName = tfCustomerName
                     val customerPhoneNumber = tfCustomerPhoneNumber
@@ -116,6 +118,7 @@ fun VehicleRegisterPage(navController: NavController) {
                 },
                 text = stringResource(id = R.string.register)
             )
+            Spacer(modifier = Modifier.size(30.dp))
         }
     }
 }

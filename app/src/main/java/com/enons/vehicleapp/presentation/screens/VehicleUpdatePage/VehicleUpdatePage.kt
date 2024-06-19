@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -92,32 +93,33 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                 onValueChange = { tfCustomerName = it },
                 label = { Text(stringResource(id = R.string.customer_name)) },
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             PhoneField(
                 phone = tfCustomerPhoneNumber,
                 label = { Text(stringResource(id = R.string.customer_phone_number)) },
                 onPhoneChanged = { tfCustomerPhoneNumber = it }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             UpdateOutlinedNumberPlateTextField(
                 value = tfVehicleNumberPlate,
                 onValueChange = { tfVehicleNumberPlate = it.uppercase(Locale.ROOT) },
                 label = { Text(stringResource(id = R.string.vehicle_number_plate)) },
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             UpdateOutlinedTextField(
                 value = tfVehicleName,
                 onValueChange = { tfVehicleName = it },
                 label = { Text(stringResource(id = R.string.vehicle_name)) },
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             UpdateOutlinedLocationTextField(
                 value = tfVehicleLocationDescription,
                 onValueChange = { tfVehicleLocationDescription = it },
                 label = { Text(stringResource(id = R.string.vehicle_location_description)) },
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             CustomButton(
+                modifier = Modifier.fillMaxWidth(0.7f),
                 onClick = {
                     val customerName = tfCustomerName
                     val customerPhoneNumber = tfCustomerPhoneNumber
@@ -142,6 +144,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                 },
                 text = stringResource(id = R.string.update),
             )
+            Spacer(modifier = Modifier.size(30.dp))
 
         }
 

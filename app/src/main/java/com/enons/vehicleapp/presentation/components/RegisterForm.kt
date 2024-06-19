@@ -31,7 +31,7 @@ fun RegisterForm(
         onValueChange = onCustomerNameChanged,
         label = { Text(text = stringResource(id = R.string.customer_name)) }
     )
-    Spacer(modifier = Modifier.size(30.dp))
+    Spacer(modifier = Modifier.size(20.dp))
     PhoneField(
         phone = tfCustomerPhoneNumber,
         mask = "(000) 000 00 00",
@@ -39,7 +39,7 @@ fun RegisterForm(
         label = { Text(text = stringResource(id = R.string.customer_phone_number)) },
         onPhoneChanged = onCustomerPhoneNumberChanged
     )
-    Spacer(modifier = Modifier.size(30.dp))
+    Spacer(modifier = Modifier.size(20.dp))
     RegisterOutlinedTextField(
         value = tfVehicleLocationDescription,
         onValueChange = onVehicleLocationDescriptionChanged,

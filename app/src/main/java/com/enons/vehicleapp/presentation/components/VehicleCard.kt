@@ -63,14 +63,16 @@ fun VehicleCard(
                     )
                 }
                 Image(
-                    modifier = Modifier.shadow(15.dp, shape = CircleShape),
+                    modifier = Modifier
+                        .shadow(15.dp, shape = CircleShape)
+                        .size(72.dp),
                     painter = painterResource(id = R.drawable.default_image),
                     contentDescription = ""
                 )
                 Spacer(modifier = Modifier.size(20.dp))
                 Text(
                     text = vehicle.vehicle_number_plate,
-                    fontSize = 20.sp,
+                    fontSize = 18.sp,
                     fontWeight = FontWeight.W300,
                     color = colorResource(id = R.color.black)
                 )

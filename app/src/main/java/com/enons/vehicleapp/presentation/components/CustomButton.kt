@@ -1,10 +1,7 @@
 package com.enons.vehicleapp.presentation.components
 
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.MailOutline
@@ -91,9 +88,7 @@ fun DeleteButton(
         onClick = {
             onClick()
         },
-        modifier = modifier
-            .fillMaxWidth()
-            .height(45.dp),
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(containerColor = containerColor),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp)
 

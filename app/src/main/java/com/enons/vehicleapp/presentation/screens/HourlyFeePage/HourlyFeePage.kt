@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -82,7 +83,7 @@ fun HourlyFeePage(navController: NavController) {
                 },
             )
         },
-    ) {
+    ) { it ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -96,38 +97,39 @@ fun HourlyFeePage(navController: NavController) {
                 onValueChange = { tfHourlyV1 = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V1)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             HourlyFeeOutlinedTextField(
                 value = tfHourlyV2,
                 onValueChange = { tfHourlyV2 = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V2)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             HourlyFeeOutlinedTextField(
                 value = tfHourlyV3,
                 onValueChange = { tfHourlyV3 = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V3)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             HourlyFeeOutlinedTextField(
                 value = tfHourlyV4,
                 onValueChange = { tfHourlyV4 = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V4)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             HourlyFeeOutlinedTextField(
                 value = tfHourlyV5,
                 onValueChange = { tfHourlyV5 = it },
                 label = { Text(text = stringResource(id = R.string.hourly_V5)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             HourlyFeeOutlinedTextField(
                 value = tfDaily,
                 onValueChange = { tfDaily = it },
                 label = { Text(text = stringResource(id = R.string.daily)) }
             )
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(20.dp))
             CustomButton(
+                modifier = Modifier.fillMaxWidth(0.7f),
                 onClick = {
                     val hourlyV1 = tfHourlyV1.toInt()
                     val hourlyV2 = tfHourlyV2.toInt()
@@ -142,6 +144,7 @@ fun HourlyFeePage(navController: NavController) {
                 },
                 text = stringResource(id = R.string.update),
             )
+            Spacer(modifier = Modifier.size(30.dp))
         }
     }
 }
