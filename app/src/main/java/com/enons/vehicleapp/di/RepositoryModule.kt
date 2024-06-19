@@ -1,7 +1,9 @@
 package com.enons.vehicleapp.di
 
 import com.enons.vehicleapp.data.local.dao.VehiclesDao
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepositoryImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,10 +13,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
+
     @Provides
     @Singleton
-    fun provideVehicleRepository(vehiclesDao: VehiclesDao): VehiclesDaoRepository {
-        return VehiclesDaoRepository(vehiclesDao)
+    fun provideVehiclesRepository(vehiclesDao: VehiclesDao): VehiclesRepository {
+        return VehiclesRepositoryImpl(vehiclesDao)
     }
-
 }

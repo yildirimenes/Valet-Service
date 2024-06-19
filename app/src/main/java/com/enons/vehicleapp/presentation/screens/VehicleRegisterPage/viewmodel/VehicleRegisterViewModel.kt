@@ -1,7 +1,7 @@
 package com.enons.vehicleapp.presentation.screens.VehicleRegisterPage.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -9,7 +9,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class VehicleRegisterViewModel @Inject constructor(private val repository: VehiclesDaoRepository) :
+class VehicleRegisterViewModel @Inject constructor(private val repository: VehiclesRepository) :
     ViewModel() {
     fun currentDate(): String {
         val currentDateTime = Calendar.getInstance().time

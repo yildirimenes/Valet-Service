@@ -43,7 +43,8 @@ fun VehicleCard(
             containerColor = colorResource(id = R.color.color_3)
         )
     ) {
-        Column(modifier = Modifier.clickable(onClick = onItemClick)) {
+        Column(
+            modifier = Modifier.clickable(onClick = onItemClick)) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,

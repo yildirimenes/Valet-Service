@@ -3,12 +3,12 @@ package com.enons.vehicleapp.presentation.screens.HomePage.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.local.model.Vehicles
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomepageViewModel @Inject constructor(private val repository: VehiclesDaoRepository) :
+class HomepageViewModel @Inject constructor(private val repository: VehiclesRepository) :
     ViewModel() {
     var vehicleList = MutableLiveData<List<Vehicles>>()
 

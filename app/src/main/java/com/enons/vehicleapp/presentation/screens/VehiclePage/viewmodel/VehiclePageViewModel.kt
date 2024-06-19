@@ -6,14 +6,14 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.local.model.HourlyFee
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class VehiclePageViewModel @Inject constructor(private val repository: VehiclesDaoRepository) : ViewModel() {
+class VehiclePageViewModel @Inject constructor(private val repository: VehiclesRepository) : ViewModel() {
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
     init {
         load()

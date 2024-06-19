@@ -5,12 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DrawerViewModel @Inject constructor(private val repository: VehiclesDaoRepository) :
+class DrawerViewModel @Inject constructor(private val repository: VehiclesRepository) :
     ViewModel() {
     fun openPlayStore(activityContext: Context, appURL: String) {
         val playIntent: Intent = Intent().apply {

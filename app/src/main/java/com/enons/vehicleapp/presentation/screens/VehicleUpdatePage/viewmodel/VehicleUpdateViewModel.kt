@@ -1,12 +1,12 @@
 package com.enons.vehicleapp.presentation.screens.VehicleUpdatePage.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.data.repository.VehiclesDaoRepository
+import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class VehicleUpdateViewModel @Inject constructor(private val repository: VehiclesDaoRepository) :
+class VehicleUpdateViewModel @Inject constructor(private val repository: VehiclesRepository) :
     ViewModel() {
     fun update(
         vehicleId: Int,
