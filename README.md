@@ -1,4 +1,4 @@
-# Valet Service App  <a href="https://play.google.com/store/apps/details?id=com.enons.vehicleapp"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="width:100px;"/></a>
+# Valet Service App &nbsp;&nbsp; <a href="https://play.google.com/store/apps/details?id=com.enons.vehicleapp"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="width:100px;"/></a>
 
 
 ## Introduction
