@@ -1,4 +1,5 @@
-# Valet Service App
+# Valet Service App &nbsp;&nbsp; <a href="https://play.google.com/store/apps/details?id=com.enons.vehicleapp"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="width:100px;"/></a>
+
 
 ## Introduction
 This project enables companies providing valet services to do their work in a digital environment, reliably and easily.
@@ -57,6 +58,7 @@ This project is trying to use the latest Android tech stacks.
 ### If You Want to Use the App on an Android Phone:
 
 * You can download the apk file of the app by clicking [here](https://drive.google.com/drive/folders/18cOxlrR9eJNvtUxZmmBriI-itHjHCdRg?usp=sharing) and install the app on your phone.
+* You can click [here](https://play.google.com/store/apps/details?id=com.enons.vehicleapp) to download the application from Google Play.
 
 ## Clone Project
 
