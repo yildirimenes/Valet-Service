@@ -289,7 +289,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
             )
             DeleteButton(
                 modifier = Modifier
-                    .fillMaxWidth(0.7f)
+                    .fillMaxWidth()
                     .padding(horizontal = 10.dp),
                 onClick = {
                     vehicleToDelete = getVehicles

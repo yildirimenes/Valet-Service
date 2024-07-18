@@ -41,5 +41,6 @@
     <string name="time_fee_infos">Zaman &amp; Ücret Bilgisi</string>
     <string name="delete_button">Aracı Sil</string>
     <string name="error_message">Error Message</string>
+    <string name="vehicle_received_message">Sayın %1$s, plaka numarası %2$s olan aracınız %3$s saatinde %4$s lokasyonunda teslim alınmıştır.</string>
 
 </resources>

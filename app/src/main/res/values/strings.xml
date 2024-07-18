@@ -41,4 +41,6 @@
     <string name="time_fee_infos">Time &amp; Fee Information</string>
     <string name="delete_button">Delete Vehicle</string>
     <string name="error_message">Error Message</string>
+    <string name="vehicle_received_message">Dear %1$s, your vehicle with license plate number %2$s was received at %3$s at the location %4$s.</string>
+
 </resources>

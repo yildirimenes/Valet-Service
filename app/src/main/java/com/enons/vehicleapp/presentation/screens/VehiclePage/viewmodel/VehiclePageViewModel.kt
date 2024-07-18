@@ -3,8 +3,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.enons.vehicleapp.R
 import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,8 +53,8 @@ class VehiclePageViewModel @Inject constructor(private val repository: VehiclesR
         currentHours: String
     ) {
         val formattedPhone = "0$phoneNumber"
-        val message =
-            "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
+        val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
+
 
         try {
             val smsIntent = Intent(Intent.ACTION_SEND)
@@ -67,7 +70,8 @@ class VehiclePageViewModel @Inject constructor(private val repository: VehiclesR
 
     fun msgBillButton(context: Context, customerName: String, phoneNumber: String) {
         val formattedPhone = "0$phoneNumber"
-        val messages = "Sn. $customerName aracınız teslim edilmiştir."
+        //val messages = "Sn. $customerName aracınız teslim edilmiştir."
+        val messages ="Dear $customerName, your vehicle has been delivered."
 
         try {
             val smsIntent = Intent(Intent.ACTION_SEND)
