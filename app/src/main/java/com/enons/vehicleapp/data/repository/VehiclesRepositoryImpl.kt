@@ -9,8 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class VehiclesRepositoryImpl @Inject constructor(private val dao: VehiclesDao) :
-    VehiclesRepository {
+class VehiclesRepositoryImpl @Inject constructor(
+    private val dao: VehiclesDao
+) : VehiclesRepository {
 
     private var vehiclesList = MutableLiveData<List<Vehicles>>()
     private var hourlyFeeList = MutableLiveData<List<HourlyFee>>()

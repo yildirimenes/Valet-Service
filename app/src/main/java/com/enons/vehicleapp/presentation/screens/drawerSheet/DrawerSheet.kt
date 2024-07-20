@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.DrawerSheet
+package com.enons.vehicleapp.presentation.screens.drawerSheet
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -26,11 +26,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
-import com.enons.vehicleapp.presentation.screens.DrawerSheet.viewmodel.DrawerViewModel
-import com.enons.vehicleapp.util.AppConstant.APP_NAME
-import com.enons.vehicleapp.util.AppConstant.APP_URL
-import com.enons.vehicleapp.util.AppConstant.CONTACT_MAIL
-import com.enons.vehicleapp.util.AppConstant.MAIL_SUBJECT
+import com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel.DrawerViewModel
+import com.enons.vehicleapp.utils.AppConstant.APP_NAME
+import com.enons.vehicleapp.utils.AppConstant.APP_URL
+import com.enons.vehicleapp.utils.AppConstant.CONTACT_MAIL
+import com.enons.vehicleapp.utils.AppConstant.MAIL_SUBJECT
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.HomePage.viewmodel
+package com.enons.vehicleapp.presentation.screens.homePage.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

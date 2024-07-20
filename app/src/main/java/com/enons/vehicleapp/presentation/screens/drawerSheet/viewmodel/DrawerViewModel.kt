@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.DrawerSheet.viewmodel
+package com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel
 
 import android.content.ActivityNotFoundException
 import android.content.Context

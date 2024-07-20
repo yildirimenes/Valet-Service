@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.HourlyFeePage.viewmodel
+package com.enons.vehicleapp.presentation.screens.hourlyFeePage.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.local.model.HourlyFee

@@ -8,11 +8,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.enons.vehicleapp.data.local.model.Vehicles
-import com.enons.vehicleapp.presentation.screens.HomePage.HomePage
-import com.enons.vehicleapp.presentation.screens.HourlyFeePage.HourlyFeePage
-import com.enons.vehicleapp.presentation.screens.VehicleRegisterPage.VehicleRegisterPage
-import com.enons.vehicleapp.presentation.screens.VehicleUpdatePage.VehicleUpdatePage
-import com.enons.vehicleapp.presentation.screens.VehiclePage.VehiclePage
+import com.enons.vehicleapp.presentation.screens.homePage.HomePage
+import com.enons.vehicleapp.presentation.screens.hourlyFeePage.HourlyFeePage
+import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.VehicleRegisterPage
+import com.enons.vehicleapp.presentation.screens.vehicleUpdatePage.VehicleUpdatePage
+import com.enons.vehicleapp.presentation.screens.vehiclePage.VehiclePage
 
 sealed class Screen(val route: String) {
     object CategoryPage : Screen("category_page")

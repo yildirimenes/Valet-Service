@@ -1,13 +1,10 @@
-package com.enons.vehicleapp.presentation.screens.VehiclePage.viewmodel
+package com.enons.vehicleapp.presentation.screens.vehiclePage.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.R
 import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

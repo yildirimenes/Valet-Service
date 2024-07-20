@@ -1,6 +1,6 @@
 @file:Suppress("NAME_SHADOWING")
 
-package com.enons.vehicleapp.presentation.screens.VehiclePage
+package com.enons.vehicleapp.presentation.screens.vehiclePage
 
 import com.enons.vehicleapp.presentation.components.FlipCard
 import android.annotation.SuppressLint
@@ -54,8 +54,8 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
 import com.enons.vehicleapp.presentation.components.DeleteButton
-import com.enons.vehicleapp.presentation.screens.VehiclePage.viewmodel.VehiclePageViewModel
-import com.enons.vehicleapp.util.AppConstant.ADD_UNIT_ID
+import com.enons.vehicleapp.presentation.screens.vehiclePage.viewmodel.VehiclePageViewModel
+import com.enons.vehicleapp.utils.AppConstant.ADD_UNIT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)

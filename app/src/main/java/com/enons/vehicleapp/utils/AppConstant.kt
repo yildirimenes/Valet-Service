@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.util
+package com.enons.vehicleapp.utils
 
 object AppConstant {
     const val APP_NAME = "Valet Service"
