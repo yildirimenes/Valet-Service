@@ -35,7 +35,7 @@ import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
-import com.enons.vehicleapp.presentation.components.CustomFabButton
+import com.enons.vehicleapp.presentation.components.CustomFabBtn
 import com.enons.vehicleapp.presentation.components.SearchTextField
 import com.enons.vehicleapp.presentation.components.VehicleListContent
 import com.enons.vehicleapp.presentation.screens.drawerSheet.DrawerSheet
@@ -132,7 +132,7 @@ fun HomePage(navController: NavController) {
                 )
             },
             floatingActionButton = {
-                CustomFabButton(modifier = Modifier
+                CustomFabBtn(modifier = Modifier
                     .padding(all = 5.dp),
                     isVisibleBecauseOfScrolling = fabVisibility,
                     onClick = { navController.navigate(Screen.VehicleRegisterPage.route) }

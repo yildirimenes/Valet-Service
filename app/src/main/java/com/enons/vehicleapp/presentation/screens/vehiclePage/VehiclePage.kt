@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -46,14 +46,14 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
-import com.enons.vehicleapp.presentation.components.CallButton
+import com.enons.vehicleapp.presentation.components.CallBtn
 import com.enons.vehicleapp.presentation.components.CustomRow
-import com.enons.vehicleapp.presentation.components.MessageButton
+import com.enons.vehicleapp.presentation.components.MessageBtn
 import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
-import com.enons.vehicleapp.presentation.components.DeleteButton
+import com.enons.vehicleapp.presentation.components.DeleteBtn
 import com.enons.vehicleapp.presentation.screens.vehiclePage.viewmodel.VehiclePageViewModel
 import com.enons.vehicleapp.utils.AppConstant.ADD_UNIT_ID
 
@@ -100,7 +100,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back"
                         )
                     }
@@ -158,7 +158,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        CallButton(
+                        CallBtn(
                             onClick = {
                                 viewModel.makePhoneCall(
                                     customerPhone = getVehicles.customer_phone_number,
@@ -166,7 +166,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                                 )
                             }
                         )
-                        MessageButton(
+                        MessageBtn(
                             onClick = {
                                 val customerName = getVehicles.customer_name
                                 val vehicleNumberPlate = getVehicles.vehicle_number_plate
@@ -287,7 +287,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                     defaultController = true
                 }
             )
-            DeleteButton(
+            DeleteBtn(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 10.dp),

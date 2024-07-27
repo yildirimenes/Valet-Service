@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,7 +35,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
-import com.enons.vehicleapp.presentation.components.CustomButton
+import com.enons.vehicleapp.presentation.components.CustomBtn
 import com.enons.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
 import com.enons.vehicleapp.presentation.screens.hourlyFeePage.viewmodel.HourlyFeeViewModel
 
@@ -76,7 +76,7 @@ fun HourlyFeePage(navController: NavController) {
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back"
                         )
                     }
@@ -128,7 +128,7 @@ fun HourlyFeePage(navController: NavController) {
                 label = { Text(text = stringResource(id = R.string.daily)) }
             )
             Spacer(modifier = Modifier.size(20.dp))
-            CustomButton(
+            CustomBtn(
                 modifier = Modifier.fillMaxWidth(0.7f),
                 onClick = {
                     val hourlyV1 = tfHourlyV1.toInt()
