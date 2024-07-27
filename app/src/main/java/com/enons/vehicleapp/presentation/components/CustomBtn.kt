@@ -2,24 +2,27 @@ package com.enons.vehicleapp.presentation.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.enons.vehicleapp.R
 
 @Composable
-fun CustomButton(
+fun CustomBtn(
     onClick: () -> Unit,
     text: String,
     modifier: Modifier = Modifier
@@ -36,7 +39,7 @@ fun CustomButton(
 }
 
 @Composable
-fun CallButton(
+fun CallBtn(
     onClick: () -> Unit
 ) {
     Button(
@@ -56,7 +59,7 @@ fun CallButton(
 }
 
 @Composable
-fun MessageButton(
+fun MessageBtn(
     onClick: () -> Unit
 ) {
     Button(
@@ -77,7 +80,7 @@ fun MessageButton(
 
 
 @Composable
-fun DeleteButton(
+fun DeleteBtn(
     onClick: () -> Unit,
     text: String,
     modifier: Modifier = Modifier,
@@ -97,5 +100,29 @@ fun DeleteButton(
             text = text,
             fontSize = 18.sp
         )
+    }
+}
+
+@Composable
+fun OnBoardingBtn(
+    text: String = "Next",
+    containerColor: Color,
+    contentColor: Color,
+
+    textStyle: TextStyle = MaterialTheme.typography.titleMedium,
+    fontSize: Int = 14,
+    onClick: () -> Unit
+) {
+
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        ),
+        shape = RoundedCornerShape(10.dp),
+    ) {
+
+        Text(text = text, fontSize = fontSize.sp, style = textStyle)
     }
 }

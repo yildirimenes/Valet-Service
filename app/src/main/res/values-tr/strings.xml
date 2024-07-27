@@ -32,15 +32,22 @@
     <string name="dark_mode">Gece Modu</string>
     <string name="rate_us">Bizi Oyla</string>
     <string name="invalid_information">Geçersiz Bilgi</string>
-    <string name="hourly_V1">0-1 Saat</string>
-    <string name="hourly_V2">1-2 Saat</string>
-    <string name="hourly_V3">2-4 Saat</string>
-    <string name="hourly_V4">4-8 Saat</string>
-    <string name="hourly_V5">8-12 Saat</string>
+    <string name="hourly_V1">0–1 Saat</string>
+    <string name="hourly_V2">1–2 Saat</string>
+    <string name="hourly_V3">2–4 Saat</string>
+    <string name="hourly_V4">4–8 Saat</string>
+    <string name="hourly_V5">8–12 Saat</string>
     <string name="daily">1 Gün</string>
     <string name="time_fee_infos">Zaman &amp; Ücret Bilgisi</string>
     <string name="delete_button">Aracı Sil</string>
     <string name="error_message">Error Message</string>
     <string name="vehicle_received_message">Sayın %1$s, plaka numarası %2$s olan aracınız %3$s saatinde %4$s lokasyonunda teslim alınmıştır.</string>
+
+    <string name="on_boarding_title_1">Kolay Ve Hızlı Arayüz</string>
+    <string name="on_boarding_title_2">Araç Detay Ve Fiyat Bilgisi</string>
+    <string name="on_boarding_title_3">Limitsiz Araç Kayıt Ve Güncelleme</string>
+    <string name="on_boarding_description_1">Uygulama hızlı ve basit bir arayüz sunmaktadır.</string>
+    <string name="on_boarding_description_2">Araç bilgileri ve vale ücretlerine kolayca erişim sağlayabilirsiniz.</string>
+    <string name="on_boarding_description_3">Güvenli bir şekilde araç kaydedebilir ve güncelleyebilirsiniz.</string>
 
 </resources>

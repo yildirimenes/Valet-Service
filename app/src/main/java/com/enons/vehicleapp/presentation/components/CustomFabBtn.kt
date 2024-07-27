@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
 
 @Composable
-fun CustomFabButton(
+fun CustomFabBtn(
     modifier: Modifier,
     isVisibleBecauseOfScrolling: Boolean,
     onClick: () -> Unit

@@ -32,15 +32,24 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="rate_us">Rate Us</string>
     <string name="invalid_information">Invalid Information</string>
-    <string name="hourly_V1">0-1 Hour</string>
-    <string name="hourly_V2">1-2 Hour</string>
-    <string name="hourly_V3">2-4 Hour</string>
-    <string name="hourly_V4">4-8 Hour</string>
-    <string name="hourly_V5">8-12 Hour</string>
+    <string name="hourly_V1">0–1 Hour</string>
+    <string name="hourly_V2">1–2 Hour</string>
+    <string name="hourly_V3">2–4 Hour</string>
+    <string name="hourly_V4">4–8 Hour</string>
+    <string name="hourly_V5">8–12 Hour</string>
     <string name="daily">1 Daily</string>
     <string name="time_fee_infos">Time &amp; Fee Information</string>
     <string name="delete_button">Delete Vehicle</string>
     <string name="error_message">Error Message</string>
     <string name="vehicle_received_message">Dear %1$s, your vehicle with license plate number %2$s was received at %3$s at the location %4$s.</string>
+
+    //OnBoarding Page
+    <string name="on_boarding_title_1">Easy and Fast Interfaces</string>
+    <string name="on_boarding_title_2">Vehicle Details and Price Information</string>
+    <string name="on_boarding_title_3">Unlimited Vehicle Registration and Update</string>
+    <string name="on_boarding_description_1">The application offers a fast and simple interface.</string>
+    <string name="on_boarding_description_2">We provide easy access to vehicle information and valet fees.</string>
+    <string name="on_boarding_description_3">You can register and update vehicles securely.</string>
+
 
 </resources>
