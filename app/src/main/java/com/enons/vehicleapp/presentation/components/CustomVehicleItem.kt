@@ -6,6 +6,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -15,9 +16,16 @@ import com.enons.vehicleapp.R
 
 
 @Composable
-fun CustomRow(iconRes: Int, text: String) {
+fun CustomVehicleItem(
+    modifier: Modifier,
+    iconRes: Int,
+    text: String,
+    color: Color = colorResource(id = R.color.black),
+    fontSize: Int = 20,
+    fontWeight: FontWeight = FontWeight.W300
+) {
     Row(
-        modifier = Modifier.padding(all = 10.dp)
+        modifier = modifier
     ) {
         Icon(
             painter = painterResource(id = iconRes),
@@ -25,9 +33,9 @@ fun CustomRow(iconRes: Int, text: String) {
         )
         Text(
             text = " : $text",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.W300,
-            color = colorResource(id = R.color.black)
+            fontSize = fontSize.sp,
+            fontWeight = fontWeight,
+            color = color
         )
     }
 }

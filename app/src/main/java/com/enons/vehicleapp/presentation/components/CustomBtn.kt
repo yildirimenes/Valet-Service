@@ -8,23 +8,24 @@ import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.enons.vehicleapp.R
 
 @Composable
 fun CustomBtn(
     onClick: () -> Unit,
     text: String,
+    containerColor: Color,
+    contentColor: Color,
     modifier: Modifier = Modifier
 ) {
     Button(
@@ -32,7 +33,10 @@ fun CustomBtn(
             onClick()
         },
         modifier = modifier,
-        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.dark_green))
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        )
     ) {
         Text(text = text)
     }
@@ -40,40 +44,58 @@ fun CustomBtn(
 
 @Composable
 fun CallBtn(
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    text: String,
+    containerColor: Color,
+    contentColor: Color,
+    modifier: Modifier = Modifier,
+    fontSize: Int = 16,
+    imageVector: ImageVector = Icons.Default.Call
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.padding(8.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.dark_green))
+        modifier = modifier,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        ),
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.Call,
+                imageVector = imageVector,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 4.dp),
             )
-            Text(text = stringResource(id = R.string.call), fontSize = 16.sp)
+            Text(text = text, fontSize = fontSize.sp)
         }
     }
 }
 
 @Composable
 fun MessageBtn(
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    text: String,
+    containerColor: Color,
+    contentColor: Color,
+    modifier: Modifier = Modifier,
+    fontSize: Int = 16,
+    imageVector: ImageVector = Icons.Default.MailOutline
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.padding(8.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.dark_green))
+        modifier = modifier,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        ),
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.MailOutline,
+                imageVector = imageVector,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 4.dp),
             )
-            Text(text = stringResource(id = R.string.notification), fontSize = 16.sp)
+            Text(text = text, fontSize = fontSize.sp)
         }
     }
 }
@@ -83,46 +105,52 @@ fun MessageBtn(
 fun DeleteBtn(
     onClick: () -> Unit,
     text: String,
-    modifier: Modifier = Modifier,
     containerColor: Color,
-
-    ) {
+    contentColor: Color,
+    modifier: Modifier = Modifier,
+    fontSize: Int = 18,
+    elevation: ButtonElevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp)
+) {
     Button(
         onClick = {
             onClick()
         },
         modifier = modifier,
-        colors = ButtonDefaults.buttonColors(containerColor = containerColor),
-        elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp)
-
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        ),
+        elevation = elevation
     ) {
         Text(
             text = text,
-            fontSize = 18.sp
+            fontSize = fontSize.sp
         )
     }
 }
 
 @Composable
 fun OnBoardingBtn(
-    text: String = "Next",
+    onClick: () -> Unit,
+    text: String,
     containerColor: Color,
     contentColor: Color,
-
     textStyle: TextStyle = MaterialTheme.typography.titleMedium,
     fontSize: Int = 14,
-    onClick: () -> Unit
+    shape: RoundedCornerShape = RoundedCornerShape(10.dp)
 ) {
-
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor
         ),
-        shape = RoundedCornerShape(10.dp),
+        shape = shape,
     ) {
-
-        Text(text = text, fontSize = fontSize.sp, style = textStyle)
+        Text(
+            text = text,
+            fontSize = fontSize.sp,
+            style = textStyle
+        )
     }
 }

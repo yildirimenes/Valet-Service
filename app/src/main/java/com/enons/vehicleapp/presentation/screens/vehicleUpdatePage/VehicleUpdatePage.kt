@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -120,6 +121,8 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(20.dp))
             CustomBtn(
                 modifier = Modifier.fillMaxWidth(0.7f),
+                containerColor = colorResource(id = R.color.dark_green),
+                contentColor = colorResource(id = R.color.color_3),
                 onClick = {
                     val customerName = tfCustomerName
                     val customerPhoneNumber = tfCustomerPhoneNumber

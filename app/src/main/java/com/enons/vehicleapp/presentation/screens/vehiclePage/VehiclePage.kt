@@ -47,7 +47,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CallBtn
-import com.enons.vehicleapp.presentation.components.CustomRow
+import com.enons.vehicleapp.presentation.components.CustomVehicleItem
 import com.enons.vehicleapp.presentation.components.MessageBtn
 import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
@@ -130,23 +130,28 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
             ) {
                 Column {
                     Spacer(modifier = Modifier.size(10.dp))
-                    CustomRow(
+                    CustomVehicleItem(
+                        modifier = Modifier.padding(10.dp),
                         iconRes = R.drawable.baseline_person_24,
                         text = getVehicles.customer_name
                     )
-                    CustomRow(
+                    CustomVehicleItem(
+                        modifier = Modifier.padding(10.dp),
                         iconRes = R.drawable.baseline_directions_car_24,
                         text = getVehicles.vehicle_name
                     )
-                    CustomRow(
+                    CustomVehicleItem(
+                        modifier = Modifier.padding(10.dp),
                         iconRes = R.drawable.baseline_call_to_action_24,
                         text = getVehicles.vehicle_number_plate
                     )
-                    CustomRow(
+                    CustomVehicleItem(
+                        modifier = Modifier.padding(10.dp),
                         iconRes = R.drawable.baseline_date_range_24,
                         text = getVehicles.vehicle_check_in_date
                     )
-                    CustomRow(
+                    CustomVehicleItem(
+                        modifier = Modifier.padding(10.dp),
                         iconRes = R.drawable.baseline_location_on_24,
                         text = getVehicles.vehicle_location_description
                     )
@@ -159,6 +164,10 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         CallBtn(
+                            modifier = Modifier.padding(8.dp),
+                            text = stringResource(id = R.string.call),
+                            containerColor = colorResource(id = R.color.dark_green),
+                            contentColor = colorResource(id = R.color.color_3),
                             onClick = {
                                 viewModel.makePhoneCall(
                                     customerPhone = getVehicles.customer_phone_number,
@@ -167,6 +176,10 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                             }
                         )
                         MessageBtn(
+                            modifier = Modifier.padding(8.dp),
+                            text = stringResource(id = R.string.notification),
+                            containerColor = colorResource(id = R.color.dark_green),
+                            contentColor = colorResource(id = R.color.color_3),
                             onClick = {
                                 val customerName = getVehicles.customer_name
                                 val vehicleNumberPlate = getVehicles.vehicle_number_plate
@@ -221,11 +234,13 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                     ) {
                         Column {
                             Spacer(modifier = Modifier.size(10.dp))
-                            CustomRow(
+                            CustomVehicleItem(
+                                modifier = Modifier.padding(10.dp),
                                 iconRes = R.drawable.baseline_price_change_24,
                                 text = valetFee
                             )
-                            CustomRow(
+                            CustomVehicleItem(
+                                modifier = Modifier.padding(10.dp),
                                 iconRes = R.drawable.baseline_access_time_filled_24,
                                 text = elapsedTime
                             )
@@ -291,12 +306,13 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 10.dp),
+                text = stringResource(id = R.string.delete_button),
+                containerColor = colorResource(id = R.color.dark_red),
+                contentColor = colorResource(id = R.color.color_3),
                 onClick = {
                     vehicleToDelete = getVehicles
                     isDeleteDialogVisible = true
                 },
-                text = stringResource(id = R.string.delete_button),
-                containerColor = colorResource(id = R.color.dark_red),
             )
             Spacer(modifier = Modifier.size(30.dp))
         }
