@@ -14,17 +14,26 @@ import com.enons.vehicleapp.navigation.AppNavigation
 import com.enons.vehicleapp.presentation.screens.onboardingPage.OnBoardingScreen
 import com.enons.vehicleapp.utils.OnBoardingUtils
 import com.enons.vehicleapp.presentation.ui.theme.VehicleAppTheme
+import com.google.android.play.core.review.ReviewManagerFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    // Initialize OnBoardingUtils
     private val onBoardingUtils by lazy {
         OnBoardingUtils(this)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Install the splash screen
         installSplashScreen()
+
+        // Show the app review feedback dialog
+        showFeedbackDialog()
+
         setContent {
             VehicleAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -42,6 +51,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    // Show the OnBoardingScreen
     @Composable
     private fun ShowOnBoardingScreen(){
         val scope = rememberCoroutineScope()
@@ -55,6 +66,15 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Show the app review feedback dialog
+    private fun showFeedbackDialog() {
+        val reviewManager = ReviewManagerFactory.create(applicationContext)
+        reviewManager.requestReviewFlow().addOnCompleteListener {
+            if (it.isSuccessful) {
+                reviewManager.launchReviewFlow(this, it.result)
+            }
+        }
+    }
 }
 
 
