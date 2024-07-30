@@ -7,7 +7,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HourlyFeeViewModel @Inject constructor(private val repository: VehiclesRepository) : ViewModel() {
+class HourlyFeeViewModel @Inject constructor(
+    private val repository: VehiclesRepository
+) : ViewModel() {
+
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
 
     init {
@@ -22,5 +25,4 @@ class HourlyFeeViewModel @Inject constructor(private val repository: VehiclesRep
     fun update(feeId: Int, hourlyV1: Int, hourlyV2: Int, hourlyV3: Int, hourlyV4: Int, hourlyV5: Int, daily: Int) {
         repository.updateHourlyFee(feeId, hourlyV1, hourlyV2, hourlyV3, hourlyV4, hourlyV5, daily)
     }
-
 }

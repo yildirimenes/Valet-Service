@@ -1,44 +1,24 @@
 package com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel
 
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.lifecycle.ViewModel
-import com.enons.vehicleapp.data.repository.VehiclesRepository
+import com.enons.vehicleapp.domain.useCase.RouteUrlLinkUseCase
+import com.enons.vehicleapp.domain.useCase.SendMailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DrawerViewModel @Inject constructor(private val repository: VehiclesRepository) :
-    ViewModel() {
+class DrawerViewModel @Inject constructor(
+    private val openPlayStoreUseCase: RouteUrlLinkUseCase,
+    private val sendMailUseCase: SendMailUseCase
+) : ViewModel() {
+
     fun openPlayStore(activityContext: Context, appURL: String) {
-        val playIntent: Intent = Intent().apply {
-
-            action = Intent.ACTION_VIEW
-
-            data = Uri.parse(appURL)
-
-        }
-        try {
-            activityContext.startActivity(playIntent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        openPlayStoreUseCase.execute(activityContext, appURL)
     }
 
     fun sendMail(context: Context, to: String, subject: String) {
-        try {
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "vnd.android.cursor.item/email" // or "message/rfc822"
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
-            intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-            context.startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            // TODO: Handle case where no email app is available
-        } catch (t: Throwable) {
-            // TODO: Handle potential other types of exceptions
-        }
+        sendMailUseCase.execute(context, to, subject)
     }
 }
 

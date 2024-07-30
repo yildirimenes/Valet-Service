@@ -6,8 +6,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class VehicleUpdateViewModel @Inject constructor(private val repository: VehiclesRepository) :
-    ViewModel() {
+class VehicleUpdateViewModel @Inject constructor(
+    private val repository: VehiclesRepository
+) : ViewModel() {
+
     fun update(
         vehicleId: Int,
         customerPhoneNumber: String,

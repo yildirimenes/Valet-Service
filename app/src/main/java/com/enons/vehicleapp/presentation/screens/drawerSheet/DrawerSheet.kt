@@ -27,7 +27,7 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
 import com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel.DrawerViewModel
 import com.enons.vehicleapp.utils.AppConstant.APP_NAME
-import com.enons.vehicleapp.utils.AppConstant.APP_URL
+import com.enons.vehicleapp.utils.AppConstant.GOOGLE_PLAY_LINK
 import com.enons.vehicleapp.utils.AppConstant.CONTACT_MAIL
 import com.enons.vehicleapp.utils.AppConstant.MAIL_SUBJECT
 
@@ -76,7 +76,7 @@ fun DrawerSheet() {
                 iconRes = R.drawable.baseline_thumb_up_alt_24,
                 text = stringResource(id = R.string.rate_us),
                 onClick = {
-                    viewModel.openPlayStore(context, APP_URL)
+                    viewModel.openPlayStore(context, GOOGLE_PLAY_LINK)
                 }
             )
         }

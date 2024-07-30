@@ -248,7 +248,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         FloatingActionButton(
                             modifier = Modifier.padding(top = 25.dp, end = 10.dp),
                             onClick = {
-                                viewModel.msgBillButton(
+                                viewModel.sendMsgBillUseCase(
                                     context,
                                     getVehicles.customer_name,
                                     getVehicles.customer_phone_number

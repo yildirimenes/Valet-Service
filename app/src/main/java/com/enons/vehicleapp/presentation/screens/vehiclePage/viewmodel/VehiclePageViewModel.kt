@@ -1,19 +1,25 @@
 package com.enons.vehicleapp.presentation.screens.vehiclePage.viewmodel
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesRepository
+import com.enons.vehicleapp.domain.useCase.CalculateTimeDifferenceUseCase
+import com.enons.vehicleapp.domain.useCase.MakePhoneCallUseCase
+import com.enons.vehicleapp.domain.useCase.SendMsgBillUseCase
+import com.enons.vehicleapp.domain.useCase.SendMsgInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.text.SimpleDateFormat
-import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class VehiclePageViewModel @Inject constructor(private val repository: VehiclesRepository) : ViewModel() {
+class VehiclePageViewModel @Inject constructor(
+    private val repository: VehiclesRepository,
+    private val makePhoneCallUseCase: MakePhoneCallUseCase,
+    private val sendMsgInfoUseCase: SendMsgInfoUseCase,
+    private val sendMsgBillUseCase: SendMsgBillUseCase,
+    private val calculateTimeDifferenceUseCase: CalculateTimeDifferenceUseCase
+) : ViewModel() {
+
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
     init {
         load()
@@ -29,16 +35,7 @@ class VehiclePageViewModel @Inject constructor(private val repository: VehiclesR
     }
 
     fun makePhoneCall(customerPhone: String, context: Context) {
-        try {
-            val formattedPhone = "0$customerPhone"
-            val intent = Intent(Intent.ACTION_DIAL)
-            val phoneUri = Uri.parse("tel:$formattedPhone")
-            intent.data = phoneUri
-            context.startActivity(intent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(context, "Error making phone call", Toast.LENGTH_LONG).show()
-        }
+        makePhoneCallUseCase.execute(customerPhone, context)
     }
 
     fun sendMessage(
@@ -49,123 +46,37 @@ class VehiclePageViewModel @Inject constructor(private val repository: VehiclesR
         phoneNumber: String,
         currentHours: String
     ) {
-        val formattedPhone = "0$phoneNumber"
-        val message = "Sn. $customerName $vehicleNumberPlate plakalı aracınız $currentHours saatinde $vehicleLocationDescription lokasyonunda teslim alınmıştır."
-
-
-        try {
-            val smsIntent = Intent(Intent.ACTION_SEND)
-            smsIntent.type = "text/plain"
-            smsIntent.putExtra(Intent.EXTRA_TEXT, message)
-            smsIntent.putExtra("address", formattedPhone)
-            context.startActivity(Intent.createChooser(smsIntent, "Mesaj Gönder"))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(context, "Error sending SMS", Toast.LENGTH_LONG).show()
-        }
+        sendMsgInfoUseCase.execute(
+            context,
+            customerName,
+            vehicleNumberPlate,
+            vehicleLocationDescription,
+            phoneNumber,
+            currentHours
+        )
     }
 
-    fun msgBillButton(context: Context, customerName: String, phoneNumber: String) {
-        val formattedPhone = "0$phoneNumber"
-        //val messages = "Sn. $customerName aracınız teslim edilmiştir."
-        val messages ="Dear $customerName, your vehicle has been delivered."
-
-        try {
-            val smsIntent = Intent(Intent.ACTION_SEND)
-            smsIntent.type = "text/plain"
-            smsIntent.putExtra(Intent.EXTRA_TEXT, messages)
-            smsIntent.putExtra("address", formattedPhone)
-            context.startActivity(Intent.createChooser(smsIntent, "Mesaj Gönder"))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(context, "Error sending SMS", Toast.LENGTH_LONG).show()
-        }
+    fun sendMsgBillUseCase(context: Context, customerName: String, phoneNumber: String) {
+        sendMsgBillUseCase.execute(context, customerName, phoneNumber)
     }
 
-    fun calculateTimeDifference(startDateText: String, hourly1: String, hourly2: String, hourly3: String, hourly4: String, hourly5: String, daily: String): Pair<String, Any> {
-        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-        val endDateText = simpleDateFormat.format(System.currentTimeMillis())
-
-        val date1 = simpleDateFormat.parse(startDateText)
-        val date2 = simpleDateFormat.parse(endDateText)
-
-
-        return if (date1 != null && date2 != null) {
-            var different = date2.time - date1.time
-
-            val secondsInMilli: Long = 1000
-            val minutesInMilli = secondsInMilli * 60
-            val hoursInMilli = minutesInMilli * 60
-            val daysInMilli = hoursInMilli * 24
-
-            val elapsedDays = different / daysInMilli
-            different %= daysInMilli
-
-            val elapsedHours = different / hoursInMilli
-            different %= hoursInMilli
-
-            val elapsedMinutes = different / minutesInMilli
-            different %= minutesInMilli
-
-            var totalAmount = 0
-            var timeDifference = ""
-            if (elapsedDays > 0) {
-                try {
-                    totalAmount = (daily.toInt() * elapsedDays).toInt()
-                    timeDifference = "$elapsedDays gün, $elapsedHours saat"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else if (elapsedHours >= 0 && elapsedHours < 1) {
-                try {
-                    totalAmount = hourly1.toInt()
-                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else if (elapsedHours >= 1 && elapsedHours < 2) {
-                try {
-                    totalAmount = hourly2.toInt()
-                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else if (elapsedHours >= 2 && elapsedHours < 4) {
-                try {
-                    totalAmount = hourly3.toInt()
-                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else if (elapsedHours >= 4 && elapsedHours < 8) {
-                try {
-                    totalAmount = hourly4.toInt()
-                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else if (elapsedHours >= 8 && elapsedHours < 12) {
-                try {
-                    totalAmount = hourly5.toInt()
-                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else if (elapsedHours >= 12 && elapsedHours < 24) {
-                try {
-                    totalAmount = daily.toInt()
-                    timeDifference = "$elapsedHours saat, $elapsedMinutes dakika"
-                } catch (e: NumberFormatException) {
-                    println("Invalid number format")
-                }
-            } else {
-                println("Invalid Operation")
-            }
-            val price = "$totalAmount ₺"
-            Pair(timeDifference, price)
-
-        } else {
-            Pair("Invalid Operation", 0)
-        }
+    fun calculateTimeDifference(
+        startDateText: String,
+        hourly1: String,
+        hourly2: String,
+        hourly3: String,
+        hourly4: String,
+        hourly5: String,
+        daily: String
+    ): Pair<String, Any> {
+        return calculateTimeDifferenceUseCase.execute(
+            startDateText,
+            hourly1,
+            hourly2,
+            hourly3,
+            hourly4,
+            hourly5,
+            daily
+        )
     }
 }

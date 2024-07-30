@@ -8,8 +8,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomepageViewModel @Inject constructor(private val repository: VehiclesRepository) :
-    ViewModel() {
+class HomepageViewModel @Inject constructor(
+    private val repository: VehiclesRepository
+) : ViewModel() {
+
     var vehicleList = MutableLiveData<List<Vehicles>>()
 
     init {
