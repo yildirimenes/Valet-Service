@@ -257,8 +257,10 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                             containerColor = colorResource(id = R.color.light_green),
                             content = {
                                 Icon(
-                                    painter = painterResource(id = R.drawable.baseline_done_outline_24),
-                                    contentDescription = "", tint = Color.White
+                                    modifier = Modifier.size(30.dp),
+                                    painter = painterResource(id = R.drawable.key_complete_icon),
+                                    contentDescription = "",
+                                    tint = Color.White,
                                 )
                             }
                         )
