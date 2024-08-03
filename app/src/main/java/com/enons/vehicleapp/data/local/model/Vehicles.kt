@@ -16,5 +16,4 @@ data class Vehicles(
     @ColumnInfo(name = "vehicle_location_description") @NotNull var vehicle_location_description: String,
     @ColumnInfo(name = "vehicle_check_in_date") @NotNull var vehicle_check_in_date: String,
     @ColumnInfo(name = "vehicle_check_in_hours") @NotNull var vehicle_check_in_hours: String
-) {
-}
+)

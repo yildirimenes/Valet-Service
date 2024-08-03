@@ -15,8 +15,7 @@ data class HourlyFee(
     @ColumnInfo(name = "hourly_v4") @NotNull var hourly_v4: Int,
     @ColumnInfo(name = "hourly_v5") @NotNull var hourly_v5: Int,
     @ColumnInfo(name = "daily") @NotNull var daily: Int
-) {
-}
+)
 
 
 
