@@ -30,6 +30,7 @@ This project is trying to use the latest Android tech stacks.
 - Image Loading: [Coil](https://coil-kt.github.io) 
 - Others:
   - [Jetpack Compose Extensions](https://google.github.io/accompanist)
+  - [Firebase Notification](https://firebase.google.com/docs/cloud-messaging?hl=tr)
   - [SplashScreen](https://developer.android.com/develop/ui/views/launch/splash-screen)
   - [Admob](https://admob.google.com/intl/tr/home/)
   - [Google Play Review](https://developer.android.com/guide/playcore/in-app-review)
