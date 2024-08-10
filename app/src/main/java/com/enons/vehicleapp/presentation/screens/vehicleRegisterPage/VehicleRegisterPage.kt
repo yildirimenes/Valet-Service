@@ -114,7 +114,7 @@ fun VehicleRegisterPage(navController: NavController) {
                             vehicleCheckInHours
                         )
                         localFocusManager.clearFocus()
-                        navController.navigate(Screen.CategoryPage.route)
+                        navController.navigate(Screen.HomePage.route)
                     } else {
                         Toast.makeText(context, "Error Message", Toast.LENGTH_SHORT).show()
                     }

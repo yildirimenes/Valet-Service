@@ -68,6 +68,7 @@ dependencies {
     implementation("androidx.camera:camera-core:1.3.4")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.libraries.mapsplatform.transportation:transportation-consumer:2.3.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.8.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -125,4 +126,5 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
 }

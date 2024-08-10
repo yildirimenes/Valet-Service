@@ -142,7 +142,7 @@ fun HourlyFeePage(navController: NavController) {
                     val daily = tfDaily.toInt()
                     viewModel.update(1, hourlyV1, hourlyV2, hourlyV3, hourlyV4, hourlyV5, daily)
                     localFocusManager.clearFocus()
-                    navController.navigate(Screen.CategoryPage.route)
+                    navController.navigate(Screen.HomePage.route)
 
                 },
                 text = stringResource(id = R.string.update),

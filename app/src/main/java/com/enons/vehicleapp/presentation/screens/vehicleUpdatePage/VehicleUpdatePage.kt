@@ -143,7 +143,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                         vehicleCheckInHours
                     )
                     localFocusManager.clearFocus()
-                    navController.navigate(Screen.CategoryPage.route)
+                    navController.navigate(Screen.HomePage.route)
                 },
                 text = stringResource(id = R.string.update),
             )

@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
 import com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel.DrawerViewModel
@@ -33,7 +34,7 @@ import com.enons.vehicleapp.utils.AppConstant.MAIL_SUBJECT
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun DrawerSheet() {
+fun DrawerSheet(navController: NavController) {
     val context = LocalContext.current
     val viewModel: DrawerViewModel = hiltViewModel()
 
@@ -77,6 +78,13 @@ fun DrawerSheet() {
                 text = stringResource(id = R.string.rate_us),
                 onClick = {
                     viewModel.openPlayStore(context, GOOGLE_PLAY_LINK)
+                }
+            )
+            CustomSettingsCard(
+                iconRes = R.drawable.baseline_logout_24,  // Çıkış için bir ikon
+                text = stringResource(id = R.string.sign_out),
+                onClick = {
+                    viewModel.signOut(navController)
                 }
             )
         }

@@ -298,7 +298,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                 onConfirm = {
                     vehicleToDelete?.vehicle_id?.let {
                         viewModel.delete(getVehicles.vehicle_id)
-                        navController.navigate(Screen.CategoryPage.route)
+                        navController.navigate(Screen.HomePage.route)
                     }
                     isDeleteDialogVisible = false
                     defaultController = true

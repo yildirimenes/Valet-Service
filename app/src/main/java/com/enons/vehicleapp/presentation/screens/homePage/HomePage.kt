@@ -62,7 +62,7 @@ fun HomePage(navController: NavController) {
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet(modifier = Modifier.fillMaxWidth(0.7f)) {
-                DrawerSheet()
+                DrawerSheet(navController = navController)
             }
         },
     ) {
