@@ -4,100 +4,87 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.flow.Flow
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.enons.vehicleapp.navigation.Screen
+import com.enons.vehicleapp.presentation.RegisterPage.viewmodel.AuthState
+import com.enons.vehicleapp.presentation.RegisterPage.viewmodel.RegisterViewModel
 
 @Composable
-fun RegisterScreen(
-    uiState: RegisterContract.UiState,
-    uiEffect: Flow<RegisterContract.UiEffect>,
-    onAction: (RegisterContract.UiAction) -> Unit,
-    onNavigateMainScreen: () -> Unit,
+fun RegisterPage(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    registerViewModel: RegisterViewModel = hiltViewModel()
 ) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val authState by registerViewModel.authState.observeAsState()
     val context = LocalContext.current
-    val lifecycleOwner = LocalLifecycleOwner.current
-    LaunchedEffect(uiEffect, lifecycleOwner) {
-        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            uiEffect.collect { effect ->
-                when (effect) {
-                    is RegisterContract.UiEffect.ShowToast -> {
-                        Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
-                    }
 
-                    is RegisterContract.UiEffect.GoToMainScreen -> {
-                        onNavigateMainScreen()
-                    }
-                }
-            }
+    LaunchedEffect(authState) {
+        when (authState) {
+            is AuthState.Authenticated -> navController.navigate(Screen.LoginPage.route)
+            is AuthState.Error -> Toast.makeText(
+                context,
+                (authState as AuthState.Error).message, Toast.LENGTH_SHORT
+            ).show()
+            else -> Unit
         }
     }
 
     Column(
-        modifier = Modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        EmailAndPasswordContent(
-            email = uiState.email,
-            password = uiState.password,
-            onEmailChange = { onAction(RegisterContract.UiAction.ChangeEmail(it)) },
-            onPasswordChange = { onAction(RegisterContract.UiAction.ChangePassword(it)) },
-            onSignUpClick = { onAction(RegisterContract.UiAction.SignUpClick) }
+        Text(text = "Signup Page", fontSize = 32.sp)
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email") }
         )
-    }
-}
+        Spacer(modifier = Modifier.height(8.dp))
 
-@Composable
-fun EmailAndPasswordContent(
-    email: String,
-    password: String,
-    onEmailChange: (String) -> Unit,
-    onPasswordChange: (String) -> Unit,
-    onSignUpClick: () -> Unit
-) {
-    Text(
-        text = "Email / Password",
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-    )
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text(text = "Password") }
+        )
+        Spacer(modifier = Modifier.height(16.dp))
 
-    Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = { registerViewModel.signup(email, password) },
+            enabled = authState != AuthState.Loading
+        ) {
+            Text(text = "Create account")
+        }
 
-    OutlinedTextField(
-        value = email,
-        maxLines = 1,
-        placeholder = { Text("Email") },
-        onValueChange = onEmailChange,
-    )
+        Spacer(modifier = Modifier.height(8.dp))
 
-    Spacer(modifier = Modifier.height(16.dp))
-
-    OutlinedTextField(
-        value = password,
-        maxLines = 1,
-        placeholder = { Text("Password") },
-        onValueChange = onPasswordChange,
-    )
-
-    Spacer(modifier = Modifier.height(16.dp))
-
-    Button(
-        onClick = { onSignUpClick() },
-    ) {
-        Text("Sign Up")
+        TextButton(onClick = {
+            navController.navigate(Screen.LoginPage.route)
+        }) {
+            Text(text = "Already have an account, Login")
+        }
     }
 }
