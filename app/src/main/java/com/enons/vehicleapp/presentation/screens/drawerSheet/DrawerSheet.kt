@@ -81,7 +81,7 @@ fun DrawerSheet(navController: NavController) {
                 }
             )
             CustomSettingsCard(
-                iconRes = R.drawable.baseline_logout_24,  // Çıkış için bir ikon
+                iconRes = R.drawable.baseline_logout_24,
                 text = stringResource(id = R.string.sign_out),
                 onClick = {
                     viewModel.signOut(navController)

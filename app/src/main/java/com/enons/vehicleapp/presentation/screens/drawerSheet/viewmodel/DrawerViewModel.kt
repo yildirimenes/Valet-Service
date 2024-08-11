@@ -2,13 +2,16 @@ package com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.enons.vehicleapp.data.repository.AuthRepository
+import com.enons.vehicleapp.domain.useCase.LogoutUseCase
 import com.enons.vehicleapp.domain.useCase.RouteUrlLinkUseCase
 import com.enons.vehicleapp.domain.useCase.SendMailUseCase
 import com.enons.vehicleapp.navigation.Screen
+import com.enons.vehicleapp.presentation.RegisterPage.viewmodel.AuthState
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -16,7 +19,7 @@ import javax.inject.Inject
 class DrawerViewModel @Inject constructor(
     private val openPlayStoreUseCase: RouteUrlLinkUseCase,
     private val sendMailUseCase: SendMailUseCase,
-    private val authRepository: AuthRepository
+    private val logoutUseCase: LogoutUseCase
 ) : ViewModel() {
 
     fun openPlayStore(activityContext: Context, appURL: String) {
@@ -28,11 +31,9 @@ class DrawerViewModel @Inject constructor(
     }
 
     fun signOut(navController: NavController) {
-        authRepository.signOut()
+        logoutUseCase.execute()
         navController.navigate(Screen.LoginPage.route) {
-            popUpTo(Screen.HomePage.route) { inclusive = true }
+            popUpTo(navController.graph.startDestinationId) { inclusive = true }
         }
     }
-
 }
-
