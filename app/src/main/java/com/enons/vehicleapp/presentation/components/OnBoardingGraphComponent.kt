@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.enons.vehicleapp.presentation.screens.onboardingPage.OnBoardingModel
 
 @Composable
-fun OnBoardingGraphUi(onBoardingModel: OnBoardingModel) {
+fun OnBoardingGraphComponent(onBoardingModel: OnBoardingModel) {
 
     Column(
         modifier = Modifier.fillMaxWidth()

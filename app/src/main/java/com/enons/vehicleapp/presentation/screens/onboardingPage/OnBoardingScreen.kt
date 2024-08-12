@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.IndicatorComponent
 import com.enons.vehicleapp.presentation.components.OnBoardingBtn
-import com.enons.vehicleapp.presentation.components.OnBoardingGraphUi
+import com.enons.vehicleapp.presentation.components.OnBoardingGraphComponent
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -114,7 +114,7 @@ fun OnBoardingScreen(
                 modifier = Modifier.padding(it)
             ) {
                 HorizontalPager(state = pagerState) { index ->
-                    OnBoardingGraphUi(onBoardingModel = pages[index])
+                    OnBoardingGraphComponent(onBoardingModel = pages[index])
                 }
             }
         }
