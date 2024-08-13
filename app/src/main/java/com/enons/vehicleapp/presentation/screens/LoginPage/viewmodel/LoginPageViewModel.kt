@@ -3,7 +3,6 @@ package com.enons.vehicleapp.presentation.screens.LoginPage.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.FirebaseAuthRepository
-import com.enons.vehicleapp.presentation.RegisterPage.viewmodel.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
