@@ -81,14 +81,14 @@ fun LoginPage(
                 modifier = Modifier.size(120.dp)
             )
             EmailAuthOutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
+                value = email.trim(),
+                onValueChange = { email = it.trim() },
                 label = { Text(text = stringResource(id = R.string.email)) },
                 leadingIcon = Icons.Default.Email,
             )
             PasswordOutlinedTextField(
-                password = password,
-                onPasswordChange = { password = it },
+                password = password.trim(),
+                onPasswordChange = { password = it.trim() },
                 label = { Text(text = stringResource(id = R.string.password)) },
                 passwordVisible =passwordVisible ,
                 onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
