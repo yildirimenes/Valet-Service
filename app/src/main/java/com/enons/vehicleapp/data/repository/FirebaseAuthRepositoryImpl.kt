@@ -25,7 +25,7 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun login(email: String, password: String) {
+    override fun loginUser(email: String, password: String) {
         if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return
@@ -41,7 +41,7 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun signup(email: String, password: String) {
+    override fun registerUser(email: String, password: String) {
         if (email.isEmpty() || password.isEmpty()) {
             _authState.value = AuthState.Error("Email or password can't be empty")
             return

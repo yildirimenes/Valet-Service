@@ -14,7 +14,7 @@ class LoginPageViewModel @Inject constructor(
     val authState: LiveData<AuthState> = authRepository.authState
 
     fun login(email: String, password: String) {
-        authRepository.login(email, password)
+        authRepository.loginUser(email, password)
     }
 }
 
