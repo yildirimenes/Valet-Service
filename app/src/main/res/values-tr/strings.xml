@@ -5,6 +5,12 @@
     <string name="valet_service">Vale Servisi</string>
     <string name="update">Güncelle</string>
     <string name="register">Kaydet</string>
+    <string name="auth_login">Giriş Yap</string>
+    <string name="auth_register">Kayıt Ol</string>
+    <string name="email">Email</string>
+    <string name="password">Şifre</string>
+    <string name="login_text">"Hesabınız yok mu?"</string>
+    <string name="register_text">Zaten bir hesabınız var mı?</string>
     <string name="call"> Arama </string>
     <string name="notification"> Bildirim </string>
     <string name="delete">Sil</string>

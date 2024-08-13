@@ -5,6 +5,12 @@
     <string name="valet_service">Valet Service</string>
     <string name="update">Update</string>
     <string name="register">Register</string>
+    <string name="auth_login">Login</string>
+    <string name="auth_register">Create Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_text">"Don't have an account?"</string>
+    <string name="register_text">Already have an account?</string>
     <string name="call"> Call </string>
     <string name="notification"> Notification </string>
     <string name="delete">Delete</string>

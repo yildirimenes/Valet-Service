@@ -1,6 +1,7 @@
 package com.enons.vehicleapp.presentation.components
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -16,9 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.enons.vehicleapp.R
 
 @Composable
 fun CustomBtn(
@@ -152,5 +156,28 @@ fun OnBoardingBtn(
             fontSize = fontSize.sp,
             style = textStyle
         )
+    }
+}
+
+@Composable
+fun AuthBtn(
+    onClick: () -> Unit,
+    text: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    containerColor: Color = colorResource(id = R.color.dark_green),
+    contentColor: Color = colorResource(id = R.color.color_3),
+    padding: Dp = 8.dp
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.fillMaxWidth(),
+        enabled = enabled,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        )
+    ) {
+        Text(text = text, Modifier.padding(vertical = padding))
     }
 }
