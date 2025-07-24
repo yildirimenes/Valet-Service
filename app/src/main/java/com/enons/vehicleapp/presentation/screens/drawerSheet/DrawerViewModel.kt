@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel
+package com.enons.vehicleapp.presentation.screens.drawerSheet
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

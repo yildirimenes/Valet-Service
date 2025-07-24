@@ -38,8 +38,8 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.EmailAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.AuthBtn
 import com.enons.vehicleapp.presentation.components.PasswordOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.LoginPage.viewmodel.AuthState
-import com.enons.vehicleapp.presentation.screens.RegisterPage.viewmodel.RegisterViewModel
+import com.enons.vehicleapp.presentation.screens.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.RegisterPage.RegisterViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
