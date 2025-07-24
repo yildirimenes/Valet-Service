@@ -13,6 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Vehicle App"
+rootProject.name = "VehicleApp"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
  

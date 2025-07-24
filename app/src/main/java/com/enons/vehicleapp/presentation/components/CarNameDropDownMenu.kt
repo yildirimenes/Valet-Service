@@ -1,5 +1,4 @@
 package com.enons.vehicleapp.presentation.components
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -7,9 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSizeIn
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,8 +24,10 @@ import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
 
 @Composable
-fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
-
+fun CarNameDropdown(
+    modifier: Modifier = Modifier,
+    onSelectionChanged: (String, String) -> Unit
+) {
     var brandDropDownControl by remember { mutableStateOf(false) }
     var modelDropDownControl by remember { mutableStateOf(false) }
     var selectedBrandIndex by remember { mutableIntStateOf(0) }
@@ -306,28 +307,28 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
     )
 
     Row(
-        modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.Center,
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-
-        // Brand Dropdown
-        OutlinedCard(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+        // Marka Dropdown
+        OutlinedCard(
+            modifier = Modifier
+                .weight(1f)
+                .height(56.dp)
+                .clickable { brandDropDownControl = true }
+        ) {
             Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .width(125.dp)
-                    .height(50.dp)
-                    .padding(5.dp)
-                    .clickable {
-                        brandDropDownControl = true
-                    }
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(text = carBrands[selectedBrandIndex])
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
-                    contentDescription = ""
+                    contentDescription = null
                 )
             }
 
@@ -342,7 +343,6 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
                         onClick = {
                             brandDropDownControl = false
                             selectedBrandIndex = index
-                            // Reset model index when brand changes
                             selectedModelIndex = 0
                             onSelectionChanged(
                                 carBrands[selectedBrandIndex],
@@ -355,22 +355,23 @@ fun CarNameDropdown(onSelectionChanged: (String, String) -> Unit) {
         }
 
         // Model Dropdown
-        OutlinedCard(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+        OutlinedCard(
+            modifier = Modifier
+                .weight(1f)
+                .height(56.dp)
+                .clickable { modelDropDownControl = true }
+        ) {
             Row(
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .width(125.dp)
-                    .height(50.dp)
-                    .padding(5.dp)
-                    .clickable {
-                        modelDropDownControl = true
-                    }
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(text = carModels[selectedBrandIndex][selectedModelIndex])
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
-                    contentDescription = ""
+                    contentDescription = null
                 )
             }
 

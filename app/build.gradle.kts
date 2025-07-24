@@ -10,13 +10,13 @@ plugins {
 
 android {
     namespace = "com.enons.vehicleapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.enons.vehicleapp"
         minSdk = 26
         //noinspection OldTargetApi
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 5
         versionName = "1.4.0"
 

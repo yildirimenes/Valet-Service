@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -38,7 +37,6 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomBtn
 import com.enons.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.hourlyFeePage.HourlyFeeViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -90,8 +88,8 @@ fun HourlyFeePage(navController: NavController) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(it),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             HourlyFeeOutlinedTextField(
                 value = tfHourlyV1,
@@ -130,7 +128,6 @@ fun HourlyFeePage(navController: NavController) {
             )
             Spacer(modifier = Modifier.size(20.dp))
             CustomBtn(
-                modifier = Modifier.fillMaxWidth(0.7f),
                 containerColor = colorResource(id = R.color.dark_green),
                 contentColor = colorResource(id = R.color.color_3),
                 onClick = {
@@ -143,9 +140,8 @@ fun HourlyFeePage(navController: NavController) {
                     viewModel.update(1, hourlyV1, hourlyV2, hourlyV3, hourlyV4, hourlyV5, daily)
                     localFocusManager.clearFocus()
                     navController.navigate(Screen.HomePage.route)
-
                 },
-                text = stringResource(id = R.string.update),
+                text = stringResource(id = R.string.update)
             )
             Spacer(modifier = Modifier.size(30.dp))
         }
