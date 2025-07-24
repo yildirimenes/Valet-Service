@@ -38,7 +38,7 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomBtn
 import com.enons.vehicleapp.presentation.components.HourlyFeeOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.hourlyFeePage.viewmodel.HourlyFeeViewModel
+import com.enons.vehicleapp.presentation.screens.hourlyFeePage.HourlyFeeViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)

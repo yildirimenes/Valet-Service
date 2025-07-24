@@ -39,7 +39,7 @@ import com.enons.vehicleapp.presentation.components.CustomFabBtn
 import com.enons.vehicleapp.presentation.components.SearchTextField
 import com.enons.vehicleapp.presentation.components.VehicleListContent
 import com.enons.vehicleapp.presentation.screens.drawerSheet.DrawerSheet
-import com.enons.vehicleapp.presentation.screens.homePage.viewmodel.HomepageViewModel
+import com.enons.vehicleapp.presentation.screens.homePage.HomepageViewModel
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
