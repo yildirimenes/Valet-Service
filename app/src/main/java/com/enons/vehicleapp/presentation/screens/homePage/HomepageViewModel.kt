@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.homePage.viewmodel
+package com.enons.vehicleapp.presentation.screens.homePage
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,4 +32,3 @@ class HomepageViewModel @Inject constructor(
 
     }
 }
-

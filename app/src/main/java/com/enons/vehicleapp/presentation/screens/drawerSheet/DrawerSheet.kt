@@ -26,7 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
-import com.enons.vehicleapp.presentation.screens.drawerSheet.viewmodel.DrawerViewModel
+import com.enons.vehicleapp.presentation.screens.drawerSheet.DrawerViewModel
 import com.enons.vehicleapp.utils.AppConstant.APP_NAME
 import com.enons.vehicleapp.utils.AppConstant.GOOGLE_PLAY_LINK
 import com.enons.vehicleapp.utils.AppConstant.CONTACT_MAIL

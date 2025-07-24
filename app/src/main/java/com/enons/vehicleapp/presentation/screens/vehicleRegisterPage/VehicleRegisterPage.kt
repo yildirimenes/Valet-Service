@@ -37,7 +37,7 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomBtn
 import com.enons.vehicleapp.presentation.components.RegisterForm
-import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.viewmodel.VehicleRegisterViewModel
+import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.VehicleRegisterViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)

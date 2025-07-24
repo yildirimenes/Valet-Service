@@ -54,7 +54,7 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
 import com.enons.vehicleapp.presentation.components.DeleteBtn
-import com.enons.vehicleapp.presentation.screens.vehiclePage.viewmodel.VehiclePageViewModel
+import com.enons.vehicleapp.presentation.screens.vehiclePage.VehiclePageViewModel
 import com.enons.vehicleapp.utils.AppConstant.ADD_UNIT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
