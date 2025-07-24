@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.components
+package com.enons.vehicleapp.presentation.screens.vehiclePage.components
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState

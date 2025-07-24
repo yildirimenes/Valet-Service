@@ -41,7 +41,6 @@ import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedLocationTextField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedNumberPlateTextField
-import com.enons.vehicleapp.presentation.screens.vehicleUpdatePage.VehicleUpdateViewModel
 import java.util.Locale
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -54,6 +53,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
     var tfVehicleName by remember { mutableStateOf("") }
     var tfVehicleNumberPlate by remember { mutableStateOf("") }
     var tfVehicleLocationDescription by remember { mutableStateOf("") }
+    val scrollState = rememberScrollState()
     val viewModel: VehicleUpdateViewModel = hiltViewModel()
 
     LaunchedEffect(key1 = true) {
@@ -67,9 +67,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.car_update))
-                },
+                title = { Text(text = stringResource(id = R.string.car_update)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
@@ -77,80 +75,88 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                             contentDescription = "Back"
                         )
                     }
-                },
+                }
             )
-        },
-    ) { it ->
+        }
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(it),
-            verticalArrangement = Arrangement.Center,
+                .verticalScroll(scrollState)
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             UpdateOutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = tfCustomerName,
                 onValueChange = { tfCustomerName = it },
                 label = { Text(stringResource(id = R.string.customer_name)) },
             )
+
             Spacer(modifier = Modifier.size(20.dp))
+
             PhoneField(
+                modifier = Modifier.fillMaxWidth(),
                 phone = tfCustomerPhoneNumber,
                 label = { Text(stringResource(id = R.string.customer_phone_number)) },
                 onPhoneChanged = { tfCustomerPhoneNumber = it }
             )
+
             Spacer(modifier = Modifier.size(20.dp))
+
             UpdateOutlinedNumberPlateTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = tfVehicleNumberPlate,
                 onValueChange = { tfVehicleNumberPlate = it.uppercase(Locale.ROOT) },
                 label = { Text(stringResource(id = R.string.vehicle_number_plate)) },
             )
+
             Spacer(modifier = Modifier.size(20.dp))
+
             UpdateOutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = tfVehicleName,
                 onValueChange = { tfVehicleName = it },
                 label = { Text(stringResource(id = R.string.vehicle_name)) },
             )
+
             Spacer(modifier = Modifier.size(20.dp))
+
             UpdateOutlinedLocationTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = tfVehicleLocationDescription,
                 onValueChange = { tfVehicleLocationDescription = it },
                 label = { Text(stringResource(id = R.string.vehicle_location_description)) },
             )
+
             Spacer(modifier = Modifier.size(20.dp))
+
             CustomBtn(
-                modifier = Modifier.fillMaxWidth(0.7f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 0.dp),
                 containerColor = colorResource(id = R.color.dark_green),
                 contentColor = colorResource(id = R.color.color_3),
                 onClick = {
-                    val customerName = tfCustomerName
-                    val customerPhoneNumber = tfCustomerPhoneNumber
-                    val vehicleName = tfVehicleName
-                    val vehicleNumberPlate = tfVehicleNumberPlate
-                    val vehicleLocationDescription = tfVehicleLocationDescription
-                    val vehicleCheckInDate = getVehicles.vehicle_check_in_date
-                    val vehicleCheckInHours = getVehicles.vehicle_check_in_hours
-
                     viewModel.update(
-                        getVehicles.vehicle_id,
-                        customerName,
-                        customerPhoneNumber,
-                        vehicleName,
-                        vehicleNumberPlate,
-                        vehicleLocationDescription,
-                        vehicleCheckInDate,
-                        vehicleCheckInHours
+                        vehicleId = getVehicles.vehicle_id,
+                        customerName = tfCustomerName,
+                        customerPhoneNumber = tfCustomerPhoneNumber,
+                        vehicleName = tfVehicleName,
+                        vehicleNumberPlate = tfVehicleNumberPlate,
+                        vehicleLocationDescription = tfVehicleLocationDescription,
+                        vehicleCheckInDate = getVehicles.vehicle_check_in_date,
+                        vehicleCheckInHours = getVehicles.vehicle_check_in_hours
                     )
                     localFocusManager.clearFocus()
                     navController.navigate(Screen.HomePage.route)
                 },
-                text = stringResource(id = R.string.update),
+                text = stringResource(id = R.string.update)
             )
+
             Spacer(modifier = Modifier.size(30.dp))
-
         }
-
     }
-
 }

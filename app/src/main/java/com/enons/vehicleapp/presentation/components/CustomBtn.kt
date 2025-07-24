@@ -30,19 +30,24 @@ fun CustomBtn(
     text: String,
     containerColor: Color,
     contentColor: Color,
+    padding: Dp = 8.dp,
     modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 16.dp)
 ) {
     Button(
-        onClick = {
-            onClick()
-        },
+        onClick = onClick,
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor
-        )
+        ),
+        shape = RoundedCornerShape(12.dp)
     ) {
-        Text(text = text)
+        Text(
+            text = text,
+            modifier = Modifier.padding(vertical = padding)
+        )
     }
 }
 
@@ -163,21 +168,27 @@ fun OnBoardingBtn(
 fun AuthBtn(
     onClick: () -> Unit,
     text: String,
-    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     containerColor: Color = colorResource(id = R.color.dark_green),
     contentColor: Color = colorResource(id = R.color.color_3),
-    padding: Dp = 8.dp
+    padding: Dp = 8.dp,
+    cornerRadius: Dp = 8.dp,
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
 ) {
     Button(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         enabled = enabled,
+        shape = RoundedCornerShape(cornerRadius),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor
         )
     ) {
-        Text(text = text, Modifier.padding(vertical = padding))
+        Text(
+            text = text,
+            modifier = Modifier.padding(vertical = padding)
+        )
     }
 }
