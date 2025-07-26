@@ -2,7 +2,7 @@ package com.enons.vehicleapp.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -60,10 +60,14 @@ fun UpdateOutlinedTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedTextField(
-    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: @Composable () -> Unit
 ) {
     val maxLength = 30
     OutlinedTextField(
+        modifier = modifier,
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength) {
@@ -83,17 +87,18 @@ fun RegisterOutlinedTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun RegisterOutlinedNumberPlateTextField(
-    value: String, onValueChange: (String) -> Unit, label: @Composable () -> Unit
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: @Composable () -> Unit
 ) {
     val maxLength = 10
     OutlinedTextField(
-        modifier = Modifier
-            .width(200.dp),
+        modifier = modifier,
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength) {
                 onValueChange(newText.uppercase(Locale.ROOT))
-
             }
         },
         label = label,
@@ -112,12 +117,14 @@ fun RegisterOutlinedNumberPlateTextField(
 @ExperimentalComposeUiApi
 @Composable
 fun UpdateOutlinedNumberPlateTextField(
+    modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     label: @Composable () -> Unit
 ) {
     val maxLength = 15
     OutlinedTextField(
+        modifier = modifier,
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength) {
@@ -174,7 +181,9 @@ fun HourlyFeeOutlinedTextField(
 ) {
     val maxLength = 30
     OutlinedTextField(
-        modifier = modifier,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength && newText.isDigitsOnly()) {

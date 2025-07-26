@@ -36,8 +36,7 @@ import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomBtn
-import com.enons.vehicleapp.presentation.components.RegisterForm
-import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.VehicleRegisterViewModel
+import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.components.RegisterForm
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,7 +60,10 @@ fun VehicleRegisterPage(navController: NavController) {
                 title = { Text(text = stringResource(id = R.string.car_register)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "")
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = null
+                        )
                     }
                 }
             )
@@ -72,10 +74,12 @@ fun VehicleRegisterPage(navController: NavController) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(paddingValues),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             RegisterForm(
+                modifier = Modifier
+                    .fillMaxWidth(),
                 tfCustomerName = tfCustomerName,
                 tfCustomerPhoneNumber = tfCustomerPhoneNumber,
                 tfVehicleLocationDescription = tfVehicleLocationDescription,
@@ -89,9 +93,13 @@ fun VehicleRegisterPage(navController: NavController) {
                 onSelectedNumberChanged = { selectedNumber = it },
                 onTextFieldValueChanged = { textFieldValue = it }
             )
+
             Spacer(modifier = Modifier.size(20.dp))
+
             CustomBtn(
-                modifier = Modifier.fillMaxWidth(0.7f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 containerColor = colorResource(id = R.color.dark_green),
                 contentColor = colorResource(id = R.color.color_3),
                 onClick = {
@@ -103,7 +111,9 @@ fun VehicleRegisterPage(navController: NavController) {
                     val vehicleCheckInDate = viewModel.currentDate()
                     val vehicleCheckInHours = viewModel.currentTime()
 
-                    if (customerName.isNotEmpty() && vehicleName.isNotEmpty() && vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()) {
+                    if (customerName.isNotEmpty() && vehicleName.isNotEmpty() &&
+                        vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()
+                    ) {
                         viewModel.register(
                             customerName,
                             customerPhoneNumber,
@@ -116,13 +126,13 @@ fun VehicleRegisterPage(navController: NavController) {
                         localFocusManager.clearFocus()
                         navController.navigate(Screen.HomePage.route)
                     } else {
-                        Toast.makeText(context, "Error Message", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Eksik bilgi girdiniz", Toast.LENGTH_SHORT).show()
                     }
                 },
                 text = stringResource(id = R.string.register)
             )
+
             Spacer(modifier = Modifier.size(30.dp))
         }
     }
 }
-

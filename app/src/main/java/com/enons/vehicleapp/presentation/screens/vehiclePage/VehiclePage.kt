@@ -2,7 +2,6 @@
 
 package com.enons.vehicleapp.presentation.screens.vehiclePage
 
-import com.enons.vehicleapp.presentation.components.FlipCard
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -47,14 +46,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.presentation.components.CallBtn
-import com.enons.vehicleapp.presentation.components.CustomVehicleItem
+import com.enons.vehicleapp.presentation.screens.vehiclePage.components.CustomVehicleItem
 import com.enons.vehicleapp.presentation.components.MessageBtn
 import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
 import com.enons.vehicleapp.presentation.components.DeleteBtn
-import com.enons.vehicleapp.presentation.screens.vehiclePage.VehiclePageViewModel
+import com.enons.vehicleapp.presentation.screens.vehiclePage.components.FlipCard
 import com.enons.vehicleapp.utils.AppConstant.ADD_UNIT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

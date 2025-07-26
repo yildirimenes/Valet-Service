@@ -58,5 +58,7 @@
     <string name="on_boarding_description_2">We provide easy access to vehicle information and valet fees.</string>
     <string name="on_boarding_description_3">You can register and update vehicles securely.</string>
 
+    <string name="password_repeat">Password (Repeat)</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
 
 </resources>

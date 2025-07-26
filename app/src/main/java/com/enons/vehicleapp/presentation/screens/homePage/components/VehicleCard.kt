@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.components
+package com.enons.vehicleapp.presentation.screens.homePage.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

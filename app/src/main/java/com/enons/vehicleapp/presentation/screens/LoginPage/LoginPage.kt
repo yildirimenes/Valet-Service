@@ -3,7 +3,6 @@ package com.enons.vehicleapp.presentation.screens.LoginPage
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,8 +36,6 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.EmailAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.AuthBtn
 import com.enons.vehicleapp.presentation.components.PasswordOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.LoginPage.AuthState
-import com.enons.vehicleapp.presentation.screens.LoginPage.LoginPageViewModel
 
 @Composable
 fun LoginPage(
@@ -64,58 +61,53 @@ fun LoginPage(
         }
     }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
+    Column(
+        modifier = Modifier
+            .padding(24.dp)
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier
-                .padding(24.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.Bottom),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.app_logo),
-                contentDescription = null,
-                modifier = Modifier.size(120.dp)
-            )
-            EmailAuthOutlinedTextField(
-                value = email.trim(),
-                onValueChange = { email = it.trim() },
-                label = { Text(text = stringResource(id = R.string.email)) },
-                leadingIcon = Icons.Default.Email,
-            )
-            PasswordOutlinedTextField(
-                password = password.trim(),
-                onPasswordChange = { password = it.trim() },
-                label = { Text(text = stringResource(id = R.string.password)) },
-                passwordVisible =passwordVisible ,
-                onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
-                isPasswordFocused = isPasswordFocused,
-                onFocusChange = { focusState -> isPasswordFocused = focusState.isFocused }
-            )
-            AuthBtn(
-                onClick = { viewModel.login(email, password) },
-                text = stringResource(id = R.string.auth_login),
-                enabled = authState != AuthState.Loading
-            )
-            HorizontalDivider(
-                modifier = Modifier.padding(top = 48.dp),
-                thickness = 1.dp,
-                color = Color.DarkGray.copy(alpha = 0.3f)
-            )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(id = R.string.login_text), color = Color.DarkGray)
-                TextButton(onClick = {
-                    navController.navigate(Screen.RegisterPage.route)
-                }) {
-                    Text(
-                        stringResource(id = R.string.auth_register),
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+        Image(
+            painter = painterResource(id = R.drawable.app_logo),
+            contentDescription = null,
+            modifier = Modifier.size(120.dp)
+        )
+        EmailAuthOutlinedTextField(
+            value = email.trim(),
+            onValueChange = { email = it.trim() },
+            label = { Text(text = stringResource(id = R.string.email)) },
+            leadingIcon = Icons.Default.Email,
+        )
+        PasswordOutlinedTextField(
+            password = password.trim(),
+            onPasswordChange = { password = it.trim() },
+            label = { Text(text = stringResource(id = R.string.password)) },
+            passwordVisible =passwordVisible ,
+            onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
+            isPasswordFocused = isPasswordFocused,
+            onFocusChange = { focusState -> isPasswordFocused = focusState.isFocused }
+        )
+        AuthBtn(
+            onClick = { viewModel.login(email, password) },
+            text = stringResource(id = R.string.auth_login),
+            enabled = authState != AuthState.Loading
+        )
+        HorizontalDivider(
+            modifier = Modifier.padding(top = 48.dp),
+            thickness = 1.dp,
+            color = Color.DarkGray.copy(alpha = 0.3f)
+        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(stringResource(id = R.string.login_text), color = Color.DarkGray)
+            TextButton(onClick = {
+                navController.navigate(Screen.RegisterPage.route)
+            }) {
+                Text(
+                    stringResource(id = R.string.auth_register),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
