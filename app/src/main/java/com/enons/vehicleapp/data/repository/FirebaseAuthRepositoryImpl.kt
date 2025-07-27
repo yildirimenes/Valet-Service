@@ -57,6 +57,21 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override fun sendPasswordReset(email: String, callback: (Boolean, String?) -> Unit) {
+        if (email.isEmpty()) {
+            callback(false, "Email can't be empty")
+            return
+        }
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.message ?: "Something went wrong")
+                }
+            }
+    }
+
     override fun signout() {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated

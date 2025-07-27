@@ -7,8 +7,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.HorizontalDivider
@@ -67,7 +71,9 @@ fun LoginPage(
         Column(
             modifier = Modifier
                 .padding(24.dp)
-                .fillMaxSize(),
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .imePadding(),
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -91,8 +97,17 @@ fun LoginPage(
                 onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
                 isPasswordFocused = isPasswordFocused,
                 onFocusChange = { isPasswordFocused = it.isFocused },
-                //enabled = authState != AuthState.Loading
             )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                TextButton(onClick = {
+                    navController.navigate(Screen.ForgotPasswordPage.route)
+                }) {
+                    Text(text = stringResource(id = R.string.forgot_password))
+                }
+            }
             AuthBtn(
                 onClick = { viewModel.login(email, password) },
                 text = stringResource(id = R.string.auth_login),

@@ -1,4 +1,5 @@
 package com.enons.vehicleapp.presentation.components
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
@@ -317,6 +319,7 @@ fun CarNameDropdown(
                 .weight(1f)
                 .height(56.dp)
                 .clickable { brandDropDownControl = true }
+                .background(Color.White)
         ) {
             Row(
                 modifier = Modifier
@@ -335,7 +338,9 @@ fun CarNameDropdown(
             DropdownMenu(
                 expanded = brandDropDownControl,
                 onDismissRequest = { brandDropDownControl = false },
-                modifier = Modifier.requiredSizeIn(maxHeight = 300.dp)
+                modifier = Modifier
+                    .requiredSizeIn(maxHeight = 300.dp)
+                    .background(Color.White)
             ) {
                 carBrands.forEachIndexed { index, brand ->
                     DropdownMenuItem(
@@ -360,6 +365,7 @@ fun CarNameDropdown(
                 .weight(1f)
                 .height(56.dp)
                 .clickable { modelDropDownControl = true }
+                .background(Color.White)
         ) {
             Row(
                 modifier = Modifier
@@ -378,7 +384,9 @@ fun CarNameDropdown(
             DropdownMenu(
                 expanded = modelDropDownControl,
                 onDismissRequest = { modelDropDownControl = false },
-                modifier = Modifier.requiredSizeIn(maxHeight = 300.dp)
+                modifier = Modifier
+                    .requiredSizeIn(maxHeight = 300.dp)
+                    .background(Color.White)
             ) {
                 carModels[selectedBrandIndex].forEachIndexed { index, model ->
                     DropdownMenuItem(
