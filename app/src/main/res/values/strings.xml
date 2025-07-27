@@ -30,8 +30,8 @@
     <string name="vehicle_brand">Car Brand</string>
     <string name="car_plate">Car Plate</string>
     <string name="location_information">Location Information</string>
-    <string name="valet_premium">Premium Account</string>
-    <string name="valet_premium_info">Premium Account Information</string>
+    <string name="valet_premium">Contact</string>
+    <string name="valet_premium_info">Vale App Contact</string>
     <string name="price_schedule">Price Schedule</string>
     <string name="valet_fee">Valet Fee</string>
     <string name="language_option">Language Option</string>

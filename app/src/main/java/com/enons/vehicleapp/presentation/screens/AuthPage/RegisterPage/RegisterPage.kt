@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.RegisterPage
+package com.enons.vehicleapp.presentation.screens.AuthPage.RegisterPage
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -37,7 +37,7 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.EmailAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.AuthBtn
 import com.enons.vehicleapp.presentation.components.PasswordOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
