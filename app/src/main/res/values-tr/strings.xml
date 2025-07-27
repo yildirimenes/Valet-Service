@@ -30,8 +30,8 @@
     <string name="vehicle_brand">Araç Markası</string>
     <string name="car_plate">Araç Plakası</string>
     <string name="location_information">Konum Bilgisi</string>
-    <string name="valet_premium">Premium Hesap</string>
-    <string name="valet_premium_info">Premium Hesap Bilgisi</string>
+    <string name="valet_premium">Bize Ulaşın</string>
+    <string name="valet_premium_info">Vale App İletişim</string>
     <string name="price_schedule">Fiyat Tarifesi</string>
     <string name="valet_fee">Valet Fee</string>
     <string name="language_option">Dil Seçenekleri</string>

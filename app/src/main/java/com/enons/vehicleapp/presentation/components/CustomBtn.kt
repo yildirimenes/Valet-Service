@@ -68,6 +68,10 @@ fun CallBtn(
             containerColor = containerColor,
             contentColor = contentColor
         ),
+        shape = RoundedCornerShape(4.dp),
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 4.dp
+        )
     ) {
         Row {
             Icon(
@@ -97,6 +101,10 @@ fun MessageBtn(
             containerColor = containerColor,
             contentColor = contentColor
         ),
+        shape = RoundedCornerShape(4.dp),
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 4.dp
+        )
     ) {
         Row {
             Icon(
@@ -118,18 +126,18 @@ fun DeleteBtn(
     contentColor: Color,
     modifier: Modifier = Modifier,
     fontSize: Int = 18,
-    elevation: ButtonElevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp)
+    elevation: ButtonElevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
 ) {
     Button(
         onClick = {
             onClick()
         },
         modifier = modifier,
+        shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor
         ),
-        elevation = elevation
     ) {
         Text(
             text = text,

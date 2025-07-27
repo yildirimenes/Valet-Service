@@ -124,7 +124,9 @@ fun UpdateOutlinedNumberPlateTextField(
 ) {
     val maxLength = 15
     OutlinedTextField(
-        modifier = modifier,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength) {
@@ -208,6 +210,7 @@ fun EmailAuthOutlinedTextField(
     leadingIcon: ImageVector,
     modifier: Modifier = Modifier,
     singleLine: Boolean = true,
+    enabled: Boolean = true,
     focusedTextColor: Color = Color.DarkGray,
     unfocusedTextColor: Color = Color.DarkGray,
     focusedContainerColor: Color = Color.Transparent,
@@ -219,6 +222,7 @@ fun EmailAuthOutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = label,
+        enabled = enabled,
         modifier = modifier.fillMaxWidth(),
         leadingIcon = { Icon(imageVector = leadingIcon, contentDescription = null) },
         singleLine = singleLine,
@@ -243,6 +247,7 @@ fun PasswordOutlinedTextField(
     onPasswordVisibilityChange: () -> Unit,
     isPasswordFocused: Boolean,
     onFocusChange: (FocusState) -> Unit,
+    enabled: Boolean = true,
     focusedTextColor: Color = Color.DarkGray,
     unfocusedTextColor: Color = Color.DarkGray,
     focusedContainerColor: Color = Color.Transparent,
@@ -254,6 +259,7 @@ fun PasswordOutlinedTextField(
         value = password,
         onValueChange = onPasswordChange,
         label = label,
+        enabled = enabled,
         modifier = modifier
             .fillMaxWidth()
             .onFocusChanged { focusState -> onFocusChange(focusState) },
@@ -269,7 +275,7 @@ fun PasswordOutlinedTextField(
                 painter = image,
                 contentDescription = if (passwordVisible) "Hide password" else "Show password",
                 modifier = Modifier
-                    .clickable { onPasswordVisibilityChange() }
+                    .clickable(enabled = enabled) { onPasswordVisibilityChange() }
                     .alpha(if (isPasswordFocused) 1f else 0f)
             )
         },

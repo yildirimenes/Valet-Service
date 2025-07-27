@@ -1,7 +1,7 @@
 package com.enons.vehicleapp.data.repository
 
 import androidx.lifecycle.LiveData
-import com.enons.vehicleapp.presentation.screens.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
 
 interface FirebaseAuthRepository {
     val authState: LiveData<AuthState>

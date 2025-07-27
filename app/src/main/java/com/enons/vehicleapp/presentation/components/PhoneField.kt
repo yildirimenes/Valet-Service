@@ -1,10 +1,13 @@
 package com.enons.vehicleapp.presentation.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
@@ -25,7 +28,7 @@ fun PhoneField(
     onPhoneChanged: (String) -> Unit
 ) {
     OutlinedTextField(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         value = phone,
         onValueChange = {
             if (it.isDigitsOnly()) {
@@ -33,6 +36,9 @@ fun PhoneField(
             }
         },
         label = label,
+        placeholder = {
+            Text(text = "(5XX) XXX XX XX", color = Color.Gray)
+        },
         shape = RoundedCornerShape(12.dp),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone,

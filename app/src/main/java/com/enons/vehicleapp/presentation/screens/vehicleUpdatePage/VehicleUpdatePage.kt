@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -84,12 +85,14 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .padding(paddingValues)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+            .imePadding(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             UpdateOutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 value = tfCustomerName,
                 onValueChange = { tfCustomerName = it },
                 label = { Text(stringResource(id = R.string.customer_name)) },
@@ -98,7 +101,9 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(20.dp))
 
             PhoneField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 phone = tfCustomerPhoneNumber,
                 label = { Text(stringResource(id = R.string.customer_phone_number)) },
                 onPhoneChanged = { tfCustomerPhoneNumber = it }
@@ -107,7 +112,9 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(20.dp))
 
             UpdateOutlinedNumberPlateTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 value = tfVehicleNumberPlate,
                 onValueChange = { tfVehicleNumberPlate = it.uppercase(Locale.ROOT) },
                 label = { Text(stringResource(id = R.string.vehicle_number_plate)) },
@@ -116,7 +123,9 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(20.dp))
 
             UpdateOutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 value = tfVehicleName,
                 onValueChange = { tfVehicleName = it },
                 label = { Text(stringResource(id = R.string.vehicle_name)) },
@@ -125,7 +134,9 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             Spacer(modifier = Modifier.size(20.dp))
 
             UpdateOutlinedLocationTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 value = tfVehicleLocationDescription,
                 onValueChange = { tfVehicleLocationDescription = it },
                 label = { Text(stringResource(id = R.string.vehicle_location_description)) },
@@ -136,7 +147,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             CustomBtn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 0.dp),
+                    .padding(horizontal = 16.dp),
                 containerColor = colorResource(id = R.color.dark_green),
                 contentColor = colorResource(id = R.color.color_3),
                 onClick = {
