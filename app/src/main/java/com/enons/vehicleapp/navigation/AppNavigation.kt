@@ -16,6 +16,7 @@ import com.enons.vehicleapp.presentation.screens.hourlyFeePage.HourlyFeePage
 import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.VehicleRegisterPage
 import com.enons.vehicleapp.presentation.screens.vehicleUpdatePage.VehicleUpdatePage
 import com.enons.vehicleapp.presentation.screens.vehiclePage.VehiclePage
+import com.google.firebase.auth.FirebaseAuth
 
 sealed class Screen(val route: String) {
     data object HomePage : Screen("home_page")
@@ -32,7 +33,12 @@ sealed class Screen(val route: String) {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.LoginPage.route) {
+    val startDestination = if (FirebaseAuth.getInstance().currentUser != null) {
+        Screen.HomePage.route
+    } else {
+        Screen.LoginPage.route
+    }
+    NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.LoginPage.route) {
             LoginPage(navController = navController)
         }
