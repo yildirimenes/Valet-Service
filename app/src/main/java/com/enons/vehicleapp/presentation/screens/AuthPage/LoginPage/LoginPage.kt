@@ -87,7 +87,6 @@ fun LoginPage(
                 onValueChange = { email = it.trim() },
                 label = { Text(text = stringResource(id = R.string.email)) },
                 leadingIcon = Icons.Default.Email,
-                //enabled = authState != AuthState.Loading
             )
             PasswordOutlinedTextField(
                 password = password.trim(),
