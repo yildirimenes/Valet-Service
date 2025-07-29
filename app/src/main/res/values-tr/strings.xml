@@ -13,7 +13,7 @@
     <string name="register_text">Zaten bir hesabınız var mı?</string>
     <string name="call"> Arama </string>
     <string name="notification"> Bildirim </string>
-    <string name="delete">Sil</string>
+    <string name="delete">Arabayı Sil</string>
     <string name="delete_operation">Bu aracı silmek istediğinize onaylıyor musunuz ?</string>
     <string name="confirm">Eminim</string>
     <string name="dismiss">İptal</string>
@@ -64,6 +64,16 @@
     <string name="reset_password_title">Şifremi Sıfırla</string>
     <string name="send_reset_email">E-posta Gönder</string>
     <string name="reset_password_success">Şifre sıfırlama bağlantısı e-postanıza gönderildi.</string>
+
+    <string name="vehicle_delivery">Araç Teslimi</string>
+    <string name="vehicle_delivery_question">Aracı teslim etmeyi onaylıyor musunuz?</string>
+    <string name="delivery">Teslimat</string>
+
+    <string name="fast_delivery">Hızlı Teslimat</string>
+    <string name="message_delivery">Mesajlı Teslimat</string>
+
+    <string name="profit_page">Kazanç Sayfam</string>
+    <string name="total_profit">Toplam Kazanç: %1$d ₺</string>
 
 
 

@@ -2,6 +2,7 @@
 
 package com.enons.vehicleapp.presentation.screens.vehiclePage
 
+import DeliveryAlertDialog
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -51,7 +53,6 @@ import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
-import com.enons.vehicleapp.presentation.components.DeleteBtn
 import com.enons.vehicleapp.presentation.screens.vehiclePage.components.BillCard
 import com.enons.vehicleapp.utils.AppConstant.ADD_UNIT_ID
 
@@ -68,6 +69,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     var vehicleName by remember { mutableStateOf("") }
     var vehicleNumberPlate by remember { mutableStateOf("") }
     var vehicleLocationDescription by remember { mutableStateOf("") }
+    var isDeliveryDialogVisible by remember { mutableStateOf(false) }
     var elapsedTime by remember { mutableStateOf("") }
     var valetFee by remember { mutableStateOf("") }
     var hourly1 by remember { mutableStateOf("") }
@@ -98,6 +100,19 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
+                actions = {
+                    IconButton(
+                        onClick = {
+                            vehicleToDelete = getVehicles
+                            isDeleteDialogVisible = true
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = stringResource(id = R.string.delete)
+                        )
+                    }
+                }
             )
         },
         bottomBar = {
@@ -247,11 +262,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         FloatingActionButton(
                             modifier = Modifier.padding(top = 25.dp, end = 10.dp),
                             onClick = {
-                                viewModel.sendMsgBillUseCase(
-                                    context,
-                                    getVehicles.customer_name,
-                                    getVehicles.customer_phone_number
-                                )
+                                isDeliveryDialogVisible = true
                             },
                             containerColor = colorResource(id = R.color.light_green),
                             content = {
@@ -268,6 +279,28 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
 
                 Spacer(modifier = Modifier.size(15.dp))
 
+                DeliveryAlertDialog(
+                    isVisible = isDeliveryDialogVisible,
+                    onDismiss = { isDeliveryDialogVisible = false },
+                    onDeliveryWithMessage = {
+                        viewModel.sendMsgBillUseCase(
+                            context,
+                            getVehicles.customer_name,
+                            getVehicles.customer_phone_number
+                        )
+                        val price = valetFee.filter { it.isDigit() }.toIntOrNull() ?: 0
+                        viewModel.addDelivered(getVehicles.vehicle_number_plate, price)
+                        viewModel.delete(getVehicles.vehicle_id)
+                        navController.navigate(Screen.HomePage.route)
+                    },
+                    onDelivery = {
+                        val price = valetFee.filter { it.isDigit() }.toIntOrNull() ?: 0
+                        viewModel.addDelivered(getVehicles.vehicle_number_plate, price)
+                        viewModel.delete(getVehicles.vehicle_id)
+                        navController.navigate(Screen.HomePage.route)
+                    }
+                )
+
                 DeleteAlertDialog(
                     isDeleteDialogVisible = isDeleteDialogVisible,
                     onDismiss = {
@@ -281,18 +314,6 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                         }
                         isDeleteDialogVisible = false
                         defaultController = true
-                    }
-                )
-
-                DeleteBtn(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    text = stringResource(id = R.string.delete_button),
-                    containerColor = colorResource(id = R.color.dark_red),
-                    contentColor = colorResource(id = R.color.color_3),
-                    onClick = {
-                        vehicleToDelete = getVehicles
-                        isDeleteDialogVisible = true
                     }
                 )
 

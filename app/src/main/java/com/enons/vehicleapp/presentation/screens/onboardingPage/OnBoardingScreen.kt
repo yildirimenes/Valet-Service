@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -56,7 +57,8 @@ fun OnBoardingScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp, 10.dp),
+                    .navigationBarsPadding()
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -79,15 +81,12 @@ fun OnBoardingScreen(
                         )
                     }
                 }
-
                 Box(
                     modifier = Modifier.weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
                     IndicatorComponent(pageSize = pages.size, currentPage = pagerState.currentPage)
-
                 }
-
                 Box(
                     modifier = Modifier.weight(1f),
                     contentAlignment = Alignment.CenterEnd,
@@ -98,9 +97,9 @@ fun OnBoardingScreen(
                         contentColor = colorResource(id = R.color.color_3),
                         onClick = {
                             scope.launch {
-                                if (pagerState.currentPage < pages.size -1){
-                                    pagerState.animateScrollToPage(pagerState.currentPage +1)
-                                }else{
+                                if (pagerState.currentPage < pages.size - 1) {
+                                    pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                                } else {
                                     onFinished()
                                 }
                             }

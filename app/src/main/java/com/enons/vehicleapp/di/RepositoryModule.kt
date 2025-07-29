@@ -1,5 +1,6 @@
 package com.enons.vehicleapp.di
 
+import com.enons.vehicleapp.data.local.dao.DeliveredDao
 import com.enons.vehicleapp.data.local.dao.VehiclesDao
 import com.enons.vehicleapp.data.repository.VehiclesRepository
 import com.enons.vehicleapp.data.repository.VehiclesRepositoryImpl
@@ -15,7 +16,10 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideVehiclesRepository(vehiclesDao: VehiclesDao): VehiclesRepository {
-        return VehiclesRepositoryImpl(vehiclesDao)
+    fun provideVehiclesRepository(
+        vehiclesDao: VehiclesDao,
+        deliveredDao: DeliveredDao
+    ): VehiclesRepository {
+        return VehiclesRepositoryImpl(vehiclesDao, deliveredDao)
     }
 }

@@ -13,7 +13,7 @@
     <string name="register_text">Already have an account?</string>
     <string name="call"> Call </string>
     <string name="notification"> Notification </string>
-    <string name="delete">Delete</string>
+    <string name="delete">Delete Car</string>
     <string name="delete_operation">Are you sure you want to delete this car?</string>
     <string name="confirm">Confirm</string>
     <string name="dismiss">Dismiss</string>
@@ -65,5 +65,15 @@
     <string name="reset_password_title">Reset Password</string>
     <string name="send_reset_email">Send Reset Email</string>
     <string name="reset_password_success">Check your email to reset your password.</string>
+
+    <string name="vehicle_delivery">Araç Teslimi</string>
+    <string name="vehicle_delivery_question">Aracı teslim etmeyi onaylıyor musunuz?</string>
+    <string name="delivery">Teslimat</string>
+
+    <string name="fast_delivery">Fast Delivery</string>
+    <string name="message_delivery">Delivery with Message</string>
+
+    <string name="profit_page">Kazanç Sayfam</string>
+    <string name="total_profit">Toplam Kazanç %1$d ₺</string>
 
 </resources>
