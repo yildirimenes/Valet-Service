@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.repository.VehiclesRepository
 import com.enons.vehicleapp.domain.useCase.CalculateTimeDifferenceUseCase
+import com.enons.vehicleapp.domain.useCase.GetCurrentDateUseCase
 import com.enons.vehicleapp.domain.useCase.MakePhoneCallUseCase
 import com.enons.vehicleapp.domain.useCase.SendMsgBillUseCase
 import com.enons.vehicleapp.domain.useCase.SendMsgInfoUseCase
@@ -18,7 +19,8 @@ class VehiclePageViewModel @Inject constructor(
     private val makePhoneCallUseCase: MakePhoneCallUseCase,
     private val sendMsgInfoUseCase: SendMsgInfoUseCase,
     private val sendMsgBillUseCase: SendMsgBillUseCase,
-    private val calculateTimeDifferenceUseCase: CalculateTimeDifferenceUseCase
+    private val calculateTimeDifferenceUseCase: CalculateTimeDifferenceUseCase,
+    private val getCurrentDateUseCase: GetCurrentDateUseCase
 ) : ViewModel() {
 
     var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
@@ -59,6 +61,15 @@ class VehiclePageViewModel @Inject constructor(
 
     fun sendMsgBillUseCase(context: Context, customerName: String, phoneNumber: String) {
         sendMsgBillUseCase.execute(context, customerName, phoneNumber)
+    }
+
+    fun addDelivered(plate: String, price: Int) {
+        val date = getCurrentDateUseCase()
+        repository.addDeliveredVehicle(plate, price, date)
+    }
+
+    fun currentDate(): String {
+        return getCurrentDateUseCase()
     }
 
     fun calculateTimeDifference(

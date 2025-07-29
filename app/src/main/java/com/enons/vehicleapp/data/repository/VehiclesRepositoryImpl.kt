@@ -1,7 +1,9 @@
 package com.enons.vehicleapp.data.repository
 
 import androidx.lifecycle.MutableLiveData
+import com.enons.vehicleapp.data.local.dao.DeliveredDao
 import com.enons.vehicleapp.data.local.dao.VehiclesDao
+import com.enons.vehicleapp.data.local.model.Delivered
 import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.local.model.Vehicles
 import kotlinx.coroutines.CoroutineScope
@@ -10,15 +12,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class VehiclesRepositoryImpl @Inject constructor(
-    private val dao: VehiclesDao
+    private val dao: VehiclesDao,
+    private val deliveredDao: DeliveredDao
 ) : VehiclesRepository {
 
     private var vehiclesList = MutableLiveData<List<Vehicles>>()
     private var hourlyFeeList = MutableLiveData<List<HourlyFee>>()
+    private var deliveredList = MutableLiveData<List<Delivered>>()
 
     init {
         vehiclesList = MutableLiveData()
         hourlyFeeList = MutableLiveData()
+        deliveredList = MutableLiveData()
     }
 
     override fun getVehicles(): MutableLiveData<List<Vehicles>> {
@@ -126,6 +131,23 @@ class VehiclesRepositoryImpl @Inject constructor(
             )
             dao.deleteVehicle(deleteVehicle)
             getAllVehicles()
+        }
+    }
+
+    override fun addDeliveredVehicle(plate: String, price: Int, date: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val delivered = Delivered(0, plate, price, date)
+            deliveredDao.addDelivered(delivered)
+        }
+    }
+
+    override fun getDeliveredVehicles(): MutableLiveData<List<Delivered>> {
+        return deliveredList
+    }
+
+    override fun getAllDeliveredVehicles() {
+        CoroutineScope(Dispatchers.Main).launch {
+            deliveredList.value = deliveredDao.allDelivered()
         }
     }
 }

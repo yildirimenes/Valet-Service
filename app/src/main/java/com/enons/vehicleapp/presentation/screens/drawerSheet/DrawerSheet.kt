@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
+import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CustomSettingsCard
-import com.enons.vehicleapp.presentation.screens.drawerSheet.DrawerViewModel
 import com.enons.vehicleapp.utils.AppConstant.APP_NAME
 import com.enons.vehicleapp.utils.AppConstant.GOOGLE_PLAY_LINK
 import com.enons.vehicleapp.utils.AppConstant.CONTACT_MAIL
@@ -64,6 +64,11 @@ fun DrawerSheet(navController: NavController) {
                     color = colorResource(id = R.color.color_3),
                 )
             }
+            CustomSettingsCard(
+                iconRes = R.drawable.baseline_price_change_24,
+                text = stringResource(id = R.string.profit_page),
+                onClick = { navController.navigate(Screen.ProfitPage.route) }
+            )
             CustomSettingsCard(
                 iconRes = R.drawable.baseline_email_24,
                 text = stringResource(id = R.string.valet_premium),

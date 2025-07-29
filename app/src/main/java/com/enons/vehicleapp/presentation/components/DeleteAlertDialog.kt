@@ -1,7 +1,6 @@
 package com.enons.vehicleapp.presentation.components
 
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,21 +25,19 @@ fun DeleteAlertDialog(
                 Text(stringResource(id = R.string.delete_operation))
             },
             confirmButton = {
-                Button(
+                AlertDialogBtn(
+                    text = stringResource(id = R.string.confirm),
                     onClick = {
                         onConfirm()
                         onDismiss()
                     }
-                ) {
-                    Text(stringResource(id = R.string.confirm))
-                }
+                )
             },
             dismissButton = {
-                Button(
+                AlertDialogBtn(
+                    text = stringResource(id = R.string.dismiss),
                     onClick = { onDismiss() }
-                ) {
-                    Text(stringResource(id = R.string.dismiss))
-                }
+                )
             }
         )
     }

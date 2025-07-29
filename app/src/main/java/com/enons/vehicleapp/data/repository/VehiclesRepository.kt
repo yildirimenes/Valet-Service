@@ -1,6 +1,7 @@
 package com.enons.vehicleapp.data.repository
 
 import androidx.lifecycle.MutableLiveData
+import com.enons.vehicleapp.data.local.model.Delivered
 import com.enons.vehicleapp.data.local.model.HourlyFee
 import com.enons.vehicleapp.data.local.model.Vehicles
 
@@ -49,5 +50,12 @@ interface VehiclesRepository {
     )
 
     fun delVehicle(personId: Int)
+
+    fun addDeliveredVehicle(plate: String, price: Int, date: String)
+
+    fun getDeliveredVehicles(): MutableLiveData<List<Delivered>>
+
+    fun getAllDeliveredVehicles()
+
 
 }
