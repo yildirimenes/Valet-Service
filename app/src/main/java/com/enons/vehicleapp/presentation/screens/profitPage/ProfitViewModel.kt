@@ -22,4 +22,13 @@ class ProfitViewModel @Inject constructor(
     fun load() {
         repository.getAllDeliveredVehicles()
     }
+
+    fun deleteDelivered(id: Int) {
+        repository.deleteDeliveredVehicle(id)
+    }
+
+    fun deleteAllDelivered() {
+        repository.deleteAllDelivered()
+    }
+
 }

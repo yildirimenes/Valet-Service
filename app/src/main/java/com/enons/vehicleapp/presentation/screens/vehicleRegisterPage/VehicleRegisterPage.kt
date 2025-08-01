@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -54,6 +55,8 @@ fun VehicleRegisterPage(navController: NavController) {
     var textFieldValue by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val viewModel: VehicleRegisterViewModel = hiltViewModel()
+    val carList by viewModel.carBrands.observeAsState(listOf())
+
 
     Scaffold(
         topBar = {
@@ -85,6 +88,7 @@ fun VehicleRegisterPage(navController: NavController) {
                 tfCustomerName = tfCustomerName,
                 tfCustomerPhoneNumber = tfCustomerPhoneNumber,
                 tfVehicleLocationDescription = tfVehicleLocationDescription,
+                carList = carList,
                 selectedNumber = selectedNumber,
                 textFieldValue = textFieldValue,
                 onCustomerNameChanged = { tfCustomerName = it },
