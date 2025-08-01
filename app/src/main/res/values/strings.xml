@@ -72,8 +72,10 @@
 
     <string name="fast_delivery">Fast Delivery</string>
     <string name="message_delivery">Delivery with Message</string>
+    <string name="profit_page">My Earnings</string>
+    <string name="total_profit">Total Earnings %1$d ₺</string>
 
-    <string name="profit_page">Kazanç Sayfam</string>
-    <string name="total_profit">Toplam Kazanç %1$d ₺</string>
+    <string name="delete_profit_operation">Are you sure you want to delete this record?</string>
+    <string name="delete_all_profit_operation">Are you sure you want to delete all records?</string>
 
 </resources>

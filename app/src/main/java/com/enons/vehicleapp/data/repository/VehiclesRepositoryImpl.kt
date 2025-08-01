@@ -150,4 +150,18 @@ class VehiclesRepositoryImpl @Inject constructor(
             deliveredList.value = deliveredDao.allDelivered()
         }
     }
+
+    override fun deleteDeliveredVehicle(deliveredId: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            deliveredDao.deleteDelivered(deliveredId)
+            getAllDeliveredVehicles()
+        }
+    }
+
+    override fun deleteAllDelivered() {
+        CoroutineScope(Dispatchers.Main).launch {
+            deliveredDao.deleteAllDelivered()
+            getAllDeliveredVehicles()
+        }
+    }
 }

@@ -57,5 +57,7 @@ interface VehiclesRepository {
 
     fun getAllDeliveredVehicles()
 
+    fun deleteDeliveredVehicle(deliveredId: Int)
 
+    fun deleteAllDelivered()
 }

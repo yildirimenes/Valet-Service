@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
+import com.enons.vehicleapp.data.remote.model.CarBrand
 import com.enons.vehicleapp.presentation.components.CarNameDropdown
 import com.enons.vehicleapp.presentation.components.CombinedDropdownAndTextField
 import com.enons.vehicleapp.presentation.components.PhoneField
@@ -24,6 +25,7 @@ fun RegisterForm(
     tfCustomerName: String,
     tfCustomerPhoneNumber: String,
     tfVehicleLocationDescription: String,
+    carList: List<CarBrand>,
     selectedNumber: String,
     textFieldValue: String,
     onCustomerNameChanged: (String) -> Unit,
@@ -79,6 +81,7 @@ fun RegisterForm(
         Spacer(modifier = Modifier.size(20.dp))
 
         CarNameDropdown(
+            carList = carList,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)

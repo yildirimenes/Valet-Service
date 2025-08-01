@@ -12,4 +12,10 @@ interface DeliveredDao {
 
     @Insert
     suspend fun addDelivered(delivered: Delivered)
+
+    @Query("DELETE FROM delivered WHERE delivered_id = :id")
+    suspend fun deleteDelivered(id: Int)
+
+    @Query("DELETE FROM delivered")
+    suspend fun deleteAllDelivered()
 }

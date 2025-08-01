@@ -1,4 +1,5 @@
 package com.enons.vehicleapp.presentation.components
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -24,10 +26,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
+import com.enons.vehicleapp.data.remote.model.CarBrand
 
 @Composable
 fun CarNameDropdown(
+    carList: List<CarBrand>,
     modifier: Modifier = Modifier,
+    initialBrand: String? = null,
+    initialModel: String? = null,
     onSelectionChanged: (String, String) -> Unit
 ) {
     var brandDropDownControl by remember { mutableStateOf(false) }
@@ -35,285 +41,25 @@ fun CarNameDropdown(
     var selectedBrandIndex by remember { mutableIntStateOf(0) }
     var selectedModelIndex by remember { mutableIntStateOf(0) }
 
-    val carBrands = listOf(
-        "Marka",
-        "Alfa Romeo",
-        "Audi",
-        "BMW",
-        "Chery",
-        "Chevrolet",
-        "Citroen",
-        "Cupra",
-        "Dacia",
-        "DS",
-        "Fiat",
-        "Ford",
-        "Geely",
-        "Honda",
-        "Hyundai",
-        "Jeep",
-        "Kia",
-        "Land Rover",
-        "Lexus",
-        "Mazda",
-        "Mercedes",
-        "MG",
-        "Mini",
-        "Mitsubishi",
-        "Nissan",
-        "Opel",
-        "Peugeot",
-        "Renault",
-        "Seat",
-        "Skoda",
-        "Ssangyong",
-        "Subaru",
-        "Suzuki",
-        "Tata",
-        "Tesla",
-        "Tofaş",
-        "Togg",
-        "Toyota",
-        "Volkswagen",
-        "Volvo"
-    )
+    LaunchedEffect(carList, initialBrand, initialModel) {
+        if (carList.isNotEmpty()) {
+            selectedBrandIndex = carList.indexOfFirst { it.brand == initialBrand }.let { if (it == -1) 0 else it }
+            selectedModelIndex = carList[selectedBrandIndex].models.indexOf(initialModel).let { if (it == -1) 0 else it }
+            onSelectionChanged(carList[selectedBrandIndex].brand, carList[selectedBrandIndex].models.getOrElse(selectedModelIndex) { "" })
+        }
+    }
 
-    // Define car models for each brand
-    val carModels = listOf(
-        listOf("Model"),
-        listOf("Giulietta", "Tonale"),
-        listOf("A1", "A3", "A4", "A5", "A6", "Q2", "Q3"),
-        listOf("1 Serisi", "2 Serisi", "3 Serisi", "4 Serisi", "5 Serisi", "X1", "X3", "X5"),
-        listOf("Omoda5", "Tiggo7", "Tiggo8", "Alia", "Kimo", "Tiggo"),
-        listOf("Aveo", "Cruze", "Captiva", "Lacetti", "Trax", "Camaro"),
-        listOf(
-            "C3",
-            "C3 Aircross",
-            "C4",
-            "C4 X",
-            "C5 Aircross",
-            "C-Elysee",
-            "Berlingo",
-            "C5",
-            "C1",
-            "C3 Picasso",
-            "C4 Cactus",
-            "C4 Picasso",
-            "Xsara",
-            "Nemo"
-        ),
-        listOf("Formentor"),
-        listOf("Duster", "Sandero", "Jogger", "Dokker", "Lodgy", "Logan MCV", "Logan"),
-        listOf("DS 4", "DS 7"),
-        listOf(
-            "Egea",
-            "Panda",
-            "500X",
-            "Fiorino",
-            "Doblo Combi",
-            "Doblo Cargo",
-            "Linea",
-            "500L",
-            "Albea",
-            "Brava",
-            "Bravo",
-            "Doblo",
-            "Freemont",
-            "Marea",
-            "Palio",
-            "Punto",
-            "Siena",
-            "Stilo",
-            "Tempra",
-            "Tipo",
-            "Uno"
-        ),
-        listOf(
-            "Fiesta",
-            "Focus",
-            "Puma",
-            "Kuga",
-            "Transit Courier",
-            "Tourneo Courier",
-            "Tourneo Connect",
-            "Ranger",
-            "B-Max",
-            "C-Max",
-            "EcoSport",
-            "Escort",
-            "Fusion",
-            "Ka",
-            "Mondeo",
-            "Taunus",
-            "Transit Connect"
-        ),
-        listOf("Emgrand", "Familia", "FC"),
-        listOf("Civic", "City", "Accord", "Jazz", "HR-V", "CR-V", "CR-Z"),
-        listOf(
-            "i10",
-            "i20",
-            "Bayon",
-            "Kona",
-            "Elantra",
-            "Tucson",
-            "Accent",
-            "Accent Blue",
-            "Accent Era",
-            "Excel",
-            "Getz",
-            "i30",
-            "ix35"
-        ),
-        listOf("Cherokee", "Compass", "Grand Cherokee", "Renegade"),
-        listOf(
-            "Picanto",
-            "Rio",
-            "Stonic",
-            "Cerato",
-            "Ceed",
-            "XCeed",
-            "Sportage",
-            "Sorento",
-            "Pride",
-            "Venga"
-        ),
-        listOf("Range Rover"),
-        listOf("ES"),
-        listOf("CX-3", "CX-5", "RX", "3", "6", "626", "B Serisi"),
-        listOf(
-            "A Serisi",
-            "B Serisi",
-            "C Serisi",
-            "CLA Serisi",
-            "CLS",
-            "E Serisi",
-            "GLA Serisi",
-            "Vito"
-        ),
-        listOf("HS", "MG4", "ZS"),
-        listOf("Cooper"),
-        listOf("Space Star", "ASX", "L 200", "Lancer", "Attrage", "Colt"),
-        listOf(
-            "Juke",
-            "Qashqai",
-            "X-Trail",
-            "Micra",
-            "Navara",
-            "Note",
-            "Primera",
-            "Pulsar",
-            "Skystar"
-        ),
-        listOf(
-            "Corsa",
-            "Astra",
-            "Mokka",
-            "Crossland",
-            "Grandland",
-            "Combo",
-            "Zafira",
-            "Insignia",
-            "Meriva",
-            "Vectra",
-            "Tigra"
-        ),
-        listOf(
-            "208",
-            "308",
-            "2008",
-            "408",
-            "3008",
-            "508",
-            "5008",
-            "Rifter",
-            "Partner",
-            "Bipper",
-            "106",
-            "107",
-            "206",
-            "207",
-            "301",
-            "306",
-            "307",
-            "407"
-        ),
-        listOf(
-            "Clio",
-            "Taliant",
-            "Captur",
-            "Megane",
-            "Austral",
-            "Koleos",
-            "Kangoo",
-            "Kadjar",
-            "Fluence",
-            "Laguna",
-            "Latitude",
-            "Symbol",
-            "Talisman",
-            "Scenic",
-            "R 11",
-            "R 19",
-            "R 21",
-            "R 9"
-        ),
-        listOf("Ibiza", "Leon", "Arona", "Ateca", "Altea", "Cordoba", "Toledo"),
-        listOf(
-            "Fabia",
-            "Scala",
-            "Octavia",
-            "Superb",
-            "Kamiq",
-            "Karoq",
-            "Kodiaq",
-            "Citigo",
-            "Rapid",
-            "Roomster",
-            "Yeti"
-        ),
-        listOf("Torres"),
-        listOf("Forester", "XV", "Impreza"),
-        listOf("Swift", "S-Cross", "Vitara", "SX4", "Jimny", "Baleno", "Splash", "Alto"),
-        listOf("Vista", "Indica", "Xenon", "Telcoline"),
-        listOf("Model Y"),
-        listOf("Şahin", "Doğan", "Kartal", "Murat"),
-        listOf("T10X"),
-        listOf(
-            "Corolla",
-            "Yaris",
-            "C-HR",
-            "RAV4",
-            "Proace City",
-            "Hilux",
-            "Auris",
-            "Avensis",
-            "Verso"
-        ),
-        listOf(
-            "Polo",
-            "Golf",
-            "T-Cross",
-            "Taigo",
-            "T-Roc",
-            "Tiguan",
-            "Caddy",
-            "Amarok",
-            "Transporter",
-            "Passat",
-            "Jetta",
-            "Scirocco",
-            "CC",
-            "Bora"
-        ),
-        listOf("V40", "XC40", "XC60", "XC90", "S40", "S60", "S80", "S90")
-    )
+    //Todo
+    if (carList.isEmpty()) {
+        Text(text = "Loading...")
+        return
+    }
 
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Marka Dropdown
         OutlinedCard(
             modifier = Modifier
                 .weight(1f)
@@ -328,13 +74,12 @@ fun CarNameDropdown(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = carBrands[selectedBrandIndex])
+                Text(text = carList[selectedBrandIndex].brand)
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
                     contentDescription = null
                 )
             }
-
             DropdownMenu(
                 expanded = brandDropDownControl,
                 onDismissRequest = { brandDropDownControl = false },
@@ -342,24 +87,20 @@ fun CarNameDropdown(
                     .requiredSizeIn(maxHeight = 300.dp)
                     .background(Color.White)
             ) {
-                carBrands.forEachIndexed { index, brand ->
+                carList.forEachIndexed { index, brand ->
                     DropdownMenuItem(
-                        text = { Text(text = brand) },
+                        text = { Text(text = brand.brand) },
                         onClick = {
                             brandDropDownControl = false
                             selectedBrandIndex = index
                             selectedModelIndex = 0
-                            onSelectionChanged(
-                                carBrands[selectedBrandIndex],
-                                carModels[selectedBrandIndex][selectedModelIndex]
-                            )
+                            onSelectionChanged(brand.brand, brand.models.getOrElse(0) { "" })
                         }
                     )
                 }
             }
         }
 
-        // Model Dropdown
         OutlinedCard(
             modifier = Modifier
                 .weight(1f)
@@ -374,13 +115,12 @@ fun CarNameDropdown(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = carModels[selectedBrandIndex][selectedModelIndex])
+                Text(text = carList[selectedBrandIndex].models.getOrElse(selectedModelIndex) { "" })
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
                     contentDescription = null
                 )
             }
-
             DropdownMenu(
                 expanded = modelDropDownControl,
                 onDismissRequest = { modelDropDownControl = false },
@@ -388,16 +128,13 @@ fun CarNameDropdown(
                     .requiredSizeIn(maxHeight = 300.dp)
                     .background(Color.White)
             ) {
-                carModels[selectedBrandIndex].forEachIndexed { index, model ->
+                carList[selectedBrandIndex].models.forEachIndexed { index, model ->
                     DropdownMenuItem(
                         text = { Text(text = model) },
                         onClick = {
                             modelDropDownControl = false
                             selectedModelIndex = index
-                            onSelectionChanged(
-                                carBrands[selectedBrandIndex],
-                                carModels[selectedBrandIndex][selectedModelIndex]
-                            )
+                            onSelectionChanged(carList[selectedBrandIndex].brand, model)
                         }
                     )
                 }

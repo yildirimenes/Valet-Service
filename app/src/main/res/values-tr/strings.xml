@@ -75,6 +75,8 @@
     <string name="profit_page">Kazanç Sayfam</string>
     <string name="total_profit">Toplam Kazanç: %1$d ₺</string>
 
+    <string name="delete_profit_operation">Bu kaydı silmek istediğinize emin misiniz?</string>
+    <string name="delete_all_profit_operation">Tüm kayıtları silmek istediğinize emin misiniz?</string>
 
 
 </resources>
