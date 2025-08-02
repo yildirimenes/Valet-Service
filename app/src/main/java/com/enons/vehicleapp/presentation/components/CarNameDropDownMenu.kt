@@ -43,9 +43,21 @@ fun CarNameDropdown(
 
     LaunchedEffect(carList, initialBrand, initialModel) {
         if (carList.isNotEmpty()) {
-            selectedBrandIndex = carList.indexOfFirst { it.brand == initialBrand }.let { if (it == -1) 0 else it }
-            selectedModelIndex = carList[selectedBrandIndex].models.indexOf(initialModel).let { if (it == -1) 0 else it }
-            onSelectionChanged(carList[selectedBrandIndex].brand, carList[selectedBrandIndex].models.getOrElse(selectedModelIndex) { "" })
+            val initBrand = initialBrand?.trim() ?: ""
+            val initModel = initialModel?.trim() ?: ""
+
+            selectedBrandIndex = carList.indexOfFirst {
+                it.brand.trim().equals(initBrand, ignoreCase = true)
+            }.let { if (it == -1) 0 else it }
+
+            selectedModelIndex = carList[selectedBrandIndex].models.indexOfFirst {
+                it.trim().equals(initModel, ignoreCase = true)
+            }.let { if (it == -1) 0 else it }
+
+            onSelectionChanged(
+                carList[selectedBrandIndex].brand.trim(),
+                carList[selectedBrandIndex].models.getOrElse(selectedModelIndex) { "" }.trim()
+            )
         }
     }
 

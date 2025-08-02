@@ -77,5 +77,8 @@
 
     <string name="delete_profit_operation">Are you sure you want to delete this record?</string>
     <string name="delete_all_profit_operation">Are you sure you want to delete all records?</string>
+    <string name="company_name">Company Name</string>
+    <string name="valet_name_surname">Valet Name Surname</string>
+
 
 </resources>

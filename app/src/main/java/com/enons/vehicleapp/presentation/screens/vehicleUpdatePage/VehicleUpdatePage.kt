@@ -61,17 +61,27 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
     var tfVehicleLocationDescription by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val viewModel: VehicleUpdateViewModel = hiltViewModel()
-    val carNameViewModel: VehicleRegisterViewModel = hiltViewModel()
-    val carList by carNameViewModel.carBrands.observeAsState(listOf())
+    val carList by viewModel.carBrands.observeAsState(listOf())
 
     fun extractBrandModel(name: String, list: List<CarBrand>): Pair<String, String> {
+        val trimmed = name.trim()
         for (brand in list) {
-            if (name.startsWith("${'$'}{brand.brand} ")) {
-                val model = name.removePrefix("${'$'}{brand.brand} ")
-                return brand.brand to model
+            val brandName = brand.brand.trim()
+            if (trimmed.startsWith("${'$'}brandName ")) {
+                val model = trimmed.removePrefix("${'$'}brandName ")
+                return brandName to model
+            }
+            if (trimmed.lowercase().startsWith(brandName.lowercase())) {
+                val model = trimmed.substring(brandName.length).trimStart()
+                return brandName to model
             }
         }
-        return "" to ""
+        val spaceIndex = trimmed.indexOf(' ')
+        return if (spaceIndex != -1) {
+            trimmed.substring(0, spaceIndex) to trimmed.substring(spaceIndex + 1)
+        } else {
+            trimmed to ""
+        }
     }
 
     LaunchedEffect(carList) {

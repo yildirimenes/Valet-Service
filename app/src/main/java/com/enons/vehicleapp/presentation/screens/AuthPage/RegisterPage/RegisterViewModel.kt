@@ -13,7 +13,7 @@ class RegisterViewModel @Inject constructor(
 ) : ViewModel() {
     val authState: LiveData<AuthState> = authRepository.authState
 
-    fun signup(email: String, password: String) {
-        authRepository.registerUser(email, password)
+    fun signup(email: String, password: String, companyName: String, valetName: String) {
+        authRepository.registerUser(email, password, companyName, valetName)
     }
 }
