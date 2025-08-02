@@ -77,6 +77,7 @@
 
     <string name="delete_profit_operation">Bu kaydı silmek istediğinize emin misiniz?</string>
     <string name="delete_all_profit_operation">Tüm kayıtları silmek istediğinize emin misiniz?</string>
-
+    <string name="company_name">Şirket Adı</string>
+    <string name="valet_name_surname">Vale Adı Soyadı</string>
 
 </resources>

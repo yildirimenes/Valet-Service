@@ -6,7 +6,12 @@ import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
 interface FirebaseAuthRepository {
     val authState: LiveData<AuthState>
     fun loginUser(email: String, password: String)
-    fun registerUser(email: String, password: String)
+    fun registerUser(
+        email: String,
+        password: String,
+        companyName: String,
+        valetName: String
+    )
     fun sendPasswordReset(email: String, callback: (Boolean, String?) -> Unit)
     fun signout()
 }
