@@ -1,6 +1,7 @@
 package com.enons.vehicleapp.presentation.screens.homePage
 
 import android.annotation.SuppressLint
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -131,29 +132,52 @@ fun HomePage(navController: NavController) {
                 )
             },
             floatingActionButton = {
-                CustomFabBtn(modifier = Modifier
-                    .padding(all = 5.dp),
+                CustomFabBtn(
+                    modifier = Modifier
+                        .padding(all = 5.dp),
                     isVisibleBecauseOfScrolling = fabVisibility,
                     onClick = { navController.navigate(Screen.VehicleRegisterPage.route) }
                 )
             }
 
         ) { contentPadding ->
-            VehicleListContent(
-                vehiclesList = vehiclesList,
-                contentPadding = contentPadding,
-                onItemClick = { vehicle ->
-                    val vehicleJson = Gson().toJson(vehicle)
-                    navController.navigate(Screen.VehiclePage.route + "/${vehicleJson}")
-                },
-                onEditClick = { vehicle ->
-                    val vehicleJson = Gson().toJson(vehicle)
-                    navController.navigate(Screen.VehicleUpdatePage.route + "/${vehicleJson}")
-                }
-            )
+            if (vehiclesList.value.isEmpty()) {
+                /*
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(contentPadding),
+                    contentAlignment = Alignment.Center
+                ) {
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.empty_page),
+                            contentDescription = "",
+                            modifier = Modifier.size(250.dp)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                }*/
+            } else {
+                VehicleListContent(
+                    vehiclesList = vehiclesList,
+                    contentPadding = contentPadding,
+                    onItemClick = { vehicle ->
+                        val vehicleJson = Gson().toJson(vehicle)
+                        navController.navigate(Screen.VehiclePage.route + "/${vehicleJson}")
+                    },
+                    onEditClick = { vehicle ->
+                        val vehicleJson = Gson().toJson(vehicle)
+                        navController.navigate(Screen.VehicleUpdatePage.route + "/${vehicleJson}")
+                    }
+                )
+            }
         }
     }
 }
-
 
 

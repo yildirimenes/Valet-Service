@@ -44,6 +44,7 @@ import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.CarNameDropdown
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedLocationTextField
 import com.enons.vehicleapp.presentation.components.UpdateOutlinedNumberPlateTextField
+import com.enons.vehicleapp.presentation.components.UpdateOutlinedTextField
 import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.VehicleRegisterViewModel
 import java.util.Locale
 
@@ -89,6 +90,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             tfCustomerName = getVehicles.customer_name
             tfCustomerPhoneNumber = getVehicles.customer_phone_number
             val pair = extractBrandModel(getVehicles.vehicle_name, carList)
+            tfVehicleName = getVehicles.vehicle_name
             selectedBrand = pair.first
             selectedModel = pair.second
             tfVehicleNumberPlate = getVehicles.vehicle_number_plate
@@ -120,6 +122,15 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally){
 
+                UpdateOutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    value = tfCustomerName,
+                    onValueChange = { tfCustomerName = it },
+                    label = { Text(stringResource(id = R.string.customer_name)) },
+                )
+
                 Spacer(modifier = Modifier.size(20.dp))
 
                 PhoneField(
@@ -143,7 +154,7 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                 )
 
                 Spacer(modifier = Modifier.size(20.dp))
-
+                /*
                 CarNameDropdown(
                     carList = carList,
                     modifier = Modifier
@@ -154,7 +165,15 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                 ) { brand, model ->
                     selectedBrand = brand
                     selectedModel = model
-                }
+                }*/
+                UpdateOutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    value = tfVehicleName,
+                    onValueChange = { tfVehicleName = it },
+                    label = { Text(stringResource(id = R.string.vehicle_name)) },
+                )
 
                 Spacer(modifier = Modifier.size(20.dp))
 
@@ -180,7 +199,8 @@ fun VehicleUpdatePage(navController: NavController, getVehicles: Vehicles) {
                             vehicleId = getVehicles.vehicle_id,
                             customerName = tfCustomerName,
                             customerPhoneNumber = tfCustomerPhoneNumber,
-                            vehicleName = "${selectedBrand} ${selectedModel}",
+                            //vehicleName = "${selectedBrand} ${selectedModel}",
+                            vehicleName = tfVehicleName,
                             vehicleNumberPlate = tfVehicleNumberPlate,
                             vehicleLocationDescription = tfVehicleLocationDescription,
                             vehicleCheckInDate = getVehicles.vehicle_check_in_date,

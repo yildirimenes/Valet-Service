@@ -31,8 +31,8 @@ class VehicleUpdateViewModel @Inject constructor(
     ) {
         repository.updateVehicle(
             vehicleId,
-            customerPhoneNumber,
             customerName,
+            customerPhoneNumber,
             vehicleName,
             vehicleNumberPlate,
             vehicleLocationDescription,
