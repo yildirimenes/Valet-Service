@@ -6,10 +6,9 @@ import com.enons.vehicleapp.data.local.dao.DeliveredDao
 import com.enons.vehicleapp.data.local.dao.VehiclesDao
 import com.enons.vehicleapp.data.local.model.Delivered
 import com.enons.vehicleapp.data.local.model.HourlyFee
-import com.enons.vehicleapp.data.local.model.Vehicles
 
 @Database(
-    entities = [Vehicles::class, HourlyFee::class, Delivered::class],
+    entities = [HourlyFee::class, Delivered::class],
     version = 2,
     exportSchema = false
 )

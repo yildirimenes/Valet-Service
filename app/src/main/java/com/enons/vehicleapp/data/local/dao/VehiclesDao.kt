@@ -10,21 +10,6 @@ import com.enons.vehicleapp.data.local.model.Vehicles
 
 @Dao
 interface VehiclesDao {
-    @Query("SELECT * FROM vehicles")
-    suspend fun allVehicles(): List<Vehicles>
-
-    @Insert
-    suspend fun addVehicle(vehicles: Vehicles)
-
-    @Update
-    suspend fun updateVehicle(vehicles: Vehicles)
-
-    @Delete
-    suspend fun deleteVehicle(vehicles: Vehicles)
-
-    @Query("SELECT * FROM vehicles WHERE vehicle_number_plate like '%' || :searchPlate || '%'")
-    suspend fun searchPlate(searchPlate: String): List<Vehicles>
-
     @Query("SELECT * FROM hourly_fee")
     suspend fun allHourlyFee(): List<HourlyFee>
 

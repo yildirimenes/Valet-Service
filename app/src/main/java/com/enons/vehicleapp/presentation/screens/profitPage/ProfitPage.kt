@@ -50,7 +50,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.data.local.model.Delivered
+import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
+import com.enons.vehicleapp.presentation.screens.homePage.components.VehicleListContent
+import com.google.gson.Gson
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,41 +114,64 @@ fun ProfitPage(navController: NavController) {
                 }
             }
         }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize()
-        ) {
-            LazyColumn(
+    ) { contentPadding ->
+        if (deliveredList.isEmpty()) {
+            /*
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .weight(1f)
+                    .padding(contentPadding),
+                contentAlignment = Alignment.Center
             ) {
-                items(deliveredList) { item ->
-                    ProfitRow(item) { deleteItemId = item.delivered_id }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.empty_page),
+                        contentDescription = "",
+                        modifier = Modifier.size(250.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+            }*/
+        } else {
+            Column(
+                modifier = Modifier
+                    .padding(contentPadding)
+                    .fillMaxSize()
+            ) {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                ) {
+                    items(deliveredList) { item ->
+                        ProfitRow(item) { deleteItemId = item.delivered_id }
+                    }
                 }
             }
+
+            DeleteAlertDialog(
+                isDeleteDialogVisible = isDeleteAllDialogVisible,
+                onDismiss = { isDeleteAllDialogVisible = false },
+                onConfirm = { viewModel.deleteAllDelivered() },
+                titleRes = R.string.delete,
+                messageRes = R.string.delete_all_profit_operation
+            )
+
+            DeleteAlertDialog(
+                isDeleteDialogVisible = deleteItemId != null,
+                onDismiss = { deleteItemId = null },
+                onConfirm = {
+                    deleteItemId?.let { viewModel.deleteDelivered(it) }
+                    deleteItemId = null
+                },
+                titleRes = R.string.delete,
+                messageRes = R.string.delete_profit_operation
+            )
         }
-
-        DeleteAlertDialog(
-            isDeleteDialogVisible = isDeleteAllDialogVisible,
-            onDismiss = { isDeleteAllDialogVisible = false },
-            onConfirm = { viewModel.deleteAllDelivered() },
-            titleRes = R.string.delete,
-            messageRes = R.string.delete_all_profit_operation
-        )
-
-        DeleteAlertDialog(
-            isDeleteDialogVisible = deleteItemId != null,
-            onDismiss = { deleteItemId = null },
-            onConfirm = {
-                deleteItemId?.let { viewModel.deleteDelivered(it) }
-                deleteItemId = null
-            },
-            titleRes = R.string.delete,
-            messageRes = R.string.delete_profit_operation
-        )
     }
 }
 
