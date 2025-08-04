@@ -5,6 +5,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import com.enons.vehicleapp.R
 @Composable
@@ -37,6 +39,8 @@ fun DeleteAlertDialog(
             },
             dismissButton = {
                 AlertDialogBtn(
+                    containerColor = colorResource(R.color.color_3),
+                    contentColor = Color.LightGray,
                     text = stringResource(id = R.string.dismiss),
                     onClick = { onDismiss() }
                 )
