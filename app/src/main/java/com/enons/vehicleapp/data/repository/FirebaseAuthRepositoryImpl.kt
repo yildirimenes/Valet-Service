@@ -92,6 +92,20 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
             }
     }
 
+    override fun getUserData(callback: (User?) -> Unit) {
+        val uid = auth.currentUser?.uid
+        if (uid == null) {
+            callback(null)
+            return
+        }
+        firestore.collection("users").document(uid).get()
+            .addOnSuccessListener { document ->
+                val user = document.toObject(User::class.java)
+                callback(user)
+            }
+            .addOnFailureListener { callback(null) }
+    }
+
     override fun signout() {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
