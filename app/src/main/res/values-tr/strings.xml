@@ -13,7 +13,7 @@
     <string name="register_text">Zaten bir hesabınız var mı?</string>
     <string name="call"> Arama </string>
     <string name="notification"> Bildirim </string>
-    <string name="delete">Sil</string>
+    <string name="delete">Arabayı Sil</string>
     <string name="delete_operation">Bu aracı silmek istediğinize onaylıyor musunuz ?</string>
     <string name="confirm">Eminim</string>
     <string name="dismiss">İptal</string>
@@ -30,8 +30,8 @@
     <string name="vehicle_brand">Araç Markası</string>
     <string name="car_plate">Araç Plakası</string>
     <string name="location_information">Konum Bilgisi</string>
-    <string name="valet_premium">Premium Hesap</string>
-    <string name="valet_premium_info">Premium Hesap Bilgisi</string>
+    <string name="valet_premium">Bize Ulaşın</string>
+    <string name="valet_premium_info">Vale App İletişim</string>
     <string name="price_schedule">Fiyat Tarifesi</string>
     <string name="valet_fee">Valet Fee</string>
     <string name="language_option">Dil Seçenekleri</string>
@@ -60,5 +60,25 @@
     <string name="password_repeat">Şifre (Tekrar)</string>
     <string name="passwords_do_not_match">Şifreler eşleşmiyor</string>
 
+    <string name="forgot_password">Şifremi Unuttum?</string>
+    <string name="reset_password_title">Şifremi Sıfırla</string>
+    <string name="send_reset_email">E-posta Gönder</string>
+    <string name="reset_password_success">Şifre sıfırlama bağlantısı e-postanıza gönderildi.</string>
+
+    <string name="vehicle_delivery">Vehicle Delivery</string>
+    <string name="vehicle_delivery_question">Do you confirm the vehicle delivery?</string>
+    <string name="delivery">Delivery</string>
+
+    <string name="fast_delivery">Hızlı Teslimat</string>
+    <string name="message_delivery">Mesajlı Teslimat</string>
+
+    <string name="profit_page">Kazanç Sayfam</string>
+    <string name="total_profit">Toplam Kazanç: %1$d ₺</string>
+
+    <string name="delete_profit_operation">Bu kaydı silmek istediğinize emin misiniz?</string>
+    <string name="delete_all_profit_operation">Tüm kayıtları silmek istediğinize emin misiniz?</string>
+    <string name="company_name">Şirket Adı</string>
+    <string name="valet_name_surname">Vale Adı Soyadı</string>
+    <string name="welcome">Hoşgeldin</string>
 
 </resources>

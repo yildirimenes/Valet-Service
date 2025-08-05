@@ -1,6 +1,9 @@
 package com.enons.vehicleapp.presentation.screens.vehicleRegisterPage
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.enons.vehicleapp.data.remote.model.CarBrand
+import com.enons.vehicleapp.data.repository.CarBrandModelRepository
 import com.enons.vehicleapp.data.repository.VehiclesRepository
 import com.enons.vehicleapp.domain.useCase.GetCurrentDateUseCase
 import com.enons.vehicleapp.domain.useCase.GetCurrentTimeUseCase
@@ -10,17 +13,19 @@ import javax.inject.Inject
 @HiltViewModel
 class VehicleRegisterViewModel @Inject constructor(
     private val repository: VehiclesRepository,
+    private val carBrandModelRepository: CarBrandModelRepository,
     private val getCurrentDateUseCase: GetCurrentDateUseCase,
     private val getCurrentTimeUseCase: GetCurrentTimeUseCase
 ) : ViewModel() {
 
-    fun currentDate(): String {
-        return getCurrentDateUseCase()
+    val carBrands: LiveData<List<CarBrand>> = carBrandModelRepository.getCarNames()
+
+    init {
+        carBrandModelRepository.fetchCarNames()
     }
 
-    fun currentTime(): String {
-        return getCurrentTimeUseCase()
-    }
+    fun currentDate(): String = getCurrentDateUseCase()
+    fun currentTime(): String = getCurrentTimeUseCase()
 
     fun register(
         customerName: String,

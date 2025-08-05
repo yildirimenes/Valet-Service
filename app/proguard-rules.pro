@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Firebase
+-keep class com.google.firebase.** { *; }
+-dontwarn com.google.firebase.**
+
+# Keep data models used for local and remote Firebase connections
+-keep class com.enons.vehicleapp.data.remote.model.** { *; }
+-keep class com.enons.vehicleapp.data.local.model.** { *; }

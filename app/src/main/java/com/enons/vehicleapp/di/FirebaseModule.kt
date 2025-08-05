@@ -3,6 +3,7 @@ package com.enons.vehicleapp.di
 import com.enons.vehicleapp.data.repository.FirebaseAuthRepository
 import com.enons.vehicleapp.data.repository.FirebaseAuthRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(auth: FirebaseAuth): FirebaseAuthRepository {
-        return FirebaseAuthRepositoryImpl(auth)
+    fun provideAuthRepository(auth: FirebaseAuth, firestore: FirebaseFirestore): FirebaseAuthRepository {
+        return FirebaseAuthRepositoryImpl(auth, firestore)
     }
 }

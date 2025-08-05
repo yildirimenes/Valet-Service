@@ -1,13 +1,17 @@
 package com.enons.vehicleapp.presentation.components
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextFieldDefaults
@@ -18,6 +22,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
@@ -124,7 +129,9 @@ fun UpdateOutlinedNumberPlateTextField(
 ) {
     val maxLength = 15
     OutlinedTextField(
-        modifier = modifier,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         value = value,
         onValueChange = { newText ->
             if (newText.length <= maxLength) {
@@ -208,6 +215,7 @@ fun EmailAuthOutlinedTextField(
     leadingIcon: ImageVector,
     modifier: Modifier = Modifier,
     singleLine: Boolean = true,
+    enabled: Boolean = true,
     focusedTextColor: Color = Color.DarkGray,
     unfocusedTextColor: Color = Color.DarkGray,
     focusedContainerColor: Color = Color.Transparent,
@@ -219,6 +227,7 @@ fun EmailAuthOutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         label = label,
+        enabled = enabled,
         modifier = modifier.fillMaxWidth(),
         leadingIcon = { Icon(imageVector = leadingIcon, contentDescription = null) },
         singleLine = singleLine,
@@ -243,6 +252,7 @@ fun PasswordOutlinedTextField(
     onPasswordVisibilityChange: () -> Unit,
     isPasswordFocused: Boolean,
     onFocusChange: (FocusState) -> Unit,
+    enabled: Boolean = true,
     focusedTextColor: Color = Color.DarkGray,
     unfocusedTextColor: Color = Color.DarkGray,
     focusedContainerColor: Color = Color.Transparent,
@@ -254,6 +264,7 @@ fun PasswordOutlinedTextField(
         value = password,
         onValueChange = onPasswordChange,
         label = label,
+        enabled = enabled,
         modifier = modifier
             .fillMaxWidth()
             .onFocusChanged { focusState -> onFocusChange(focusState) },
@@ -269,7 +280,7 @@ fun PasswordOutlinedTextField(
                 painter = image,
                 contentDescription = if (passwordVisible) "Hide password" else "Show password",
                 modifier = Modifier
-                    .clickable { onPasswordVisibilityChange() }
+                    .clickable(enabled = enabled) { onPasswordVisibilityChange() }
                     .alpha(if (isPasswordFocused) 1f else 0f)
             )
         },
@@ -286,3 +297,44 @@ fun PasswordOutlinedTextField(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NameAuthOutlinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: @Composable () -> Unit,
+    @DrawableRes leadingIconResId: Int,
+    modifier: Modifier = Modifier,
+    singleLine: Boolean = true,
+    enabled: Boolean = true,
+    focusedTextColor: Color = Color.DarkGray,
+    unfocusedTextColor: Color = Color.DarkGray,
+    focusedContainerColor: Color = Color.Transparent,
+    unfocusedContainerColor: Color = Color.Transparent,
+    focusedIndicatorColor: Color = Color.DarkGray,
+    unfocusedIndicatorColor: Color = Color.LightGray
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = label,
+        enabled = enabled,
+        modifier = modifier.fillMaxWidth(),
+        leadingIcon = {
+            Image(
+                painter = painterResource(id = leadingIconResId),
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+                colorFilter = ColorFilter.tint(Color.DarkGray)
+            )
+        },
+        singleLine = singleLine,
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedTextColor = focusedTextColor,
+            unfocusedTextColor = unfocusedTextColor,
+            focusedBorderColor = focusedIndicatorColor,
+            unfocusedBorderColor = unfocusedIndicatorColor,
+            containerColor = Color.Transparent
+        )
+    )
+}

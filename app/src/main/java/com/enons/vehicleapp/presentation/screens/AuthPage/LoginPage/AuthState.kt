@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.LoginPage
+package com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage
 
 sealed class AuthState{
     data object Authenticated : AuthState()

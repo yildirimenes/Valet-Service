@@ -2,19 +2,23 @@
 
 package com.enons.vehicleapp.presentation.screens.vehiclePage
 
+import DeliveryAlertDialog
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -38,10 +42,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.enons.vehicleapp.R
@@ -52,8 +53,7 @@ import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.BannerAd
 import com.enons.vehicleapp.presentation.components.DeleteAlertDialog
-import com.enons.vehicleapp.presentation.components.DeleteBtn
-import com.enons.vehicleapp.presentation.screens.vehiclePage.components.FlipCard
+import com.enons.vehicleapp.presentation.screens.vehiclePage.components.BillCard
 import com.enons.vehicleapp.utils.AppConstant.ADD_UNIT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -69,6 +69,7 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     var vehicleName by remember { mutableStateOf("") }
     var vehicleNumberPlate by remember { mutableStateOf("") }
     var vehicleLocationDescription by remember { mutableStateOf("") }
+    var isDeliveryDialogVisible by remember { mutableStateOf(false) }
     var elapsedTime by remember { mutableStateOf("") }
     var valetFee by remember { mutableStateOf("") }
     var hourly1 by remember { mutableStateOf("") }
@@ -77,12 +78,12 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     var hourly4 by remember { mutableStateOf("") }
     var hourly5 by remember { mutableStateOf("") }
     var daily by remember { mutableStateOf("") }
-    val scrollState = rememberScrollState()
+
     val viewModel: VehiclePageViewModel = hiltViewModel()
     val hourlyFeeList = viewModel.hourlyFeeList.observeAsState(listOf())
+
     LaunchedEffect(key1 = true) {
         viewModel.load()
-        //User Information
         vehicleId = getVehicles.vehicle_id.toString()
         customerName = getVehicles.customer_name
         vehicleName = getVehicles.vehicle_name
@@ -93,125 +94,138 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.car_information))
-                },
+                title = { Text(text = stringResource(id = R.string.car_information)) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
-            )
-        },
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(10.dp)
-                .verticalScroll(scrollState)
-                .padding(it),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            BannerAd(modifier = Modifier.fillMaxWidth(), adId = ADD_UNIT_ID)
-            Spacer(modifier = Modifier.size(10.dp))
-            Card(
-                elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-                modifier = Modifier
-                    .padding(all = 5.dp)
-                    .fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = colorResource(id = R.color.color_3)
-                )
-            ) {
-                Column {
-                    Spacer(modifier = Modifier.size(10.dp))
-                    CustomVehicleItem(
-                        modifier = Modifier.padding(10.dp),
-                        iconRes = R.drawable.baseline_person_24,
-                        text = getVehicles.customer_name
-                    )
-                    CustomVehicleItem(
-                        modifier = Modifier.padding(10.dp),
-                        iconRes = R.drawable.baseline_directions_car_24,
-                        text = getVehicles.vehicle_name
-                    )
-                    CustomVehicleItem(
-                        modifier = Modifier.padding(10.dp),
-                        iconRes = R.drawable.baseline_call_to_action_24,
-                        text = getVehicles.vehicle_number_plate
-                    )
-                    CustomVehicleItem(
-                        modifier = Modifier.padding(10.dp),
-                        iconRes = R.drawable.baseline_date_range_24,
-                        text = getVehicles.vehicle_check_in_date
-                    )
-                    CustomVehicleItem(
-                        modifier = Modifier.padding(10.dp),
-                        iconRes = R.drawable.baseline_location_on_24,
-                        text = getVehicles.vehicle_location_description
-                    )
-
-                    Row(
-                        modifier = Modifier
-                            .padding(all = 2.dp)
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
+                actions = {
+                    IconButton(
+                        onClick = {
+                            vehicleToDelete = getVehicles
+                            isDeleteDialogVisible = true
+                        }
                     ) {
-                        CallBtn(
-                            modifier = Modifier.padding(8.dp),
-                            text = stringResource(id = R.string.call),
-                            containerColor = colorResource(id = R.color.dark_green),
-                            contentColor = colorResource(id = R.color.color_3),
-                            onClick = {
-                                viewModel.makePhoneCall(
-                                    customerPhone = getVehicles.customer_phone_number,
-                                    context
-                                )
-                            }
-                        )
-                        MessageBtn(
-                            modifier = Modifier.padding(8.dp),
-                            text = stringResource(id = R.string.notification),
-                            containerColor = colorResource(id = R.color.dark_green),
-                            contentColor = colorResource(id = R.color.color_3),
-                            onClick = {
-                                val customerName = getVehicles.customer_name
-                                val vehicleNumberPlate = getVehicles.vehicle_number_plate
-                                val vehicleLocationDescription =
-                                    getVehicles.vehicle_location_description
-                                val formattedPhoneNumber = getVehicles.customer_phone_number
-                                val currentHours = getVehicles.vehicle_check_in_hours
-
-                                viewModel.sendMessage(
-                                    context,
-                                    customerName,
-                                    vehicleNumberPlate,
-                                    vehicleLocationDescription,
-                                    formattedPhoneNumber,
-                                    currentHours
-                                )
-                            }
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = stringResource(id = R.string.delete)
                         )
                     }
                 }
+            )
+        },
+        bottomBar = {
+            Box(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .padding(bottom = 8.dp)
+            ) {
+                BannerAd(modifier = Modifier.fillMaxWidth(), adId = ADD_UNIT_ID)
             }
-            Spacer(modifier = Modifier.size(10.dp))
-            FlipCard(
-                frontContent = {
-                    //Calculation Price Operations
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 10.dp, vertical = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Card(
+                    elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+                    modifier = Modifier
+                        .padding(all = 5.dp)
+                        .fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = colorResource(id = R.color.color_3)
+                    )
+                ) {
+                    Column {
+                        Spacer(modifier = Modifier.size(10.dp))
+                        CustomVehicleItem(
+                            modifier = Modifier.padding(10.dp),
+                            iconRes = R.drawable.baseline_person_24,
+                            text = getVehicles.customer_name
+                        )
+                        CustomVehicleItem(
+                            modifier = Modifier.padding(10.dp),
+                            iconRes = R.drawable.baseline_directions_car_24,
+                            text = getVehicles.vehicle_name
+                        )
+                        CustomVehicleItem(
+                            modifier = Modifier.padding(10.dp),
+                            iconRes = R.drawable.baseline_call_to_action_24,
+                            text = getVehicles.vehicle_number_plate
+                        )
+                        CustomVehicleItem(
+                            modifier = Modifier.padding(10.dp),
+                            iconRes = R.drawable.baseline_date_range_24,
+                            text = getVehicles.vehicle_check_in_date
+                        )
+                        CustomVehicleItem(
+                            modifier = Modifier.padding(10.dp),
+                            iconRes = R.drawable.baseline_location_on_24,
+                            text = getVehicles.vehicle_location_description
+                        )
+
+                        Row(
+                            modifier = Modifier
+                                .padding(all = 2.dp)
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            CallBtn(
+                                modifier = Modifier.padding(8.dp),
+                                text = stringResource(id = R.string.call),
+                                containerColor = colorResource(id = R.color.dark_green),
+                                contentColor = colorResource(id = R.color.color_3),
+                                onClick = {
+                                    viewModel.makePhoneCall(
+                                        customerPhone = getVehicles.customer_phone_number,
+                                        context
+                                    )
+                                }
+                            )
+                            MessageBtn(
+                                modifier = Modifier.padding(8.dp),
+                                text = stringResource(id = R.string.notification),
+                                containerColor = colorResource(id = R.color.dark_green),
+                                contentColor = colorResource(id = R.color.color_3),
+                                onClick = {
+                                    viewModel.sendMessage(
+                                        context,
+                                        getVehicles.customer_name,
+                                        getVehicles.vehicle_number_plate,
+                                        getVehicles.vehicle_location_description,
+                                        getVehicles.customer_phone_number,
+                                        getVehicles.vehicle_check_in_hours
+                                    )
+                                }
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.size(10.dp))
+
+                BillCard {
                     val hourlyFee = hourlyFeeList.value.firstOrNull()
                     val startDateValue = getVehicles.vehicle_check_in_date
+
                     hourly1 = hourlyFee?.hourly_v1.toString()
                     hourly2 = hourlyFee?.hourly_v2.toString()
                     hourly3 = hourlyFee?.hourly_v3.toString()
                     hourly4 = hourlyFee?.hourly_v4.toString()
                     hourly5 = hourlyFee?.hourly_v5.toString()
                     daily = hourlyFee?.daily.toString()
+
                     val result = viewModel.calculateTimeDifference(
                         startDateValue,
                         hourly1,
@@ -244,14 +258,11 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                                 text = elapsedTime
                             )
                         }
+
                         FloatingActionButton(
                             modifier = Modifier.padding(top = 25.dp, end = 10.dp),
                             onClick = {
-                                viewModel.sendMsgBillUseCase(
-                                    context,
-                                    getVehicles.customer_name,
-                                    getVehicles.customer_phone_number
-                                )
+                                isDeliveryDialogVisible = true
                             },
                             containerColor = colorResource(id = R.color.light_green),
                             content = {
@@ -264,59 +275,50 @@ fun VehiclePage(navController: NavController, getVehicles: Vehicles) {
                             }
                         )
                     }
-                },
-                backContent = {
-                    Row(
-                        modifier = Modifier
-                            .padding(all = 5.dp)
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Column {
-                            Spacer(modifier = Modifier.size(32.dp))
-                            Text(
-                                text = stringResource(id = R.string.time_fee_infos),
-                                fontSize = 25.sp,
-                                fontWeight = FontWeight.W400,
-                                fontStyle = FontStyle.Normal,
-                                color = colorResource(id = R.color.black)
-                            )
-                            Spacer(modifier = Modifier.size(32.dp))
-                        }
-                    }
                 }
-            )
-            Spacer(modifier = Modifier.size(15.dp))
-            DeleteAlertDialog(
-                isDeleteDialogVisible = isDeleteDialogVisible,
-                onDismiss = {
-                    isDeleteDialogVisible = false
-                    vehicleToDelete = null
-                },
-                onConfirm = {
-                    vehicleToDelete?.vehicle_id?.let {
+
+                Spacer(modifier = Modifier.size(15.dp))
+
+                DeliveryAlertDialog(
+                    isVisible = isDeliveryDialogVisible,
+                    onDismiss = { isDeliveryDialogVisible = false },
+                    onDeliveryWithMessage = {
+                        viewModel.sendMsgBillUseCase(
+                            context,
+                            getVehicles.customer_name,
+                            getVehicles.customer_phone_number
+                        )
+                        val price = valetFee.filter { it.isDigit() }.toIntOrNull() ?: 0
+                        viewModel.addDelivered(getVehicles.vehicle_number_plate, price)
+                        viewModel.delete(getVehicles.vehicle_id)
+                        navController.navigate(Screen.HomePage.route)
+                    },
+                    onDelivery = {
+                        val price = valetFee.filter { it.isDigit() }.toIntOrNull() ?: 0
+                        viewModel.addDelivered(getVehicles.vehicle_number_plate, price)
                         viewModel.delete(getVehicles.vehicle_id)
                         navController.navigate(Screen.HomePage.route)
                     }
-                    isDeleteDialogVisible = false
-                    defaultController = true
-                }
-            )
-            DeleteBtn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp),
-                text = stringResource(id = R.string.delete_button),
-                containerColor = colorResource(id = R.color.dark_red),
-                contentColor = colorResource(id = R.color.color_3),
-                onClick = {
-                    vehicleToDelete = getVehicles
-                    isDeleteDialogVisible = true
-                },
-            )
-            Spacer(modifier = Modifier.size(30.dp))
+                )
+
+                DeleteAlertDialog(
+                    isDeleteDialogVisible = isDeleteDialogVisible,
+                    onDismiss = {
+                        isDeleteDialogVisible = false
+                        vehicleToDelete = null
+                    },
+                    onConfirm = {
+                        vehicleToDelete?.vehicle_id?.let {
+                            viewModel.delete(getVehicles.vehicle_id)
+                            navController.navigate(Screen.HomePage.route)
+                        }
+                        isDeleteDialogVisible = false
+                        defaultController = true
+                    }
+                )
+
+                Spacer(modifier = Modifier.size(24.dp))
+            }
         }
     }
 }
-

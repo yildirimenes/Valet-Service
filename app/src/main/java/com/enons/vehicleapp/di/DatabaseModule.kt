@@ -2,6 +2,7 @@ package com.enons.vehicleapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.enons.vehicleapp.data.local.dao.DeliveredDao
 import com.enons.vehicleapp.data.local.dao.VehiclesDao
 import com.enons.vehicleapp.data.local.db.VehicleDatabase
 import dagger.Module
@@ -30,5 +31,11 @@ object DatabaseModule {
     @Singleton
     fun provideVehicleDao(appDatabase: VehicleDatabase): VehiclesDao {
         return appDatabase.vehiclesDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeliveredDao(appDatabase: VehicleDatabase): DeliveredDao {
+        return appDatabase.deliveredDao()
     }
 }

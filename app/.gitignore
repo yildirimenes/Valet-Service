@@ -1,2 +1,24 @@
-/build
+# Ignore build directory
+/build/
+
+# Ignore local configuration files
+/local.properties
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Ignore Android Studio specific files
+.gradle/
+*.log
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore google files
 google-services.json

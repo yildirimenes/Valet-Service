@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.RegisterPage
+package com.enons.vehicleapp.presentation.screens.AuthPage.RegisterPage
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -7,10 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -22,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -36,9 +41,11 @@ import com.enons.vehicleapp.R
 import com.enons.vehicleapp.navigation.Screen
 import com.enons.vehicleapp.presentation.components.EmailAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.AuthBtn
+import com.enons.vehicleapp.presentation.components.NameAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.PasswordOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
 
+@OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RegisterPage(
@@ -46,6 +53,8 @@ fun RegisterPage(
     navController: NavController,
     registerViewModel: RegisterViewModel = hiltViewModel()
 ) {
+    var companyName by remember { mutableStateOf("") }
+    var valetName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
@@ -71,7 +80,9 @@ fun RegisterPage(
     Column(
         modifier = modifier
             .padding(24.dp)
-            .fillMaxSize(),
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .imePadding(),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -79,6 +90,20 @@ fun RegisterPage(
             painter = painterResource(id = R.drawable.app_logo),
             contentDescription = null,
             modifier = Modifier.size(120.dp)
+        )
+
+        NameAuthOutlinedTextField(
+            value = companyName,
+            onValueChange = { companyName = it },
+            label = { Text(stringResource(id = R.string.company_name)) },
+            leadingIconResId = R.drawable.outline_apartment_24
+        )
+
+        NameAuthOutlinedTextField(
+            value = valetName,
+            onValueChange = { valetName = it },
+            label = { Text(text = stringResource(id = R.string.valet_name_surname)) },
+            leadingIconResId = R.drawable.baseline_person_24
         )
 
         EmailAuthOutlinedTextField(
@@ -114,7 +139,7 @@ fun RegisterPage(
                     Toast.makeText(context, "Şifreler eşleşmiyor", Toast.LENGTH_SHORT).show()
                     return@AuthBtn
                 }
-                registerViewModel.signup(email, password)
+                registerViewModel.signup(email, password, companyName, valetName)
             },
             text = stringResource(id = R.string.auth_register),
             enabled = authState != AuthState.Loading

@@ -13,7 +13,7 @@
     <string name="register_text">Already have an account?</string>
     <string name="call"> Call </string>
     <string name="notification"> Notification </string>
-    <string name="delete">Delete</string>
+    <string name="delete">Delete Car</string>
     <string name="delete_operation">Are you sure you want to delete this car?</string>
     <string name="confirm">Confirm</string>
     <string name="dismiss">Dismiss</string>
@@ -30,8 +30,8 @@
     <string name="vehicle_brand">Car Brand</string>
     <string name="car_plate">Car Plate</string>
     <string name="location_information">Location Information</string>
-    <string name="valet_premium">Premium Account</string>
-    <string name="valet_premium_info">Premium Account Information</string>
+    <string name="valet_premium">Contact</string>
+    <string name="valet_premium_info">Vale App Contact</string>
     <string name="price_schedule">Price Schedule</string>
     <string name="valet_fee">Valet Fee</string>
     <string name="language_option">Language Option</string>
@@ -60,5 +60,26 @@
 
     <string name="password_repeat">Password (Repeat)</string>
     <string name="passwords_do_not_match">Passwords do not match</string>
+
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="send_reset_email">Send Reset Email</string>
+    <string name="reset_password_success">Check your email to reset your password.</string>
+
+    <string name="vehicle_delivery">Araç Teslimi</string>
+    <string name="vehicle_delivery_question">Aracı teslim etmeyi onaylıyor musunuz?</string>
+    <string name="delivery">Teslimat</string>
+
+    <string name="fast_delivery">Fast Delivery</string>
+    <string name="message_delivery">Delivery with Message</string>
+    <string name="profit_page">My Earnings</string>
+    <string name="total_profit">Total Earnings %1$d ₺</string>
+
+    <string name="delete_profit_operation">Are you sure you want to delete this record?</string>
+    <string name="delete_all_profit_operation">Are you sure you want to delete all records?</string>
+    <string name="company_name">Company Name</string>
+    <string name="valet_name_surname">Valet Name Surname</string>
+    <string name="welcome">Welcome</string>
+
 
 </resources>
