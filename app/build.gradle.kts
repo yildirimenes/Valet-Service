@@ -35,6 +35,16 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -91,7 +101,6 @@ dependencies {
 
     //Coroutine
     implementation("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
 
     //Sqlite
     implementation("androidx.sqlite:sqlite-ktx:2.4.0")
@@ -129,4 +138,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
     implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // Chucker
+    //debugImplementation ("com.github.chuckerteam.chucker:library:4.2.0")
+    //releaseImplementation ("com.github.chuckerteam.chucker:library-no-op:4.2.0")
+
 }
