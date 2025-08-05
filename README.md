@@ -15,6 +15,7 @@ The main features of this project include:
 -   An information message can be sent when the vehicle is received.
 -   Calls can be made to communicate in emergencies.
 -   Vehicle registration date and time can be informed to the customer by message.
+-   A revenue model can be created through valet vehicle delivery and a bonus system can be implemented.
 
 
 ## Tech Stacks
@@ -27,6 +28,7 @@ This project is trying to use the latest Android tech stacks.
 - Concurrency: [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 - Dependency Injection: [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 - Local Database: [Room](https://developer.android.com/training/data-storage/room)
+- Remote Database: [Firestore](https://firebase.google.com/docs/firestore?hl=tr)
 - Image Loading: [Coil](https://coil-kt.github.io) 
 - Others:
   - [Jetpack Compose Extensions](https://google.github.io/accompanist)
@@ -34,8 +36,16 @@ This project is trying to use the latest Android tech stacks.
   - [SplashScreen](https://developer.android.com/develop/ui/views/launch/splash-screen)
   - [Admob](https://admob.google.com/intl/tr/home/)
   - [Google Play Review](https://developer.android.com/guide/playcore/in-app-review)
+  - [Chucker](https://github.com/ChuckerTeam/chucker)
   
 ## User Interfaces
+
+| Login Screen | Register Screen | Reset Password Screen |
+| ----- | ------------ | ------------ |
+|<img src="images/login_page.png" width="250" height="550">|<img src="images/register_page.png" width="250" height="550">|<img src="images/reset_password.png" width="250" height="550">|
+
+</br>
+
 | Home Screen | Drawer Screen | Detail Screen |
 | ----- | ------------ | ------------ |
 |<img src="images/category_page.png" width="250" height="550">|<img src="images/drawer_page.png" width="250" height="550">|<img src="images/car_detail.png" width="250" height="550">|
@@ -51,6 +61,12 @@ This project is trying to use the latest Android tech stacks.
 | Delete Dialog | Information Message Screen | Vale Message Screen |
 | ----- | ------------ | ------------ |
 |<img src="images/car_delete.png" width="250" height="550">|<img src="images/car_information_message.jpeg" width="250" height="550">|<img src="images/vale_message.jpeg" width="250" height="550">|
+
+</br>
+
+| Profit Page |
+| ----- |
+|<img src="images/profit_page.png" width="250" height="550">|
 
 </br>
 
