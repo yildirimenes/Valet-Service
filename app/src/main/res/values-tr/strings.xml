@@ -90,6 +90,17 @@
     <string name="become_premium_now">Hemen Premiumlu Ol</string>
     <string name="brand_placeholder">Marka</string>
     <string name="model_placeholder">Model</string>
-
+    <plurals name="day">
+        <item quantity="one">gün</item>
+        <item quantity="other">gün</item>
+    </plurals>
+    <plurals name="hour">
+        <item quantity="one">saat</item>
+        <item quantity="other">saat</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">dakika</item>
+        <item quantity="other">dakika</item>
+    </plurals>
 
 </resources>
