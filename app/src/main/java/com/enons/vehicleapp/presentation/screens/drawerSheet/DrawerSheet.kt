@@ -90,6 +90,11 @@ fun DrawerSheet(navController: NavController) {
                     onClick = { navController.navigate(Screen.ProfitPage.route) }
                 )
                 CustomSettingsCard(
+                    iconRes = R.drawable.outline_workspace_premium_24,
+                    text = stringResource(id = R.string.premium_page),
+                    onClick = { navController.navigate(Screen.PremiumPage.route) },
+                )
+                CustomSettingsCard(
                     iconRes = R.drawable.baseline_email_24,
                     text = stringResource(id = R.string.valet_premium),
                     onClick = {

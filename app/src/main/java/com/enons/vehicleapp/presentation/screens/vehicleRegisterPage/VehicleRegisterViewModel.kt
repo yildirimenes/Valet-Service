@@ -1,7 +1,9 @@
 package com.enons.vehicleapp.presentation.screens.vehicleRegisterPage
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.enons.vehicleapp.data.local.model.Vehicles
 import com.enons.vehicleapp.data.remote.model.CarBrand
 import com.enons.vehicleapp.data.repository.CarBrandModelRepository
 import com.enons.vehicleapp.data.repository.VehiclesRepository
@@ -19,9 +21,12 @@ class VehicleRegisterViewModel @Inject constructor(
 ) : ViewModel() {
 
     val carBrands: LiveData<List<CarBrand>> = carBrandModelRepository.getCarNames()
+    var vehicleList = MutableLiveData<List<Vehicles>>()
 
     init {
         carBrandModelRepository.fetchCarNames()
+        vehicleList = repository.getVehicles()
+        repository.getAllVehicles()
     }
 
     fun currentDate(): String = getCurrentDateUseCase()
