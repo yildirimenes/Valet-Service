@@ -38,7 +38,8 @@ fun CustomBtn(
     padding: Dp = 8.dp,
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .padding(horizontal = 16.dp)
+        .padding(horizontal = 16.dp),
+    enabled: Boolean = true
 ) {
     Button(
         onClick = onClick,
@@ -47,6 +48,7 @@ fun CustomBtn(
             containerColor = containerColor,
             contentColor = contentColor
         ),
+        enabled = enabled,
         shape = RoundedCornerShape(12.dp)
     ) {
         Text(

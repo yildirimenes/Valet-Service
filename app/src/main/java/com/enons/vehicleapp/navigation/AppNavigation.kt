@@ -13,6 +13,7 @@ import com.enons.vehicleapp.presentation.screens.AuthPage.RegisterPage.RegisterP
 import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.LoginPage
 import com.enons.vehicleapp.presentation.screens.homePage.HomePage
 import com.enons.vehicleapp.presentation.screens.hourlyFeePage.HourlyFeePage
+import com.enons.vehicleapp.presentation.screens.premiumPage.PremiumPage
 import com.enons.vehicleapp.presentation.screens.profitPage.ProfitPage
 import com.enons.vehicleapp.presentation.screens.vehicleRegisterPage.VehicleRegisterPage
 import com.enons.vehicleapp.presentation.screens.vehicleUpdatePage.VehicleUpdatePage
@@ -29,6 +30,8 @@ sealed class Screen(val route: String) {
     data object RegisterPage : Screen("register_page")
     data object ForgotPasswordPage : Screen("forgot_password_page")
     data object ProfitPage : Screen("profit_page")
+    data object PremiumPage : Screen("premium_page")
+
 }
 
 @Composable
@@ -76,6 +79,9 @@ fun AppNavigation() {
         }
         composable(Screen.ProfitPage.route) {
             ProfitPage(navController = navController)
+        }
+        composable(Screen.PremiumPage.route) {
+            PremiumPage(navController = navController)
         }
     }
 }
