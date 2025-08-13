@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.enons.vehicleapp.R
 import com.enons.vehicleapp.data.remote.model.CarBrand
@@ -61,12 +62,6 @@ fun CarNameDropdown(
         }
     }
 
-    //Todo
-    if (carList.isEmpty()) {
-        Text(text = "Loading...")
-        return
-    }
-
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -76,7 +71,7 @@ fun CarNameDropdown(
             modifier = Modifier
                 .weight(1f)
                 .height(56.dp)
-                .clickable { brandDropDownControl = true }
+                .clickable(enabled = carList.isNotEmpty()) { brandDropDownControl = true }
                 .background(Color.White)
         ) {
             Row(
@@ -86,14 +81,17 @@ fun CarNameDropdown(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = carList[selectedBrandIndex].brand)
+                Text(
+                    text = carList.getOrNull(selectedBrandIndex)?.brand
+                        ?: stringResource(R.string.brand_placeholder)
+                )
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
                     contentDescription = null
                 )
             }
             DropdownMenu(
-                expanded = brandDropDownControl,
+                expanded = brandDropDownControl && carList.isNotEmpty(),
                 onDismissRequest = { brandDropDownControl = false },
                 modifier = Modifier
                     .requiredSizeIn(maxHeight = 300.dp)
@@ -117,7 +115,7 @@ fun CarNameDropdown(
             modifier = Modifier
                 .weight(1f)
                 .height(56.dp)
-                .clickable { modelDropDownControl = true }
+                .clickable(enabled = carList.isNotEmpty()) { modelDropDownControl = true }
                 .background(Color.White)
         ) {
             Row(
@@ -127,20 +125,26 @@ fun CarNameDropdown(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = carList[selectedBrandIndex].models.getOrElse(selectedModelIndex) { "" })
+                Text(
+                    text = carList
+                        .getOrNull(selectedBrandIndex)
+                        ?.models
+                        ?.getOrNull(selectedModelIndex)
+                        ?: stringResource(R.string.model_placeholder)
+                )
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_arrow_drop_down_24),
                     contentDescription = null
                 )
             }
             DropdownMenu(
-                expanded = modelDropDownControl,
+                expanded = modelDropDownControl && carList.isNotEmpty(),
                 onDismissRequest = { modelDropDownControl = false },
                 modifier = Modifier
                     .requiredSizeIn(maxHeight = 300.dp)
                     .background(Color.White)
             ) {
-                carList[selectedBrandIndex].models.forEachIndexed { index, model ->
+                carList.getOrNull(selectedBrandIndex)?.models?.forEachIndexed { index, model ->
                     DropdownMenuItem(
                         text = { Text(text = model) },
                         onClick = {

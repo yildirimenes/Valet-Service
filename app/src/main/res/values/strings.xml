@@ -81,5 +81,14 @@
     <string name="valet_name_surname">Valet Name Surname</string>
     <string name="welcome">Welcome</string>
 
+    <string name="premium_page">Premium</string>
+    <string name="premium_message">To register more vehicles, go premium.</string>
+    <string name="go_premium">Go Premium</string>
+    <string name="premium_sheet_title">You have reached the car registration limit!</string>
+    <string name="premium_limit_message">You have reached the free vehicle registration limit. To register more vehicles, you must upgrade to the premium version. For more details</string>
+    <string name="click_here">click here</string>
+    <string name="become_premium_now">Become Premium Now</string>
+    <string name="brand_placeholder">Marka</string>
+    <string name="model_placeholder">Model</string>
 
 </resources>

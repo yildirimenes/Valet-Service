@@ -11,15 +11,19 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -32,6 +36,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -56,6 +64,10 @@ fun VehicleRegisterPage(navController: NavController) {
     val scrollState = rememberScrollState()
     val viewModel: VehicleRegisterViewModel = hiltViewModel()
     val carList by viewModel.carBrands.observeAsState(listOf())
+    val vehiclesList by viewModel.vehicleList.observeAsState(listOf())
+    var showPremiumDialog by remember { mutableStateOf(false) }
+    var showPremiumSheet by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState()
 
 
     Scaffold(
@@ -84,7 +96,7 @@ fun VehicleRegisterPage(navController: NavController) {
         ) {
             RegisterForm(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()     ,
                 tfCustomerName = tfCustomerName,
                 tfCustomerPhoneNumber = tfCustomerPhoneNumber,
                 tfVehicleLocationDescription = tfVehicleLocationDescription,
@@ -98,9 +110,9 @@ fun VehicleRegisterPage(navController: NavController) {
                 onSelectedModelChanged = { selectedModel = it },
                 onSelectedNumberChanged = { selectedNumber = it },
                 onTextFieldValueChanged = { textFieldValue = it }
-            )
+                )
 
-            Spacer(modifier = Modifier.size(20.dp))
+                Spacer(modifier = Modifier.size(20.dp))
 
             CustomBtn(
                 modifier = Modifier
@@ -109,36 +121,95 @@ fun VehicleRegisterPage(navController: NavController) {
                 containerColor = colorResource(id = R.color.dark_green),
                 contentColor = colorResource(id = R.color.color_3),
                 onClick = {
-                    val customerName = tfCustomerName
-                    val customerPhoneNumber = tfCustomerPhoneNumber
-                    val vehicleName = "$selectedBrand $selectedModel"
-                    val vehicleNumberPlate = "$selectedNumber $textFieldValue"
-                    val vehicleLocationDescription = tfVehicleLocationDescription
-                    val vehicleCheckInDate = viewModel.currentDate()
-                    val vehicleCheckInHours = viewModel.currentTime()
-
-                    if (customerName.isNotEmpty() && vehicleName.isNotEmpty() &&
-                        vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()
-                    ) {
-                        viewModel.register(
-                            customerName,
-                            customerPhoneNumber,
-                            vehicleName,
-                            vehicleNumberPlate,
-                            vehicleLocationDescription,
-                            vehicleCheckInDate,
-                            vehicleCheckInHours
-                        )
-                        localFocusManager.clearFocus()
-                        navController.navigate(Screen.HomePage.route)
+                    if (vehiclesList.size >= 10) {
+                        showPremiumSheet = true
                     } else {
-                        Toast.makeText(context, "Eksik bilgi girdiniz", Toast.LENGTH_SHORT).show()
+                        val customerName = tfCustomerName
+                        val customerPhoneNumber = tfCustomerPhoneNumber
+                        val vehicleName = "$selectedBrand $selectedModel"
+                        val vehicleNumberPlate = "$selectedNumber $textFieldValue"
+                        val vehicleLocationDescription = tfVehicleLocationDescription
+                        val vehicleCheckInDate = viewModel.currentDate()
+                        val vehicleCheckInHours = viewModel.currentTime()
+
+                        if (customerName.isNotEmpty() && vehicleName.isNotEmpty() &&
+                            vehicleNumberPlate.isNotEmpty() && vehicleLocationDescription.isNotEmpty()
+                        ) {
+                            viewModel.register(
+                                customerName,
+                                customerPhoneNumber,
+                                vehicleName,
+                                vehicleNumberPlate,
+                                vehicleLocationDescription,
+                                vehicleCheckInDate,
+                                vehicleCheckInHours
+                            )
+                            localFocusManager.clearFocus()
+                            navController.navigate(Screen.HomePage.route)
+                        } else {
+                            Toast.makeText(context, "Eksik bilgi girdiniz", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 },
                 text = stringResource(id = R.string.register)
             )
 
             Spacer(modifier = Modifier.size(30.dp))
+        }
+    }
+
+    if (showPremiumSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showPremiumSheet = false },
+            sheetState = sheetState
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.premium_sheet_title),
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                val annotatedText = buildAnnotatedString {
+                    append(stringResource(id = R.string.premium_limit_message))
+                    append(" ")
+                    val tag = "premium"
+                    pushStringAnnotation(tag = tag, annotation = tag)
+                    withStyle(
+                        style = SpanStyle(
+                            color = colorResource(id = R.color.dark_green),
+                            textDecoration = TextDecoration.Underline
+                        )
+                    ) {
+                        append(stringResource(id = R.string.click_here))
+                    }
+                    pop()
+                }
+
+                ClickableText(
+                    text = annotatedText,
+                    onClick = { offset ->
+                        annotatedText.getStringAnnotations("premium", offset, offset)
+                            .firstOrNull()?.let {
+                                showPremiumSheet = false
+                                navController.navigate(Screen.PremiumPage.route)
+                            }
+                    }
+                )
+
+                CustomBtn(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {},
+                    text = stringResource(id = R.string.become_premium_now),
+                    containerColor = colorResource(id = R.color.dark_green),
+                    contentColor = colorResource(id = R.color.color_3),
+                    enabled = false
+                )
+            }
         }
     }
 }
