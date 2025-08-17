@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.AuthPage.RegisterPage
+package com.enons.vehicleapp.presentation.screens.authPage.RegisterPage
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -14,7 +14,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -43,7 +42,7 @@ import com.enons.vehicleapp.presentation.components.EmailAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.AuthBtn
 import com.enons.vehicleapp.presentation.components.NameAuthOutlinedTextField
 import com.enons.vehicleapp.presentation.components.PasswordOutlinedTextField
-import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.authPage.LoginPage.AuthState
 
 @OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

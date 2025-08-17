@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.AuthPage.ForgotPasswordPage
+package com.enons.vehicleapp.presentation.screens.authPage.ForgotPasswordPage
 
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.FirebaseAuthRepository

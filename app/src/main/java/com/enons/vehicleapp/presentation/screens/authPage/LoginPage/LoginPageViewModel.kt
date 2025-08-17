@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage
+package com.enons.vehicleapp.presentation.screens.authPage.LoginPage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

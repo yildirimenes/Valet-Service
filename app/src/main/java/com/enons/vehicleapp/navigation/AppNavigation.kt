@@ -8,9 +8,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
 import com.enons.vehicleapp.data.local.model.Vehicles
-import com.enons.vehicleapp.presentation.screens.AuthPage.ForgotPasswordPage.ForgotPasswordPage
-import com.enons.vehicleapp.presentation.screens.AuthPage.RegisterPage.RegisterPage
-import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.LoginPage
+import com.enons.vehicleapp.presentation.screens.authPage.ForgotPasswordPage.ForgotPasswordPage
+import com.enons.vehicleapp.presentation.screens.authPage.RegisterPage.RegisterPage
+import com.enons.vehicleapp.presentation.screens.authPage.LoginPage.LoginPage
 import com.enons.vehicleapp.presentation.screens.homePage.HomePage
 import com.enons.vehicleapp.presentation.screens.hourlyFeePage.HourlyFeePage
 import com.enons.vehicleapp.presentation.screens.premiumPage.PremiumPage
