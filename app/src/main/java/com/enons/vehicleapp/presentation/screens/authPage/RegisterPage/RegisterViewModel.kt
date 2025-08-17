@@ -1,9 +1,9 @@
-package com.enons.vehicleapp.presentation.screens.AuthPage.RegisterPage
+package com.enons.vehicleapp.presentation.screens.authPage.RegisterPage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.enons.vehicleapp.data.repository.FirebaseAuthRepository
-import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.authPage.LoginPage.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

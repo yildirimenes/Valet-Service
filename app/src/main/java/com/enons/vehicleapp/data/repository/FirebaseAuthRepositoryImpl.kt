@@ -2,7 +2,7 @@ package com.enons.vehicleapp.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage.AuthState
+import com.enons.vehicleapp.presentation.screens.authPage.LoginPage.AuthState
 import com.enons.vehicleapp.data.remote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

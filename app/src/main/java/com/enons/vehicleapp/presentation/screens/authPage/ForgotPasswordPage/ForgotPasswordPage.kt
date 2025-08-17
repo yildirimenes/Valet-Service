@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.AuthPage.ForgotPasswordPage
+package com.enons.vehicleapp.presentation.screens.authPage.ForgotPasswordPage
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

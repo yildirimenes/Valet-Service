@@ -1,4 +1,4 @@
-package com.enons.vehicleapp.presentation.screens.AuthPage.LoginPage
+package com.enons.vehicleapp.presentation.screens.authPage.LoginPage
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

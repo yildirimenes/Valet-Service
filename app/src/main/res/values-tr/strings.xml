@@ -65,9 +65,9 @@
     <string name="send_reset_email">E-posta Gönder</string>
     <string name="reset_password_success">Şifre sıfırlama bağlantısı e-postanıza gönderildi.</string>
 
-    <string name="vehicle_delivery">Vehicle Delivery</string>
-    <string name="vehicle_delivery_question">Do you confirm the vehicle delivery?</string>
-    <string name="delivery">Delivery</string>
+    <string name="vehicle_delivery">Araç Teslimi</string>
+    <string name="vehicle_delivery_question">Aracı teslim etmeyi onaylıyor musunuz?</string>
+    <string name="delivery">Teslimat</string>
 
     <string name="fast_delivery">Hızlı Teslimat</string>
     <string name="message_delivery">Mesajlı Teslimat</string>
